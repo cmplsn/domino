@@ -10,14 +10,14 @@
 int* assegna_tessere(int n){
     int* deck= malloc(n*sizeof(int));
 
-    int tessere[21]={11,12,13,14,15,16,22,23,24,25,26,
-                     33,34,35,36,44,45,46,55,56,66};
+    int tessere[23]={11,12,13,14,15,16,22,23,24,25,26,
+                     33,34,35,36,44,45,46,55,56,66,1111,1221};
 
     srand(time(NULL));  //todo: seeding di rand ogni esecuzione crea una diversa sequenza di indici randomici.
                         // senza questa istruzione la sequenza random generata è sempre la stessa.
 
     for (int i = 0; i < n; i++) { //todo: popolo il deck del giocatore con n tessere (con rep) scelte casualmente
-        int x=rand()%21;
+        int x=rand()%23;
         deck[i]=tessere[x];
     }
 
