@@ -9,11 +9,18 @@ int main() {
     int n =choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
     int* tessere_giocatore;
     tessere_giocatore = assegna_tessere(n);
-    mostra_tessere(tessere_giocatore,n);
-    Matrix board = newboard();
-    board.matrix=initboard(board.rows,board.cols);
+    Matrix board = newMatrix();
     int remain=n;
-
+    int tile =choose_tile(tessere_giocatore,remain);
+    char c =choose_orientation(tile);
+    //place_tile(board,c,tile);
+    board.matrix[0][0]=1;
+    board.matrix[0][1]=2;
+    print_board(board);
+    while(!(c=='V' || c=='O')){
+        printf("input non corretto\n");
+        c = choose_orientation(tile);
+    }
     /*while(remain >0){
         printf("le tue tessere sono:\n");
         mostra_tessere(tessere_giocatore, remain);
@@ -36,7 +43,7 @@ int main() {
 
 
     /*todo: operazione di free finale per evitare memory leaks*/
-    free(tessere_giocatore);
+    free_deck(tessere_giocatore);
     free_board(board.matrix,board.rows);
 
     return 0;

@@ -5,18 +5,14 @@
 #ifndef PROJECT_IAP_BOARD_H
 #define PROJECT_IAP_BOARD_H
 
+#include <stdbool.h>
+
 typedef struct Matrix{
     int rows;
     int cols;
     int** matrix;
 }Matrix;
 
-Matrix newboard(){
-    Matrix a;
-    a.cols=2;
-    a.rows=2;
-    return a;
-}
 int** initboard(int rows, int cols){
     int** m=(int**) malloc(rows* sizeof(int*));
     for (int i = 0; i < rows; i++) {
@@ -24,6 +20,15 @@ int** initboard(int rows, int cols){
     }
     return m;
 }
+
+Matrix newMatrix(){
+    Matrix a;
+    a.cols=2;
+    a.rows=2;
+    a.matrix=initboard(a.rows,a.cols);
+    return a;
+}
+
 
 int switch_tessera(int x){
     int res=x/10;
@@ -46,7 +51,25 @@ int valid_tessera(int* deck,int deck_size,int x){   //todo:  il giocatore scegli
     }
     return 0;
 }
+void print_board(Matrix board){
+    printf("  ");
+    for (int j = 0; j < board.cols; ++j) {
+        printf("%d ",j+1);
+    }
+    printf("\n");
 
+    for (int i = 0; i <board.rows ; ++i) {
+        printf("%d ",i+1);
+        for (int j = 0; j < board.cols; j=j+2) {
+            if(board.matrix[i][j]!=0) {
+                printf("[%d %d] ", board.matrix[i][j],board.matrix[i][j+1]);
+            }else{
+                printf("  ");
+            }
+        }
+        printf("\n");
+    }
+}
 void free_board(int** matrix,int rows){
     if (rows>0){
         for (int i = 0; i <rows ; ++i) {
@@ -63,15 +86,22 @@ void addCol(int** matrix, int rows, int cols){
 
 }
 
+char choose_orientation(int tile){
+    printf("utilizzare in orizzontale o verticale? O/V:\n");
+    char c; scanf(" %c",&c);
+    return c;
+}
+
+void place_tile(Matrix board, char orientation, int tile){
+
+}
+
 int choose_tile(int* deck, int n){
-    printf("le tue tessere:\n");
     mostra_tessere(deck,n);
-
     int tile;
-    int found=0;
-
-    while(!found){
-        printf("scegli quale utilizzare:\n");
+    bool found=false;
+    while(found==false){
+        printf("scegli quale tessera utilizzare:\n");
         scanf("%d",&tile);
         if(!valid_tessera(deck,n,tile)) {
             printf("tessera non valida. rinserire tessere con cui si desidera giocare:\n");
@@ -80,7 +110,7 @@ int choose_tile(int* deck, int n){
             found=1;
         }
     }
-    found=0;
+    found=false;
     int i=0;
     int tile_rev= switch_tessera(tile);
     while(!found){
@@ -95,10 +125,7 @@ int choose_tile(int* deck, int n){
     }
     return tile;
 }
-char choose_orientation(int tile){
-    printf("utilizzare in orizzontale o verticale? O/V:\n");
-    //todo:continuare
-}
+
 
 char choose_position(){
     int found=0;
