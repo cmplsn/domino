@@ -37,7 +37,7 @@ int main() {
 
     /*todo: operazione di free finale per evitare memory leaks*/
     free(tessere_giocatore);
-    //free_board(board.matrix,board.rows);
+    free_board(board.matrix,board.rows);
 
     return 0;
 
