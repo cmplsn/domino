@@ -23,9 +23,69 @@ int** initboard(int rows, int cols){
 
 Matrix newMatrix(){
     Matrix a;
-    a.cols=2;
     a.rows=2;
+    a.cols=4;
     a.matrix=initboard(a.rows,a.cols);
+    return a;
+}
+
+void free_board(int** matrix,int rows){
+    if (rows>0){
+        for (int i = 0; i <rows ; ++i) {
+            free(matrix[i]);
+        }
+        free(matrix);
+    }
+}
+
+int** add_rows(int** matrix,int* rows, int cols, int addrows){
+    int** tmp=(int**) realloc(matrix,(*rows+addrows)* sizeof(int*));
+    if(tmp) {
+        matrix=tmp;
+        for (int i = 0; i < addrows; ++i) {
+            matrix[*rows + i] = (int *) malloc(cols * sizeof(int));
+        }
+    }
+    *rows+=addrows;
+    return matrix;
+}
+int** add_cols( int** matrix,int rows, int* cols,int addcols){
+    for (int i = 0; i < rows; ++i) {
+        int *tmp= (int*)realloc(matrix[i], (*cols+addcols)*sizeof(int*));
+        if(tmp){
+            matrix[i]=tmp;
+        }
+    }
+    *cols+=addcols;
+    return matrix;
+}
+
+
+/*int** initboard(int rows, int cols){
+    int** m=(int**) malloc(rows* sizeof(int*));
+    for (int i = 0; i < rows; i++) {
+        m[i]= (int*)malloc(cols* sizeof(int));
+    }
+    return m;
+}
+
+Matrix newMatrix(){
+    Matrix a;
+    a.cols=0;
+    a.rows=0;
+    a.matrix=initboard(a.rows,a.cols);
+    for (int i = 0; i <a.rows ; ++i) {
+        for (int j = 0; j < a.cols; ++j) {
+            a.matrix[i][j]=6;
+        }
+    }
+
+    for (int i = 0; i <a.rows ; ++i) {
+        for (int j = 0; j < a.cols; ++j) {
+            printf("%d ",a.matrix[i][j]);
+        }
+        printf("\n");
+    }
     return a;
 }
 
@@ -161,5 +221,5 @@ void addRight(){
     //TODO: se pedina è utilizzata in verticale:
 
     //TODO: se pedina è utilizzata in orizzontale:
-}
+}*/
 #endif //PROJECT_IAP_BOARD_H
