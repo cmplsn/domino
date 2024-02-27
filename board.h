@@ -10,24 +10,39 @@
 typedef struct Matrix{
     int rows;
     int cols;
-    int** matrix;
+    char** matrix;
 }Matrix;
 
-int** initboard(int rows, int cols){
+char** initboard(int rows, int cols){
+    char** m=(char**) malloc(rows* sizeof(char*));
+    for (int i = 0; i < rows; i++) {
+        m[i]= (char*)malloc(cols* sizeof(char));
+    }
+    return m;
+}
+
+/*int** initboard(int rows, int cols){
     int** m=(int**) malloc(rows* sizeof(int*));
     for (int i = 0; i < rows; i++) {
         m[i]= (int*)malloc(cols* sizeof(int));
     }
     return m;
-}
+}*/
 
 Matrix newMatrix(){
     Matrix a;
     a.rows=2;
     a.cols=4;
     a.matrix=initboard(a.rows,a.cols);
+    for (int i = 0; i < a.rows; ++i) {
+        for (int j = 0; j < a.cols; ++j) {
+            a.matrix[i][j]=' ';
+        }
+
+    }
     return a;
 }
+void fill_board(Matrix* board,int tile, bool vertical);
 
 void free_board(int** matrix,int rows){
     if (rows>0){
@@ -61,33 +76,7 @@ int** add_cols( int** matrix,int rows, int* cols,int addcols){
 }
 
 
-/*int** initboard(int rows, int cols){
-    int** m=(int**) malloc(rows* sizeof(int*));
-    for (int i = 0; i < rows; i++) {
-        m[i]= (int*)malloc(cols* sizeof(int));
-    }
-    return m;
-}
-
-Matrix newMatrix(){
-    Matrix a;
-    a.cols=0;
-    a.rows=0;
-    a.matrix=initboard(a.rows,a.cols);
-    for (int i = 0; i <a.rows ; ++i) {
-        for (int j = 0; j < a.cols; ++j) {
-            a.matrix[i][j]=6;
-        }
-    }
-
-    for (int i = 0; i <a.rows ; ++i) {
-        for (int j = 0; j < a.cols; ++j) {
-            printf("%d ",a.matrix[i][j]);
-        }
-        printf("\n");
-    }
-    return a;
-}
+/*
 
 
 int switch_tessera(int x){

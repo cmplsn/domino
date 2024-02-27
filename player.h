@@ -6,7 +6,7 @@
 #define PROJECT_IAP_PLAYER_H
 
 #include <time.h>
-int** assegna(int n){
+/*int** assegna(int n){
     int** deck=(int**)malloc(n* sizeof(int*));
     for (int i = 0; i < n; ++i) {
         deck[i]= (int*) malloc(2* sizeof(int));
@@ -26,7 +26,7 @@ int** assegna(int n){
         deck[i][1]=tessere[x][1];
     }
     return deck;
-}
+}*/
 
 int* assegna_tessere(int n){
     int* deck= malloc(n*sizeof(int));
@@ -65,10 +65,7 @@ int choose_valid_n(){
     return n;
 }
 
-void free_deck(int** deck,int n){
-    for (int i = 0; i < n; ++i) {
-        free(deck[i]);
-    }
+void free_deck(int* deck,int n){
     free(deck);
 }
 
