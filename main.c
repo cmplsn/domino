@@ -10,7 +10,6 @@ int main() {
     int *tessere_giocatore = assegna_tessere(n);
     Matrix board = newMatrix();
 
-
     /*todo: operazione di free finale per evitare memory leaks*/
     free_deck(tessere_giocatore, n);
     free_board(board.matrix, board.rows);
