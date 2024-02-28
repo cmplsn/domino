@@ -25,6 +25,7 @@ char** initboard(int rows, int cols){
     }
     return m;
 }
+
 void print_board(Matrix* board){
     for (int i = 0; i < board->rows; ++i) {
         for (int j = 0; j < board->cols; ++j) {
@@ -32,6 +33,7 @@ void print_board(Matrix* board){
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 char** tile_to_vertical(Tile t){
@@ -55,28 +57,13 @@ char* tile_to_horizontal(Tile t){
     return tile;
 }
 
-/*int** initboard(int rows, int cols){
-    int** m=(int**) malloc(rows* sizeof(int*));
-    for (int i = 0; i < rows; i++) {
-        m[i]= (int*)malloc(cols* sizeof(int));
-    }
-    return m;
-}*/
-
 Matrix newMatrix(){
     Matrix a;
     a.rows=2;
     a.cols=4;
     a.matrix=initboard(a.rows,a.cols);
-    /*for (int i = 0; i < a.rows; ++i) {
-        for (int j = 0; j < a.cols; ++j) {
-            a.matrix[i][j]=' ';
-        }
-
-    }*/
     return a;
 }
-void fill_board(Matrix* board,int tile, bool vertical);
 
 void free_board(Matrix* board){
     if (board->rows>0){
@@ -87,26 +74,26 @@ void free_board(Matrix* board){
     }
 }
 
-int** add_rows(int** matrix,int* rows, int cols, int addrows){
-    int** tmp=(int**) realloc(matrix,(*rows+addrows)* sizeof(int*));
+char** add_rows(Matrix* board, int addrows){
+    char** tmp=(char**) realloc(board->matrix,(board->rows+addrows)* sizeof(char*));
     if(tmp) {
-        matrix=tmp;
+        board->matrix=tmp;
         for (int i = 0; i < addrows; ++i) {
-            matrix[*rows + i] = (int *) malloc(cols * sizeof(int));
+            board->matrix[board->rows + i] = (char *) malloc(board->cols * sizeof(char));
         }
     }
-    *rows+=addrows;
-    return matrix;
+    board->rows+=addrows;
+    return board->matrix;
 }
-int** add_cols( int** matrix,int rows, int* cols,int addcols){
-    for (int i = 0; i < rows; ++i) {
-        int *tmp= (int*)realloc(matrix[i], (*cols+addcols)*sizeof(int*));
+char** add_cols( Matrix* board, int addcols){
+    for (int i = 0; i < board->rows; ++i) {
+        char *tmp= (char*)realloc(board->matrix[i], (board->cols+addcols)*sizeof(char*));
         if(tmp){
-            matrix[i]=tmp;
+            board->matrix[i]=tmp;
         }
     }
-    *cols+=addcols;
-    return matrix;
+    board->cols+=addcols;
+    return board->matrix;
 }
 
 
