@@ -7,12 +7,15 @@
 
 int main() {
     int n = choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
-    int *tessere_giocatore = assegna_tessere(n);
+    Tile* tessere_giocatore = assegna(n);
+    print_hand(tessere_giocatore,n);
+
     Matrix board = newMatrix();
+    print_board(&board);
 
     /*todo: operazione di free finale per evitare memory leaks*/
-    free_deck(tessere_giocatore, n);
-    free_board(board.matrix, board.rows);
+    free(tessere_giocatore);
+    free_board(&board);
 
     return 0;
 }

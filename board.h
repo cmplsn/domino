@@ -18,7 +18,41 @@ char** initboard(int rows, int cols){
     for (int i = 0; i < rows; i++) {
         m[i]= (char*)malloc(cols* sizeof(char));
     }
+    for (int i = 0; i <rows ; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            m[i][j]=' ';
+        }
+    }
     return m;
+}
+void print_board(Matrix* board){
+    for (int i = 0; i < board->rows; ++i) {
+        for (int j = 0; j < board->cols; ++j) {
+            printf("%c",board->matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+char** tile_to_vertical(Tile t){
+    char** tile= (char**)malloc(2*sizeof(char*));
+    for (int i = 0; i < 2; ++i) {
+        tile[i]=(char*) malloc(2* sizeof(char));
+    }
+    tile[0][0]='{';
+    tile[0][1]=t.x;
+    tile[1][0]=t.y;
+    tile[1][1]='}';
+    return tile;
+}
+
+char* tile_to_horizontal(Tile t){
+    char* tile=(char*) malloc(4*sizeof(char));
+    tile[0]='[';
+    tile[1]=t.x;
+    tile[2]=t.y;
+    tile[3]=']';
+    return tile;
 }
 
 /*int** initboard(int rows, int cols){
@@ -34,22 +68,22 @@ Matrix newMatrix(){
     a.rows=2;
     a.cols=4;
     a.matrix=initboard(a.rows,a.cols);
-    for (int i = 0; i < a.rows; ++i) {
+    /*for (int i = 0; i < a.rows; ++i) {
         for (int j = 0; j < a.cols; ++j) {
             a.matrix[i][j]=' ';
         }
 
-    }
+    }*/
     return a;
 }
 void fill_board(Matrix* board,int tile, bool vertical);
 
-void free_board(int** matrix,int rows){
-    if (rows>0){
-        for (int i = 0; i <rows ; ++i) {
-            free(matrix[i]);
+void free_board(Matrix* board){
+    if (board->rows>0){
+        for (int i = 0; i <board->rows ; ++i) {
+            free(board->matrix[i]);
         }
-        free(matrix);
+        free(board->matrix);
     }
 }
 
