@@ -8,7 +8,17 @@
 int main() {
     int n = choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
-    print_hand(tessere_giocatore,n);
+    //print_hand(tessere_giocatore,n);
+    int remain=n;
+    Tile x = select_tile(tessere_giocatore,n);
+    x.orientation=select_orientation();
+    if(x.orientation=='O'){
+        char* a =tile_to_horizontal(x);
+    }else if(x.orientation=='V'){
+        char** b= tile_to_vertical(x);
+    }
+
+
 
 
     /*todo: operazione di free finale per evitare memory leaks*/

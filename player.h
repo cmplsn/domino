@@ -71,4 +71,30 @@ bool valid_tile(Tile* deck, int size, Tile tile){
     return found;
 }
 
+Tile select_tile(Tile* deck, int size){
+    print_hand(deck,size);
+    printf("scegliere tessera da giocare:\n");
+    char a,b;
+    scanf(" %c%c",&a,&b);
+    Tile res={a,b,' '};
+    while(!valid_tile(deck,size,res)){
+        printf("\nTESSERA NON VALIDA!\n\nscegliere tessera da giocare:\n");
+        scanf(" %c%c",&a,&b);
+        res.x=a;
+        res.y=b;
+    }
+    return res;
+}
+
+char select_orientation(){
+    printf("seleziona orientamento tessere: O/V\n");
+    char x=' ';
+    scanf(" %c",&x);
+    while(x!='V' && x!='O'){
+        printf("formato non valido, seleziona orientamente: O/V\n");
+        scanf(" %c",&x);
+    }
+    return x;
+}
+
 #endif //PROJECT_IAP_PLAYER_H
