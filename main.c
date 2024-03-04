@@ -10,40 +10,10 @@ int main() {
     Tile* tessere_giocatore = assegna(n);
     print_hand(tessere_giocatore,n);
 
-    Matrix board = newMatrix();
-    for (int i = 0; i < board.rows; ++i) {
-        for (int j = 0; j < board.cols; ++j) {
-            if(i%2){
-                board.matrix[i][j]='A';
-            }else{
-                board.matrix[i][j]='B';
-            }
-        }
-    }
-    board.matrix=add_cols(&board,1);
-    for (int i = 0; i < board.rows; ++i) {
-        for (int j = 0; j < board.cols; ++j) {
-            if(i%2){
-                board.matrix[i][j]='A';
-            }else{
-                board.matrix[i][j]='B';
-            }
-        }
-    }
-    board.matrix= add_rows(&board,1);
-    for (int i = 0; i < board.rows; ++i) {
-        for (int j = 0; j < board.cols; ++j) {
-            if(i%2){
-                board.matrix[i][j]='A';
-            }else{
-                board.matrix[i][j]='B';
-            }
-        }
-    }
-    print_board(&board);
+
     /*todo: operazione di free finale per evitare memory leaks*/
     free(tessere_giocatore);
-    free_board(&board);
+    //free_board(&board);
 
     return 0;
 }

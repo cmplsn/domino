@@ -53,4 +53,22 @@ int choose_valid_n(){
     return n;
 }
 
+void switch_tile(Tile* tile){
+    char tmp=tile->x;
+    tile->x=tile->y;
+    tile->y=tmp;
+}
+
+bool valid_tile(Tile* deck, int size, Tile tile){
+    bool found=false;
+    int i=0;
+    while(found==false && i<size){
+        if((deck[i].x==tile.x && deck[i].y==tile.y)||(deck[i].x==tile.y && deck[i].y == tile.x)){
+            found=true;
+        }
+        i++;
+    }
+    return found;
+}
+
 #endif //PROJECT_IAP_PLAYER_H
