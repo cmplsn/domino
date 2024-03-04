@@ -16,9 +16,8 @@ int main() {
         char* a =tile_to_horizontal(x);
     }else if(x.orientation=='V'){
         char** b= tile_to_vertical(x);
+        insert_vertical()
     }
-
-
 
 
     /*todo: operazione di free finale per evitare memory leaks*/
