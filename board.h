@@ -13,6 +13,7 @@ typedef struct Matrix{
     char** matrix;
 }Matrix;
 
+
 char** initboard(int rows, int cols){
     char** m=(char**) malloc(rows* sizeof(char*));
     for (int i = 0; i < rows; i++) {
@@ -57,10 +58,10 @@ char* tile_to_horizontal(Tile t){
     return tile;
 }
 
-Matrix newMatrix(){
+Matrix newMatrix(int rows, int cols){
     Matrix a;
-    a.rows=2;
-    a.cols=4;
+    a.rows=rows;
+    a.cols=cols;
     a.matrix=initboard(a.rows,a.cols);
     return a;
 }
@@ -74,7 +75,7 @@ void free_board(Matrix* board){
     }
 }
 
-char** add_rows(Matrix* board, int addrows){
+/*char** add_rows(Matrix* board, int addrows){
     char** tmp=(char**) realloc(board->matrix,(board->rows+addrows)* sizeof(char*));
     if(tmp) {
         board->matrix=tmp;
@@ -94,6 +95,35 @@ char** add_cols( Matrix* board, int addcols){
     }
     board->cols+=addcols;
     return board->matrix;
+}*/
+
+char select_pos(){
+    printf("posizionare a Destra ( D ) o Sinistra ( S )?:\n");
+    char x;
+    scanf(" %c",&x);
+    while (!(x=='D' || x=='S')){
+        printf("Formato Errato, selezionare Destra (D) o Sinistra ( S ):\n");
+        scanf(" %c",&x);
+    }
+    return x;
+}
+
+void insert_right(Matrix* board, char* tile,int n){
+    int i=0;
+    while(board->matrix[0][i]!=' '){
+        i++;
+    }
+    if(i==0 ||board->matrix[0][i-2]==tile[1]){
+        for (int j = 0; j <4 ; ++j) {
+            board->matrix[0][i+j]=tile[j];
+        }
+    }else{
+        printf("Mossa non valida\n");
+        exit(1);
+    }
+}
+void insert_left(Matrix* board, char* tile){
+
 }
 
 #endif //PROJECT_IAP_BOARD_H

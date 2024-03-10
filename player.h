@@ -65,6 +65,11 @@ bool valid_tile(Tile* deck, int size, Tile tile){
     while(found==false && i<size){
         if((deck[i].x==tile.x && deck[i].y==tile.y)||(deck[i].x==tile.y && deck[i].y == tile.x)){
             found=true;
+            Tile tmp={deck[size-1].x,deck[size-1].y,' '};
+            deck[size-1].x=deck[i].x;
+            deck[size-1].y=deck[i].y;
+            deck[i].x=tmp.x;
+            deck[i].y=tmp.y;
         }
         i++;
     }
@@ -72,7 +77,6 @@ bool valid_tile(Tile* deck, int size, Tile tile){
 }
 
 Tile select_tile(Tile* deck, int size){
-    print_hand(deck,size);
     printf("scegliere tessera da giocare:\n");
     char a,b;
     scanf(" %c%c",&a,&b);

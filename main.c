@@ -8,16 +8,30 @@
 int main() {
     int n = choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
-    //print_hand(tessere_giocatore,n);
     int remain=n;
-    Tile x = select_tile(tessere_giocatore,n);
-    x.orientation=select_orientation();
-    if(x.orientation=='O'){
+    Matrix board= newMatrix(n*2,n*4);
+    while(remain>0){
+        //print_board(&board);
+        print_hand(tessere_giocatore,remain);
+        Tile x = select_tile(tessere_giocatore,remain);
+        char pos;
+        pos=select_pos();
+        char* tile= tile_to_horizontal(x);
+        if(pos=='D'){
+            insert_right(&board, tile, board.cols);
+        }else if(pos=='S'){
+            insert_left(&board,tile);
+        }
+        print_board(&board);
+
+        remain--;
+    }
+
+    /*if(x.orientation=='O'){
         char* a =tile_to_horizontal(x);
     }else if(x.orientation=='V'){
         char** b= tile_to_vertical(x);
-        insert_vertical()
-    }
+    }*/
 
 
     /*todo: operazione di free finale per evitare memory leaks*/
