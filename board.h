@@ -127,10 +127,10 @@ void insert_right(Matrix* board, char* tile,int n){
     }else if(tile[1]=='+' && tile[2]=='1'){
         for (int j = 0; j < i; ++j) {
             switch (board->matrix[0][j]) {
-                case 1 ... 5:
-                    board->matrix[0][j]++;
+                case '1' ... '5':
+                    board->matrix[0][j]++; //todo:mettere apposto perchè non codifica giusto.
                     break;
-                case 6:
+                case '6':
                     board->matrix[0][j]=1;
                     break;
             }

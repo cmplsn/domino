@@ -8,7 +8,7 @@
 int main() {
     int n = choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
-    tessere_giocatore[n-1].x='M'; tessere_giocatore[n-1].y='R';
+    tessere_giocatore[n-1].x='+'; tessere_giocatore[n-1].y='1';
     int remain=n;
     Matrix board= newMatrix(n*2,n*4);
     while(remain>0){
