@@ -131,7 +131,7 @@ void insert_right(Matrix* board, char* tile,int n){
                     board->matrix[0][j]++; //todo:mettere apposto perchè non codifica giusto.
                     break;
                 case '6':
-                    board->matrix[0][j]=1;
+                    board->matrix[0][j]='1';
                     break;
             }
         }

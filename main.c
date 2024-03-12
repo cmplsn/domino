@@ -23,7 +23,7 @@ int main() {
             insert_left(&board,tile);
         }
         print_board(&board);
-
+        free(tile);
         remain--;
     }
 
