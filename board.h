@@ -113,9 +113,27 @@ void insert_right(Matrix* board, char* tile,int n){
     while(board->matrix[0][i]!=' '){
         i++;
     }
-    if(i==0 ||board->matrix[0][i-2]==tile[1]){
+    if(i==0 ||board->matrix[0][i-2]==tile[1] || board->matrix[0][i-2]=='0' || (tile[1]=='0' && tile[2]=='0')){
         for (int j = 0; j <4 ; ++j) {
             board->matrix[0][i+j]=tile[j];
+        }
+    }else if(i>3 && tile[1]=='M' && tile[2]=='R'){
+        tile[1]=board->matrix[0][i-2];
+        tile[2]=board->matrix[0][i-3];
+
+        for (int j = 0; j <4 ; ++j) {
+            board->matrix[0][i+j]=tile[j];
+        }
+    }else if(tile[1]=='+' && tile[2]=='1'){
+        for (int j = 0; j < i; ++j) {
+            switch (board->matrix[0][j]) {
+                case 1 ... 5:
+                    board->matrix[0][j]++;
+                    break;
+                case 6:
+                    board->matrix[0][j]=1;
+                    break;
+            }
         }
     }else{
         printf("Mossa non valida\n");
