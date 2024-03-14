@@ -4,5 +4,4 @@ project(Project_IAP C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(Project_IAP main.c
-        player.h
-        board.h)
+        partita.c)

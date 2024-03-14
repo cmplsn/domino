@@ -1,29 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "player.h"
-#include "board.h"
+#include "partita.c"
 
 
 
 int main() {
-    int n = choose_valid_n(); /*todo: scelgo numero di tessere con cui inizia il gioco*/
+    int n = choose_valid_n();
+    /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
-    tessere_giocatore[n-1].x='+'; tessere_giocatore[n-1].y='1';
+    Matrix board;
+    if(select_mode()==1){
+        board= newMatrix(1,n*4);
+
+    }else{
+        board= newMatrix(2*n,4*n);
+    }
+
+    //tessere_giocatore[n-1].x='+'; tessere_giocatore[n-1].y='1';
     int remain=n;
-    Matrix board= newMatrix(n*2,n*4);
+
     while(remain>0){
         print_hand(tessere_giocatore,remain);
-        Tile x = select_tile(tessere_giocatore,remain);
+        Tile x = select_tile(tessere_giocatore,remain,n);
         char pos;
         pos=select_pos();
         char* tile= tile_to_horizontal(x);
         if(pos=='D'){
             insert_right(&board, tile, board.cols);
         }else if(pos=='S'){
-            insert_left(&board,tile);
+            //insert_left(&board,tile);
         }
-        print_board(&board);
+
         free(tile);
+
+        print_board(&board);
+
         remain--;
     }
 
