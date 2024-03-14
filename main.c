@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "partita.c"
+#include "board.c"
 
 
 
