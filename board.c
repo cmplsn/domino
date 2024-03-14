@@ -3,16 +3,15 @@
 //
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-#include <stdbool.h>
 #include "board.h"
 
-int select_mode(){
+int select_mode(void){
     printf("seleziona modalità di gioco\n1: Domino Lineare\n2: Domino 2D\n");
     int x=-1;
     while(x!=1 && x!=2){
         scanf(" %d", &x);
     }
+    system("clear");
     return x;
 }
 
@@ -99,7 +98,7 @@ char** add_cols( Matrix* board, int addcols){
     return board->matrix;
 }*/
 
-char select_pos(){
+char select_pos(void){
     printf("posizionare a Destra ( D ) o Sinistra ( S )?:\n");
     char x;
     scanf(" %c",&x);
@@ -110,7 +109,8 @@ char select_pos(){
     return x;
 }
 
-void insert_right(Matrix* board, char* tile,int n){
+bool insert_right(Matrix *board, char *tile) {
+    bool ok=false;
     int i=0;
     while(board->matrix[0][i]!=' '){
         i++;
@@ -122,6 +122,7 @@ void insert_right(Matrix* board, char* tile,int n){
         for (int j = 0; j < 4; ++j) {
             board->matrix[0][i+j]=tile[j];
         }
+        ok=true;
     }else if((tile[1]=='+' && tile[2]=='1') && i>3){
         for (int j = 0; j < i; ++j) {
             switch(board->matrix[0][j]){
@@ -133,12 +134,17 @@ void insert_right(Matrix* board, char* tile,int n){
                     break;
             }
         }
+        ok=true;
     }else if(i==0 ||(board->matrix[0][i-2]==tile[1] || board->matrix[0][i-2]=='0'||(tile[1]=='0'&& tile[2]=='0')) ){
         for (int j = 0; j < 4; ++j) {
             board->matrix[0][i+j]=tile[j];
         }
+        ok=true;
     }
+    system("clear");
+    return ok;
 }
 
-void insert_left(Matrix* board, char* tile, int n){
+bool insert_left(Matrix* board, char* tile){
+    return false;
 }

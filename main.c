@@ -1,8 +1,12 @@
-#include "board.c"
+#include "player.h"
+#include "board.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 
 
-int main() {
+int main(void) {
+    system("clear");
     int n = choose_valid_n();
     /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
@@ -16,15 +20,34 @@ int main() {
 
     //tessere_giocatore[n-1].x='+'; tessere_giocatore[n-1].y='1';
     int remain=n;
-
     while(remain>0){
+        print_board(&board);
+        print_hand(tessere_giocatore,remain);
+        Tile x= select_tile(tessere_giocatore,remain,n);
+        char* tile= tile_to_horizontal(x);
+        if(select_pos()=='D'){
+            if (insert_right(&board,tile)==true){
+                remain--;
+            }else{
+                system("clear");
+                printf("mossa non possibile, riprova\n\n");
+            }
+        }else{
+            if(insert_left(&board, tile)==true){
+                remain--;
+            }
+        }
+
+    }
+
+    /*while(remain>0){
         print_hand(tessere_giocatore,remain);
         Tile x = select_tile(tessere_giocatore,remain,n);
         char pos;
         pos=select_pos();
         char* tile= tile_to_horizontal(x);
         if(pos=='D'){
-            insert_right(&board, tile, board.cols);
+            insert_right(&board, tile);
         }else if(pos=='S'){
             //insert_left(&board,tile);
         }
@@ -34,7 +57,7 @@ int main() {
         print_board(&board);
 
         remain--;
-    }
+    }*/
 
     /*if(x.orientation=='O'){
         char* a =tile_to_horizontal(x);

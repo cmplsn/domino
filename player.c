@@ -34,7 +34,7 @@ void print_hand(Tile* hand,int n){
     printf("\n");
 }
 
-int choose_valid_n(){
+int choose_valid_n(void){
     printf("scegliere numero tessere con cui giocare:\n");
     int n;
     int res=scanf("%d",&n);
@@ -42,7 +42,8 @@ int choose_valid_n(){
         printf("NON VALIDO. Inserisci input nel formato richiesto:\n");
         res= scanf("%d",&n);
     }
-    printf("si è scelto di giocare con -- %d -- tessere\n",n);
+    //printf("si è scelto di giocare con -- %d -- tessere\n",n);
+    system("clear");
     return n;
 }
 
@@ -88,10 +89,11 @@ Tile select_tile(Tile* deck, int size, int n){
         res.x=a;
         res.y=b;
     }
+    system("clear");
     return res;
 }
 
-char select_orientation(){
+char select_orientation(void){
     printf("seleziona orientamento tessere: O/V\n");
     char x=' ';
     scanf(" %c",&x);

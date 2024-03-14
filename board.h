@@ -16,7 +16,7 @@ Matrix newMatrix(int rows, int cols);
 
 void free_board(Matrix* board);
 
-int select_mode();
+int select_mode(void);
 
 char** initboard(int rows, int cols);
 
@@ -26,10 +26,10 @@ char** tile_to_vertical(Tile t);
 
 char* tile_to_horizontal(Tile t);
 
-char select_pos();
+char select_pos(void);
 
-void insert_right(Matrix* board, char* tile,int n);
+bool insert_right(Matrix *board, char *tile);
 
-void insert_left(Matrix* board, char* tile,int n);
+bool insert_left(Matrix* board, char* tile);
 
 #endif //PROJECT_IAP_BOARD_H

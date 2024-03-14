@@ -4,6 +4,8 @@
 
 #ifndef PROJECT_IAP_PLAYER_H
 #define PROJECT_IAP_PLAYER_H
+#include <stdbool.h>
+
 typedef struct Tile{
     char x;
     char y;
@@ -14,7 +16,7 @@ Tile* assegna(int n);
 
 void print_hand(Tile* hand,int n);
 
-int choose_valid_n();
+int choose_valid_n(void);
 
 void switch_tile(Tile* tile);
 
@@ -22,6 +24,6 @@ bool valid_tile(Tile* deck, int size, Tile tile, int n);
 
 Tile select_tile(Tile* deck, int size, int n);
 
-char select_orientation();
+char select_orientation(void);
 
 #endif //PROJECT_IAP_PLAYER_H
