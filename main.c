@@ -20,13 +20,21 @@ int main(void) {
 
     int remain=n;
     while(remain>0){
+        if(!available_moves_linear(&board, tessere_giocatore, remain,n)){
+            remain=0;
+            system("clear");
+            printf("GAME OVER\n");
+            print_board(&board);
+            printf("il tuo punteggio finale è: %d\n", get_score(&board));
+            break;
+        }
         printf("Score: %d\n", get_score(&board));
         print_board(&board);
         print_hand(tessere_giocatore,remain);
         Tile x= select_tile(tessere_giocatore,remain,n);
         char* tile= tile_to_horizontal(x);
         if(select_pos()=='D'){
-            if (insert_right(&board,tile)==true){
+            if (insert_right(&board,tile,remain,n)==true){
                 remain--;
             }else{
                 system("clear");

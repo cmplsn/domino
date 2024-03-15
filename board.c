@@ -109,12 +109,9 @@ char select_pos(void){
     return x;
 }
 
-bool insert_right(Matrix *board, char *tile) {
+bool insert_right(Matrix *board, char *tile,int remain, int n) {
     bool ok=false;
-    int i=0;
-    while(board->matrix[0][i]!=' '){
-        i++;
-    }
+    int i=(n-remain)*4;
     if((tile[1]=='M' && tile[2]=='R') && i>3){  //tessere Mirror può essere utilizzata solo se è presente almeno
         // un altra tessera
         tile[1]=board->matrix[0][i-2];
@@ -146,7 +143,7 @@ bool insert_right(Matrix *board, char *tile) {
 }
 
 bool insert_left(Matrix* board, char* tile){
-    return false;
+
 }
 
 int get_score(Matrix* board){
@@ -164,5 +161,31 @@ int get_score(Matrix* board){
         }
     }
     return sum;
+}
+
+bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
+    bool found=false;
+    if(deck_size==n){
+        found=true;
+    }else {
+        int i=0;
+        int j=0;
+        while(board->matrix[0][i]!=' '){
+            i++;
+        }
+        while(!found && j<deck_size){
+            if((deck[j].x=='0'&& deck[j].y=='0') || (deck[j].x=='M' && deck[j].y=='R')|| (deck[j].x=='+' && deck[j].y=='1')){
+                found=true;
+            }else if(board->matrix[0][i-2]=='0' || board->matrix[0][1]=='0'){
+                found=true;
+            }else if(deck[j].x==board->matrix[0][i-2]||deck[j].x==board->matrix[0][1]||
+                deck[j].y==board->matrix[0][i-2] ||deck[j].y==board->matrix[0][1]){
+                found=true;
+            }else{
+                j++;
+            }
+        }
+    }
+    return found;
 }
 

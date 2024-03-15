@@ -28,9 +28,11 @@ char* tile_to_horizontal(Tile t);
 
 char select_pos(void);
 
-bool insert_right(Matrix *board, char *tile);
+bool insert_right(Matrix *board, char *tile, int remain, int n);
 
 bool insert_left(Matrix* board, char* tile);
 int get_score(Matrix* board);
+
+bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n);
 
 #endif //PROJECT_IAP_BOARD_H
