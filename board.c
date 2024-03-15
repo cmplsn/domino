@@ -148,3 +148,21 @@ bool insert_right(Matrix *board, char *tile) {
 bool insert_left(Matrix* board, char* tile){
     return false;
 }
+
+int get_score(Matrix* board){
+    int sum=0;
+    int char_to_int;
+    for (int i = 0; i < board->rows; ++i) {
+        for (int j = 0; j < board->cols; ++j) {
+            switch (board->matrix[i][j]) {
+                default:
+                    break;
+                case '0' ... '6':
+                    char_to_int=board->matrix[i][j]-'0';
+                    sum+=char_to_int;
+            }
+        }
+    }
+    return sum;
+}
+

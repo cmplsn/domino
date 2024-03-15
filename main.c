@@ -18,9 +18,9 @@ int main(void) {
         board= newMatrix(2*n,4*n);
     }
 
-    //tessere_giocatore[n-1].x='+'; tessere_giocatore[n-1].y='1';
     int remain=n;
     while(remain>0){
+        printf("Score: %d\n", get_score(&board));
         print_board(&board);
         print_hand(tessere_giocatore,remain);
         Tile x= select_tile(tessere_giocatore,remain,n);

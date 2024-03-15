@@ -31,5 +31,6 @@ char select_pos(void);
 bool insert_right(Matrix *board, char *tile);
 
 bool insert_left(Matrix* board, char* tile);
+int get_score(Matrix* board);
 
 #endif //PROJECT_IAP_BOARD_H
