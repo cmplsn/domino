@@ -41,31 +41,12 @@ int main(void) {
                 printf("mossa non possibile, riprova\n\n");
             }
         }else{
-            if(insert_left(&board, tile)==true){
+            if(insert_left(&board, tile, remain, n)==true){
                 remain--;
             }
         }
 
     }
-
-    /*while(remain>0){
-        print_hand(tessere_giocatore,remain);
-        Tile x = select_tile(tessere_giocatore,remain,n);
-        char pos;
-        pos=select_pos();
-        char* tile= tile_to_horizontal(x);
-        if(pos=='D'){
-            insert_right(&board, tile);
-        }else if(pos=='S'){
-            //insert_left(&board,tile);
-        }
-
-        free(tile);
-
-        print_board(&board);
-
-        remain--;
-    }*/
 
     /*if(x.orientation=='O'){
         char* a =tile_to_horizontal(x);

@@ -142,8 +142,54 @@ bool insert_right(Matrix *board, char *tile,int remain, int n) {
     return ok;
 }
 
-bool insert_left(Matrix* board, char* tile){
+bool insert_left(Matrix* board, char* tile, int remain, int n){
+    bool ok=false;
+    int i= (n-remain)*4;
+    if((tile[1]=='+'&&tile[2]=='1') && i>3){
+        for (int j = 0; j < i; ++j) {
+            switch(board->matrix[0][j]){
+                case '0' ... '5':
+                    board->matrix[0][j]++;
+                    break;
+                case '6':
+                    board->matrix[0][j]='1';
+                    break;
+            }
+        }
+        ok=true;
+    }else{
 
+        if (i>3){
+            for (int j = i-1; j >= 0; --j) {
+                board->matrix[0][j+4]=board->matrix[0][j];
+            }
+            for (int j = 0; j < 4; ++j) {
+                board->matrix[0][j]=' ';
+            }
+            if(tile[1]=='M' &&tile[2]=='R'){
+                for (int j = 0; j < 4; ++j) {
+                    board->matrix[0][j]=board->matrix[0][7-j];
+                }
+                ok=true;
+            }else{
+                if(board->matrix[0][5]==tile[2] || board->matrix[0][5]=='0'){
+                    for (int j = 0; j < 4; ++j) {
+                        board->matrix[0][j]=tile[j];
+                    }
+                    ok=true;
+                }
+            }
+        }else{
+            if(i==0 && !(tile[1]=='M'&&tile[2]=='R')){
+                for (int j = 0; j < 4; ++j) {
+                    board->matrix[0][j]=tile[j];
+                }
+                ok=true;
+            }
+        }
+
+    }
+    return true;
 }
 
 int get_score(Matrix* board){
