@@ -10,6 +10,7 @@ int main(void) {
     int n = choose_valid_n();
     /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* tessere_giocatore = assegna(n);
+    tessere_giocatore[n-1].x='M';tessere_giocatore[n-1].y='R';
     Matrix board;
     if(select_mode()==1){
         board= newMatrix(1,n*4);
@@ -43,9 +44,12 @@ int main(void) {
         }else{
             if(insert_left(&board, tile, remain, n)==true){
                 remain--;
+            }else{
+                system("clear");
+                printf("mossa non possibile, riprova\n\n");
             }
         }
-
+        free (tile);
     }
 
     /*if(x.orientation=='O'){

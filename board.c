@@ -111,7 +111,10 @@ char select_pos(void){
 
 bool insert_right(Matrix *board, char *tile,int remain, int n) {
     bool ok=false;
-    int i=(n-remain)*4;
+    int i=0;
+    while(board->matrix[0][i]!= ' '){
+        i++;
+    }
     if((tile[1]=='M' && tile[2]=='R') && i>3){  //tessere Mirror può essere utilizzata solo se è presente almeno
         // un altra tessera
         tile[1]=board->matrix[0][i-2];
@@ -144,7 +147,10 @@ bool insert_right(Matrix *board, char *tile,int remain, int n) {
 
 bool insert_left(Matrix* board, char* tile, int remain, int n){
     bool ok=false;
-    int i= (n-remain)*4;
+    int i=0;
+    while(board->matrix[0][i]!= ' '){
+        i++;
+    }
     if((tile[1]=='+'&&tile[2]=='1') && i>3){
         for (int j = 0; j < i; ++j) {
             switch(board->matrix[0][j]){
@@ -160,19 +166,28 @@ bool insert_left(Matrix* board, char* tile, int remain, int n){
     }else{
 
         if (i>3){
-            for (int j = i-1; j >= 0; --j) {
-                board->matrix[0][j+4]=board->matrix[0][j];
-            }
-            for (int j = 0; j < 4; ++j) {
-                board->matrix[0][j]=' ';
-            }
+
             if(tile[1]=='M' &&tile[2]=='R'){
+                for (int j = i-1; j >= 0; --j) {
+                    board->matrix[0][j+4]=board->matrix[0][j];
+                }
                 for (int j = 0; j < 4; ++j) {
+                    board->matrix[0][j]=' ';
+                }
+                board->matrix[0][0]='[';
+                board->matrix[0][3]=']';
+                for (int j = 1; j < 3; ++j) {
                     board->matrix[0][j]=board->matrix[0][7-j];
                 }
                 ok=true;
             }else{
-                if(board->matrix[0][5]==tile[2] || board->matrix[0][5]=='0'){
+                if(board->matrix[0][1]==tile[2] || board->matrix[0][1]=='0'){
+                    for (int j = i-1; j >= 0; --j) {
+                        board->matrix[0][j+4]=board->matrix[0][j];
+                    }
+                    for (int j = 0; j < 4; ++j) {
+                        board->matrix[0][j]=' ';
+                    }
                     for (int j = 0; j < 4; ++j) {
                         board->matrix[0][j]=tile[j];
                     }
@@ -189,7 +204,7 @@ bool insert_left(Matrix* board, char* tile, int remain, int n){
         }
 
     }
-    return true;
+    return ok;
 }
 
 int get_score(Matrix* board){
