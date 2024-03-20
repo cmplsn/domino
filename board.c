@@ -256,3 +256,9 @@ void end_game(Matrix* board){
     printf("Non hai più mosse disponibili. Punteggio Finale: %d\n", get_score(board));
 }
 
+ void print_screen(Matrix* board, Tile* deck, int decksize){
+     printf("Score: %d\n", get_score(board));
+     print_board(board);
+     print_hand(deck,decksize);
+}
+

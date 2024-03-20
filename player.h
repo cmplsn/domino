@@ -26,4 +26,6 @@ Tile select_tile(Tile* deck, int size, int n);
 
 char select_orientation(void);
 
+Tile select_tile_2D(Tile* deck, int deck_size, int n);
+
 #endif //PROJECT_IAP_PLAYER_H
