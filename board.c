@@ -250,3 +250,9 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
     return found;
 }
 
+void end_game(Matrix* board){
+    system("clear");
+    print_board(board);
+    printf("Non hai più mosse disponibili. Punteggio Finale: %d\n", get_score(board));
+}
+

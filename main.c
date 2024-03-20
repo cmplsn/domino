@@ -12,15 +12,49 @@ int main(void) {
     Tile* tessere_giocatore = assegna(n);
     tessere_giocatore[n-1].x='M';tessere_giocatore[n-1].y='R';
     Matrix board;
+    int remain=n;
     if(select_mode()==1){
         board= newMatrix(1,n*4);
-
+        while(remain>0 && available_moves_linear(&board, tessere_giocatore,remain, n)){
+            /*if(!available_moves_linear(&board, tessere_giocatore, remain,n)){
+                remain=0;
+                break;
+            }*/
+            printf("Score: %d\n", get_score(&board));
+            print_board(&board);
+            print_hand(tessere_giocatore,remain);
+            Tile x= select_tile(tessere_giocatore,remain,n);
+            char* tile= tile_to_horizontal(x);
+            if(select_pos()=='D'){
+                if (insert_right(&board,tile,remain,n)==true){
+                    remain--;
+                }else{
+                    system("clear");
+                    printf("mossa non possibile, riprova\n\n");
+                }
+            }else{
+                if(insert_left(&board, tile, remain, n)==true){
+                    remain--;
+                }else{
+                    system("clear");
+                    printf("mossa non possibile, riprova\n\n");
+                }
+            }
+            free (tile);
+        }
     }else{
         board= newMatrix(2*n,4*n);
+        while(remain>0){
+
+            remain--;
+        }
     }
 
-    int remain=n;
-    while(remain>0){
+
+    end_game(&board);
+
+
+    /*while(remain>0){
         if(!available_moves_linear(&board, tessere_giocatore, remain,n)){
             remain=0;
             system("clear");
@@ -50,7 +84,7 @@ int main(void) {
             }
         }
         free (tile);
-    }
+    }*/
 
     /*if(x.orientation=='O'){
         char* a =tile_to_horizontal(x);

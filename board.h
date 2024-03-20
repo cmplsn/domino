@@ -36,4 +36,6 @@ int get_score(Matrix* board);
 
 bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n);
 
+void end_game(Matrix* board);
+
 #endif //PROJECT_IAP_BOARD_H
