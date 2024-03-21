@@ -87,21 +87,20 @@ char select_pos(void){
     return x;
 }
 
-bool insert_right(Matrix *board, char *tile,int remain, int n) {
+bool insert_right(Matrix *board, Tile tile) {
     bool ok=false;
     int i=0;
     while(board->matrix[0][i]!= ' '){
         i++;
     }
-    if((tile[1]=='M' && tile[2]=='R') && i>3){  //tessere Mirror può essere utilizzata solo se è presente almeno
-        // un altra tessera
-        tile[1]=board->matrix[0][i-2];
-        tile[2]=board->matrix[0][i-3];
-        for (int j = 0; j < 4; ++j) {
-            board->matrix[0][i+j]=tile[j];
-        }
+    if((tile.x=='M' && tile.y=='R') && i>3){ //tessere Mirror può essere utilizzata solo se è presente almeno
+                                             // un altra tessera
+        board->matrix[0][i]='[';
+        board->matrix[0][i+1]=board->matrix[0][i-2];
+        board->matrix[0][i+2]=board->matrix[0][i-3];
+        board->matrix[0][i+3]=']';
         ok=true;
-    }else if((tile[1]=='+' && tile[2]=='1') && i>3){
+    }else if((tile.x=='+' && tile.y=='1') && i>3){
         for (int j = 0; j < i; ++j) {
             switch(board->matrix[0][j]){
                 default:
@@ -115,29 +114,31 @@ bool insert_right(Matrix *board, char *tile,int remain, int n) {
             }
         }
         ok=true;
-    }else if(i==0 ||(board->matrix[0][i-2]==tile[1] || board->matrix[0][i-2]=='0'||(tile[1]=='0'&& tile[2]=='0')) ){
-        for (int j = 0; j < 4; ++j) {
-            board->matrix[0][i+j]=tile[j];
-        }
+    }else if(i==0 ||(board->matrix[0][i-2]==tile.x || board->matrix[0][i-2]=='0'||(tile.x=='0'&& tile.y=='0')) ){
+        board->matrix[0][i]='[';
+        board->matrix[0][i+1]=tile.x;
+        board->matrix[0][i+2]=tile.y;
+        board->matrix[0][i+3]=']';
         ok=true;
     }
     system("clear");
     return ok;
 }
 
-bool insert_left(Matrix* board, char* tile, int remain, int n){
+bool insert_left(Matrix* board, Tile tile){
     bool ok=false;
     int i=0;
-    while(board->matrix[0][i]!= ' ') {
+    while(board->matrix[0][i] != ' ') {
         i++;
     }
-    if(i==0 && !((tile[1]=='M'&&tile[2]=='R')||(tile[1]=='+'&&tile[2]=='1'))){
-        for (int j = 0; j < 4; ++j) {
-            board->matrix[0][j]=tile[j];
-        }
+    if(i==0 && !((tile.x == 'M' && tile.y == 'R')||(tile.x == '+' && tile.y == '1'))){
+        board->matrix[0][0]='[';
+        board->matrix[0][1]=tile.x;
+        board->matrix[0][2]=tile.y;
+        board->matrix[0][3]=']';
         ok=true;
     }else{
-        if(tile[1]=='+'&& tile[2]=='1'){
+        if(tile.x == '+' && tile.y == '1'){
             for (int j = 0; j < i; ++j) {
                 switch (board->matrix[0][j]) {
                     default:
@@ -151,23 +152,21 @@ bool insert_left(Matrix* board, char* tile, int remain, int n){
                 }
             }
             ok=true;
-        }else if((tile[1]=='M'&& tile[2]=='R') ||board->matrix[0][1]==tile[2] || board->matrix[0][1]=='0'||tile[2]=='0'){
+        }else if((tile.x=='M'&& tile.y=='R') ||board->matrix[0][1]==tile.y || board->matrix[0][1]=='0'||tile.y=='0'){
             for (int j = i-1; j >= 0; --j) {
                 board->matrix[0][j+4]=board->matrix[0][j];
             }
             for (int j = 0; j < 4; ++j) {
                 board->matrix[0][j]=' ';
             }
-            if(tile[1]=='M'&& tile[2]=='R'){
-                board->matrix[0][0]='[';
-                board->matrix[0][3]=']';
-                for (int j = 1; j < 3; ++j) {
-                    board->matrix[0][j]=board->matrix[0][7-j];
-                }
+            board->matrix[0][0]='[';
+            board->matrix[0][3]=']';
+            if(tile.x == 'M' && tile.y == 'R'){
+                board->matrix[0][1]=board->matrix[0][i+2];
+                board->matrix[0][2]=board->matrix[0][i+1];
             }else{
-                for (int j = 0; j < 4; ++j) {
-                    board->matrix[0][j]=tile[j];
-                }
+                board->matrix[0][1]=tile.x;
+                board->matrix[0][2]=tile.y;
             }
             ok=true;
         }
@@ -204,7 +203,9 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
             i++;
         }
         while(!found && j<deck_size){
-            if((deck[j].x=='0'&& deck[j].y=='0') || (deck[j].x=='M' && deck[j].y=='R')|| (deck[j].x=='+' && deck[j].y=='1')){
+            if((deck[j].x=='0'&& deck[j].y=='0')
+            || (deck[j].x=='M' && deck[j].y=='R')
+            || (deck[j].x=='+' && deck[j].y=='1')) {
                 found=true;
             }else if(board->matrix[0][i-2]=='0' || board->matrix[0][1]=='0'){
                 found=true;

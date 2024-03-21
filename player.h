@@ -22,7 +22,7 @@ void switch_tile(Tile* tile);
 
 bool valid_tile(Tile* deck, int size, Tile tile, int n);
 
-Tile select_tile(Tile* deck, int size, int n);
+Tile select_tile(Tile* deck, int size, int n,int mode);
 
 char select_orientation(void);
 

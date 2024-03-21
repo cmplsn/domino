@@ -77,7 +77,7 @@ bool valid_tile(Tile* deck, int size, Tile tile, int n){
     return found;
 }
 
-Tile select_tile(Tile* deck, int size, int n){
+Tile select_tile(Tile* deck, int size, int n, int mode){
     printf("scegliere tessera da giocare:\n");
     char a,b;
     scanf(" %c%c",&a,&b);
@@ -90,6 +90,21 @@ Tile select_tile(Tile* deck, int size, int n){
         res.y=b;
     }
     system("clear");
+    if(mode==2){
+        printf("[%c%c]\nSeleziona:\t1:Orizzontale\t2:Verticale\n",res.x,res.y);
+        int x=-1;
+        scanf("%d",&x);
+        while(x!=1&&x!=2){
+            system("clear");
+            printf("[%c%c]\nInput 1 per Orizzontale, 2 per verticale\n",res.x,res.y);
+            scanf("%d",&x);
+        }
+        if(x==1){
+            res.orientation='O';
+        }else{
+            res.orientation='V';
+        }
+    }
     return res;
 }
 

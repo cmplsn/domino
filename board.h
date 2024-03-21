@@ -28,9 +28,9 @@ char* tile_to_horizontal(Tile t);
 
 char select_pos(void);
 
-bool insert_right(Matrix *board, char *tile, int remain, int n);
+bool insert_right(Matrix *board, Tile tile);
 
-bool insert_left(Matrix* board, char* tile,int remain, int n);
+bool insert_left(Matrix* board, Tile tile);
 
 int get_score(Matrix* board);
 
