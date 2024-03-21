@@ -76,28 +76,6 @@ void free_board(Matrix* board){
     }
 }
 
-/*char** add_rows(Matrix* board, int addrows){
-    char** tmp=(char**) realloc(board->matrix,(board->rows+addrows)* sizeof(char*));
-    if(tmp) {
-        board->matrix=tmp;
-        for (int i = 0; i < addrows; ++i) {
-            board->matrix[board->rows + i] = (char *) malloc(board->cols * sizeof(char));
-        }
-    }
-    board->rows+=addrows;
-    return board->matrix;
-}
-char** add_cols( Matrix* board, int addcols){
-    for (int i = 0; i < board->rows; ++i) {
-        char *tmp= (char*)realloc(board->matrix[i], (board->cols+addcols)*sizeof(char*));
-        if(tmp){
-            board->matrix[i]=tmp;
-        }
-    }
-    board->cols+=addcols;
-    return board->matrix;
-}*/
-
 char select_pos(void){
     printf("posizionare a Destra ( D ) o Sinistra ( S )?:\n");
     char x;
@@ -126,7 +104,9 @@ bool insert_right(Matrix *board, char *tile,int remain, int n) {
     }else if((tile[1]=='+' && tile[2]=='1') && i>3){
         for (int j = 0; j < i; ++j) {
             switch(board->matrix[0][j]){
-                case '0' ... '5':
+                default:
+                    break;
+                case '1' ... '5':
                     board->matrix[0][j]++;
                     break;
                 case '6':
@@ -148,62 +128,51 @@ bool insert_right(Matrix *board, char *tile,int remain, int n) {
 bool insert_left(Matrix* board, char* tile, int remain, int n){
     bool ok=false;
     int i=0;
-    while(board->matrix[0][i]!= ' '){
+    while(board->matrix[0][i]!= ' ') {
         i++;
     }
-    if((tile[1]=='+'&&tile[2]=='1') && i>3){
-        for (int j = 0; j < i; ++j) {
-            switch(board->matrix[0][j]){
-                case '0' ... '5':
-                    board->matrix[0][j]++;
-                    break;
-                case '6':
-                    board->matrix[0][j]='1';
-                    break;
-            }
+    if(i==0 && !((tile[1]=='M'&&tile[2]=='R')||(tile[1]=='+'&&tile[2]=='1'))){
+        for (int j = 0; j < 4; ++j) {
+            board->matrix[0][j]=tile[j];
         }
         ok=true;
     }else{
-
-        if (i>3){
-
-            if(tile[1]=='M' &&tile[2]=='R'){
-                for (int j = i-1; j >= 0; --j) {
-                    board->matrix[0][j+4]=board->matrix[0][j];
+        if(tile[1]=='+'&& tile[2]=='1'){
+            for (int j = 0; j < i; ++j) {
+                switch (board->matrix[0][j]) {
+                    default:
+                        break;
+                    case '1' ... '5':
+                        board->matrix[0][j]++;
+                        break;
+                    case '6':
+                        board->matrix[0][j]='1';
+                        break;
                 }
-                for (int j = 0; j < 4; ++j) {
-                    board->matrix[0][j]=' ';
-                }
+            }
+            ok=true;
+        }else if((tile[1]=='M'&& tile[2]=='R') ||board->matrix[0][1]==tile[2] || board->matrix[0][1]=='0'||tile[2]=='0'){
+            for (int j = i-1; j >= 0; --j) {
+                board->matrix[0][j+4]=board->matrix[0][j];
+            }
+            for (int j = 0; j < 4; ++j) {
+                board->matrix[0][j]=' ';
+            }
+            if(tile[1]=='M'&& tile[2]=='R'){
                 board->matrix[0][0]='[';
                 board->matrix[0][3]=']';
                 for (int j = 1; j < 3; ++j) {
                     board->matrix[0][j]=board->matrix[0][7-j];
                 }
-                ok=true;
             }else{
-                if(board->matrix[0][1]==tile[2] || board->matrix[0][1]=='0'){
-                    for (int j = i-1; j >= 0; --j) {
-                        board->matrix[0][j+4]=board->matrix[0][j];
-                    }
-                    for (int j = 0; j < 4; ++j) {
-                        board->matrix[0][j]=' ';
-                    }
-                    for (int j = 0; j < 4; ++j) {
-                        board->matrix[0][j]=tile[j];
-                    }
-                    ok=true;
-                }
-            }
-        }else{
-            if(i==0 && !(tile[1]=='M'&&tile[2]=='R')){
                 for (int j = 0; j < 4; ++j) {
                     board->matrix[0][j]=tile[j];
                 }
-                ok=true;
             }
+            ok=true;
         }
-
     }
+
     return ok;
 }
 
@@ -249,6 +218,7 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
     }
     return found;
 }
+
 
 void end_game(Matrix* board){
     system("clear");

@@ -10,7 +10,7 @@ int main(void) {
     int n = choose_valid_n();
     /*todo: scelgo numero di tessere con cui inizia il gioco*/
     Tile* deck = assegna(n);
-    //deck[n - 1].x='M';deck[n - 1].y='R';
+    deck[n - 1].x='+';deck[n - 1].y='1';
     Matrix board;
     int remain=n;
     if(select_mode()==1){
@@ -40,8 +40,7 @@ int main(void) {
         board= newMatrix(2*n,4*n);
         while(remain>0){
             print_screen(&board, deck, remain);
-            Tile x= select_tile_2D()
-
+            //Tile x= select_tile_2D(deck, remain,n);
             remain--;
         }
     }
