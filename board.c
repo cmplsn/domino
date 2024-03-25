@@ -162,8 +162,8 @@ bool insert_left(Matrix* board, Tile tile){
             board->matrix[0][0]='[';
             board->matrix[0][3]=']';
             if(tile.x == 'M' && tile.y == 'R'){
-                board->matrix[0][1]=board->matrix[0][i+2];
-                board->matrix[0][2]=board->matrix[0][i+1];
+                board->matrix[0][1]=board->matrix[0][6];
+                board->matrix[0][2]=board->matrix[0][5];
             }else{
                 board->matrix[0][1]=tile.x;
                 board->matrix[0][2]=tile.y;
