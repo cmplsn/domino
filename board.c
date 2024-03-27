@@ -90,7 +90,7 @@ char select_pos(void){
 bool insert_right(Matrix *board, Tile tile) {
     bool ok=false;
     int i=0;
-    while(board->matrix[0][i]!= ' '){
+    while(board->matrix[0][i]!= ' ' && i<board->cols){
         i++;
     }
     if((tile.x=='M' && tile.y=='R') && i>3){ //tessere Mirror può essere utilizzata solo se è presente almeno
@@ -128,7 +128,7 @@ bool insert_right(Matrix *board, Tile tile) {
 bool insert_left(Matrix* board, Tile tile){
     bool ok=false;
     int i=0;
-    while(board->matrix[0][i] != ' ') {
+    while(board->matrix[0][i] != ' '&& i<board->cols) {
         i++;
     }
     if(i==0 && !((tile.x == 'M' && tile.y == 'R')||(tile.x == '+' && tile.y == '1'))){
@@ -232,12 +232,52 @@ void end_game(Matrix* board){
      print_board(board);
      print_hand(deck,decksize);
 }
+void find_blank(Matrix *board, int* row, int* col){
+    while(*row< board->rows){
+        while(*col<board->cols){
+            if(board->matrix[*row][*col]==' '){
+                return;
+            }else{
+                *col++;
+            }
+        }
+    }
+
+}
 
 bool insert_right_2D(Matrix *board, Tile tile){
-    if(tile.x=='+' && tile.y=='1' && tile.orientation=='V'){
-        return false;
-    }
-    return true;
+    bool found=false;
+   if(tile.orientation=='O'){
+       int i=0; int j=0;
+       while(!found){
+           //find_blank(board, &i, &j);
+           i=1; j=0;
+           if(i==0 && j==0 && !(tile.x=='+'&&tile.y=='1') && !(tile.x=='M'&&tile.y=='R')){
+               board->matrix[0][0]= '[';
+               board->matrix[0][1]=tile.x;
+               board->matrix[0][2]=tile.y;
+               board->matrix[0][3]=']';
+
+             found=true;
+           }else if(tile.x == '0'&& tile.y == '0' && j+3 <= board->cols){
+               for (int k = 0; k < 4; ++k) {
+                   if(board->matrix[i][j+k]!=' '){
+                       break;
+                   }
+               }
+               board->matrix[i][j]='[';
+               board->matrix[i][j+1]='0';
+               board->matrix[i][j+2]='0';
+               board->matrix[i][j+3]=']';
+               found=true;
+           }
+       }
+   }else{
+       if(tile.x=='+' && tile.y=='1'){
+           return false;
+       }
+   }
+   return found;
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){

@@ -14,7 +14,7 @@ int main(void) {
     Tile* deck = assegna(n);
 
 
-    //deck[n - 1].x='+';deck[n - 1].y='1';
+    deck[n - 1].x='0';deck[n - 1].y='0';
 
 
     Matrix board;
@@ -48,7 +48,7 @@ int main(void) {
             Tile x= select_tile(deck, remain,n,2);
             if(x.x=='+' && x.y=='1' && x.orientation=='V'){
                 printf("[+1] non può essere utilizzata in verticale\n");
-                break;
+                continue;
             }
             if(select_pos()=='D'){
                 if(insert_right_2D(&board, x)==true){
@@ -65,8 +65,6 @@ int main(void) {
                     printf("mossa non possibile, riprova\n\n");
                 }
             }
-
-            remain--;
         }
     }
 

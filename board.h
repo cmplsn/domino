@@ -44,4 +44,6 @@ void end_game(Matrix* board);
 
 void print_screen(Matrix* board, Tile* deck, int decksize);
 
+void find_blank(Matrix *board, int* row, int* col);
+
 #endif //PROJECT_IAP_BOARD_H
