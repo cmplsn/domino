@@ -22,15 +22,19 @@ char** initboard(int rows, int cols);
 
 void print_board(Matrix* board);
 
-char** tile_to_vertical(Tile t);
+/*char** tile_to_vertical(Tile t);
 
-char* tile_to_horizontal(Tile t);
+char* tile_to_horizontal(Tile t);*/
 
 char select_pos(void);
 
 bool insert_right(Matrix *board, Tile tile);
 
 bool insert_left(Matrix* board, Tile tile);
+
+bool insert_left_2D(Matrix* board, Tile tile);
+
+bool insert_right_2D(Matrix* board, Tile tile);
 
 int get_score(Matrix* board);
 

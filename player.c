@@ -47,11 +47,11 @@ int choose_valid_n(void){
     return n;
 }
 
-void switch_tile(Tile* tile){
+/*void switch_tile(Tile* tile){
     char tmp=tile->x;
     tile->x=tile->y;
     tile->y=tmp;
-}
+}*/
 
 bool valid_tile(Tile* deck, int size, Tile tile, int n){
     bool found=false;
@@ -108,7 +108,7 @@ Tile select_tile(Tile* deck, int size, int n, int mode){
     return res;
 }
 
-char select_orientation(void){
+/*char select_orientation(void){
     printf("seleziona orientamento tessere: O/V\n");
     char x=' ';
     scanf(" %c",&x);
@@ -117,4 +117,4 @@ char select_orientation(void){
         scanf(" %c",&x);
     }
     return x;
-}
+}*/

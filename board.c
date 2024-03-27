@@ -38,7 +38,7 @@ void print_board(Matrix* board){
     printf("\n");
 }
 
-char** tile_to_vertical(Tile t){
+/*char** tile_to_vertical(Tile t){
     char** tile= (char**)malloc(2*sizeof(char*));
     for (int i = 0; i < 2; ++i) {
         tile[i]=(char*) malloc(2* sizeof(char));
@@ -57,7 +57,7 @@ char* tile_to_horizontal(Tile t){
     tile[2]=t.y;
     tile[3]=']';
     return tile;
-}
+}*/
 
 Matrix newMatrix(int rows, int cols){
     Matrix a;
@@ -233,3 +233,16 @@ void end_game(Matrix* board){
      print_hand(deck,decksize);
 }
 
+bool insert_right_2D(Matrix *board, Tile tile){
+    if(tile.x=='+' && tile.y=='1' && tile.orientation=='V'){
+        return false;
+    }
+    return true;
+}
+
+bool insert_left_2D(Matrix *board, Tile tile){
+    if(tile.x=='+' && tile.y=='1' && tile.orientation=='V'){
+        return false;
+    }
+    return true;
+}

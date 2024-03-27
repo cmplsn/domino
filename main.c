@@ -20,7 +20,7 @@ int main(void) {
     Matrix board;
     int remain=n;
 
-    if(select_mode()==1){
+    if( select_mode() == 1){
         board= newMatrix(1,n*4);
         while(remain>0 && available_moves_linear(&board, deck, remain, n)){
             print_screen(&board, deck, remain);
@@ -41,26 +41,30 @@ int main(void) {
                 }
             }
         }
-    }else{
+    }else {
         board= newMatrix(2*n,4*n);
-        while(remain>0){
+        while(remain>0  /*todo: aggiungere && available moves*/){
             print_screen(&board, deck, remain);
             Tile x= select_tile(deck, remain,n,2);
-            if(x.orientation=='O'){
-                if (select_pos()=='D'){
-
+            if(x.x=='+' && x.y=='1' && x.orientation=='V'){
+                printf("[+1] non può essere utilizzata in verticale\n");
+                break;
+            }
+            if(select_pos()=='D'){
+                if(insert_right_2D(&board, x)==true){
+                    remain--;
                 }else{
-
+                    system("clear");
+                    printf("mossa non possibile, riprova\n\n");
                 }
-            }else if(x.orientation=='V'){
-                if (select_pos()=='D'){
-
+            }else{
+                if(insert_left_2D(&board, x)==true){
+                    remain--;
                 }else{
-
+                    system("clear");
+                    printf("mossa non possibile, riprova\n\n");
                 }
             }
-
-
 
             remain--;
         }
