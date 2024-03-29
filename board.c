@@ -38,7 +38,7 @@ void print_board(Matrix* board){
     printf("\n");
 }
 
-/*char** tile_to_vertical(Tile t){
+char** tile_to_vertical(Tile t){
     char** tile= (char**)malloc(2*sizeof(char*));
     for (int i = 0; i < 2; ++i) {
         tile[i]=(char*) malloc(2* sizeof(char));
@@ -57,7 +57,7 @@ char* tile_to_horizontal(Tile t){
     tile[2]=t.y;
     tile[3]=']';
     return tile;
-}*/
+}
 
 Matrix newMatrix(int rows, int cols){
     Matrix a;
@@ -232,7 +232,8 @@ void end_game(Matrix* board){
      print_board(board);
      print_hand(deck,decksize);
 }
-void find_blank(Matrix *board, int* row, int* col){
+
+/*void find_blank(Matrix *board, int* row, int* col){
     while(*row< board->rows){
         while(*col<board->cols){
             if(board->matrix[*row][*col]==' '){
@@ -243,41 +244,83 @@ void find_blank(Matrix *board, int* row, int* col){
         }
     }
 
-}
+}*/
 
 bool insert_right_2D(Matrix *board, Tile tile){
-    bool found=false;
-   if(tile.orientation=='O'){
-       int i=0; int j=0;
-       while(!found){
-           //find_blank(board, &i, &j);
-           i=1; j=0;
-           if(i==0 && j==0 && !(tile.x=='+'&&tile.y=='1') && !(tile.x=='M'&&tile.y=='R')){
-               board->matrix[0][0]= '[';
-               board->matrix[0][1]=tile.x;
-               board->matrix[0][2]=tile.y;
-               board->matrix[0][3]=']';
 
-             found=true;
-           }else if(tile.x == '0'&& tile.y == '0' && j+3 <= board->cols){
+    /**Tessera +1 aggiunta in modalità 2D aumenta tutta la board di 1*/
+    if(tile.x=='+' && tile.y=='1'){
+        for (int i = 0; i <board->rows ; ++i) {
+            for (int j = 0; j < board->cols; ++j) {
+                switch (board->matrix[i][j]) {
+                    default:
+                        break;
+                    case '1' ... '5':
+                        board->matrix[i][j]++;
+                        break;
+                    case '6':
+                        board->matrix[i][j]='1';
+                }
+            }
+        }
+        return true;
+    }
+    return false;
+   /* int i; int j;
+
+   if(tile.orientation=='O'){
+       char *hor= tile_to_horizontal(tile);
+
+
+
+       if(i==0 && j==0 ){
+           if(!(tile.x=='M'&&tile.y=='R')&& !(tile.x=='+' && tile.y=='1')) {
                for (int k = 0; k < 4; ++k) {
-                   if(board->matrix[i][j+k]!=' '){
-                       break;
+                   board->matrix[i][j + k] = hor[k];
+               }
+           }else{
+               return false;
+           }
+       }else{
+           if(tile.x=='+' && tile.y=='1'){
+               for (int k = 0; k < board->rows; ++k) {
+                   for (int l = 0; l < board->cols; ++l) {
+                       switch (board->matrix[k][l]) {
+                           default:
+                               break;
+                           case '1' ... '5':
+                               board->matrix[k][l]++;
+                               break;
+                           case '6':
+                               board->matrix[k][l]= '1';
+                       }
                    }
                }
-               board->matrix[i][j]='[';
-               board->matrix[i][j+1]='0';
-               board->matrix[i][j+2]='0';
-               board->matrix[i][j+3]=']';
-               found=true;
            }
        }
+
+       free(hor);
+       return true;
    }else{
+       char **ver = tile_to_vertical(tile);
        if(tile.x=='+' && tile.y=='1'){
            return false;
+       }else{
+           if (i==0 && j==0 && !(tile.x=='M'  && tile.y=='R')){
+               for (int k = 0; k < 2; ++k) {
+                   for (int l = 0; l <2 ; ++l) {
+                       board->matrix[i+k][j+l]=ver[k][l];
+                   }
+               }
+           }
+           for (int k = 0; k < 2; ++k) {
+               free(ver[k]);
+           }
+           free(ver);
+           return true;
        }
    }
-   return found;
+   return false;*/
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){

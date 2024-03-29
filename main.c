@@ -9,12 +9,12 @@ int main(void) {
     system("clear");
 
     int n = choose_valid_n();
-    /*todo: scelgo numero di tessere con cui inizia il gioco*/
+    /** scelgo numero di tessere con cui inizia il gioco*/
 
     Tile* deck = assegna(n);
 
 
-    deck[n - 1].x='0';deck[n - 1].y='0';
+    deck[n - 1].x='+';deck[n - 1].y='1';
 
 
     Matrix board;
@@ -71,7 +71,7 @@ int main(void) {
 
     end_game(&board);
 
-    /*todo: operazione di free finale per evitare memory leaks*/
+    /** operazione di free finale per evitare memory leaks*/
     free(deck);
     free_board(&board);
 
