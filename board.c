@@ -247,6 +247,7 @@ void end_game(Matrix* board){
 }*/
 
 bool insert_right_2D(Matrix *board, Tile tile){
+    bool placed=false;
 
     /**Tessera +1 aggiunta in modalità 2D aumenta tutta la board di 1*/
     if(tile.x=='+' && tile.y=='1'){
@@ -263,9 +264,25 @@ bool insert_right_2D(Matrix *board, Tile tile){
                 }
             }
         }
-        return true;
+        placed=true;
+    }else{
+        int i=0;int j=0;
+
+        while(!placed && !(i>=board->rows && j>=board->cols)){
+            find_blank(board, &i, &j);
+            if(tile.orientation=='O'){
+
+            }else{
+
+            }
+        }
     }
-    return false;
+    if(placed){
+        return true;
+    }else{
+        return false;
+    }
+
    /* int i; int j;
 
    if(tile.orientation=='O'){
