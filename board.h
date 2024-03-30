@@ -46,4 +46,6 @@ void print_screen(Matrix* board, Tile* deck, int decksize);
 
 void find_blank(Matrix *board, int* row, int* col);
 
+bool check_blank(Matrix *board, int i, int j, char orientation);
+
 #endif //PROJECT_IAP_BOARD_H

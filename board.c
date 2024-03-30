@@ -233,7 +233,7 @@ void end_game(Matrix* board){
      print_hand(deck,decksize);
 }
 
-/*void find_blank(Matrix *board, int* row, int* col){
+void find_blank(Matrix *board, int* row, int* col){
     while(*row< board->rows){
         while(*col<board->cols){
             if(board->matrix[*row][*col]==' '){
@@ -244,7 +244,7 @@ void end_game(Matrix* board){
         }
     }
 
-}*/
+}
 
 bool insert_right_2D(Matrix *board, Tile tile){
     bool placed=false;
@@ -268,9 +268,39 @@ bool insert_right_2D(Matrix *board, Tile tile){
     }else{
         int i=0;int j=0;
 
-        while(!placed && !(i>=board->rows && j>=board->cols)){
+        while(!placed && i<board->rows && j<board->cols){
             find_blank(board, &i, &j);
+
             if(tile.orientation=='O'){
+                char *h = tile_to_horizontal(tile);
+                if (i==0 && j==0 ){
+                    if(!(tile.x=='M' && tile.y=='R')){
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][j+k]=h[k];
+                        }
+                    }
+                }else{
+                    if(j+4<=board->cols-1 && i<=board->rows-1){
+                        if(check_blank(board,i,j,'O')){
+                            /**if che vede se stiamo per attaccarci su uno 0 la tessere che stiamo per attaccare è uno 0 */
+                            if(tile.x=='0' || (board->matrix[i][j-2]=='0'&&
+                            (board->matrix[i][j-1]=='}' || board->matrix[i][j-1]==']')) ||
+                            (board->matrix[i][j-2]=='{'&& board->matrix[i][j-1]=='0' )){
+                                for (int k = 0; k < 4; ++k) {
+                                    board->matrix[i][j+k]=h[k];
+                                }
+                            }else if((board->matrix[i][j-2]=='{' && board->matrix[i][j-1]==tile.x) ||
+                            (board->matrix[i][j-2]==tile.x && board->matrix[i][j-1]=='}') ||
+                            board->matrix[i][j-1]==']' && board->matrix[i][j-2]==tile.x) {
+                                /**caso in cui la tessere sia un'altra tessera qualsiasi tra numerata compresa  00*/
+
+
+                            }
+                        }
+                    }
+
+                }
+                free(h);
 
             }else{
 
