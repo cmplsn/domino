@@ -282,17 +282,26 @@ bool insert_right_2D(Matrix *board, Tile tile){
                 }else{
                     if(j+4<=board->cols-1 && i<=board->rows-1){
                         if(check_blank(board,i,j,'O')){
-                            /**if che vede se stiamo per attaccarci su uno 0 la tessere che stiamo per attaccare è uno 0 */
+                            /** caso che vede se stiamo per attaccarci su uno 0 o la tessere che stiamo per attaccare è uno 0 */
                             if(tile.x=='0' || (board->matrix[i][j-2]=='0'&&
                             (board->matrix[i][j-1]=='}' || board->matrix[i][j-1]==']')) ||
                             (board->matrix[i][j-2]=='{'&& board->matrix[i][j-1]=='0' )){
+
                                 for (int k = 0; k < 4; ++k) {
                                     board->matrix[i][j+k]=h[k];
                                 }
+
                             }else if((board->matrix[i][j-2]=='{' && board->matrix[i][j-1]==tile.x) ||
                             (board->matrix[i][j-2]==tile.x && board->matrix[i][j-1]=='}') ||
                             board->matrix[i][j-1]==']' && board->matrix[i][j-2]==tile.x) {
-                                /**caso in cui la tessere sia un'altra tessera qualsiasi tra numerata compresa  00*/
+
+                                /** caso in cui la tessere sia un'altra tessera qualsiasi tra numerata compresa  00*/
+                                if (tile.x=='M'&& tile.y=='R'){
+                                    if(board->matrix[i][j-2]=='{' && ((j+4 ==board->cols-1)||(board->matrix[i][j+4]==' ')||board->matrix)){
+                                    }
+
+
+                                }
 
 
                             }

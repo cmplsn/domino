@@ -22,9 +22,9 @@ char** initboard(int rows, int cols);
 
 void print_board(Matrix* board);
 
-/*char** tile_to_vertical(Tile t);
+char** tile_to_vertical(Tile t);
 
-char* tile_to_horizontal(Tile t);*/
+char* tile_to_horizontal(Tile t);
 
 char select_pos(void);
 
