@@ -272,42 +272,82 @@ bool insert_right_2D(Matrix *board, Tile tile){
             find_blank(board, &i, &j);
 
             if(tile.orientation=='O'){
+
                 char *h = tile_to_horizontal(tile);
+
                 if (i==0 && j==0 ){
+
+                    //todo: se find_blank trova la board completamente vuota e la tile è diversa da [MR]
                     if(!(tile.x=='M' && tile.y=='R')){
                         for (int k = 0; k < 4; ++k) {
                             board->matrix[i][j+k]=h[k];
                         }
+                        placed = true;
                     }
                 }else{
-                    if(j+4<=board->cols-1 && i<=board->rows-1){
-                        if(check_blank(board,i,j,'O')){
-                            /** caso che vede se stiamo per attaccarci su uno 0 o la tessere che stiamo per attaccare è uno 0 */
-                            if(tile.x=='0' || (board->matrix[i][j-2]=='0'&&
-                            (board->matrix[i][j-1]=='}' || board->matrix[i][j-1]==']')) ||
-                            (board->matrix[i][j-2]=='{'&& board->matrix[i][j-1]=='0' )){
+                    if(check_blank(board,i,j,'O')){
 
+                        //todo: caso in cui la tessera sia [00] oppure sia presente sul tavolo {0, 0} o 0]
+                        if(tile.x=='0' ||(board->matrix[i][j-2]=='{' && board->matrix[i][j-1]=='0')
+                        || (board->matrix[i][j-2]=='0'&&(board->matrix[i][j-1]=='}' || board->matrix[i][j-1]==']'))){
+
+                            for (int k = 0; k < 4; ++k) {
+                                board->matrix[i][j+k]=h[k];
+                            }
+                            placed=true;
+
+                        }else if((tile.x=='M'&&tile.y=='R') ){
+
+                            //todo: caso in cui la tessera sia [MR], suddiviso in altri tre casi: tessere posta in
+                            // orizzontale, pezzo di tessera in verticale {x e pezzo tessera in verticale y}
+
+                            board->matrix[i][j] = '[';
+                            board->matrix[i][j+3] = ']';
+
+                            if(board->matrix[i][j-1]==']'){
+                                board->matrix[i][j+1] = board->matrix[i][j-2];
+                                board->matrix[i][j+2] = board->matrix[i][j-3];
+                                placed=true;
+                            }else if(board->matrix[i][j-1]=='}'){
+                                board->matrix[i][j+1] = board->matrix[i][j-2];
+                                board->matrix[i][j+2] = board->matrix[i][j-2];
+                                placed=true;
+                            }else if (board->matrix[i][j-2]=='{'){
+                                board->matrix[i][j+1] = board->matrix[i][j-1];
+                                board->matrix[i][j+2] = board->matrix[i][j-1];
+                                placed=true;
+                            }
+
+                            //todo: caso in cui ho una tessera numerata diversa da [MR], [+1] o [00] devo controllare:
+                            // -se su tavolo ho y} oppure y] che tile.x==y e che se board->matrix[i][j+4] != ' '
+                            // che tile.y==board->matrix[i][j+4]
+                        }else if((board->matrix[i][j-1]==']'||board->matrix[i][j-1]=='}')&&board->matrix[i][j-2]==tile.x){
+                            if(board->matrix[i][j+4]==' ' || board->matrix[i][j+4]==tile.y){
                                 for (int k = 0; k < 4; ++k) {
                                     board->matrix[i][j+k]=h[k];
                                 }
-
-                            }else if((board->matrix[i][j-2]=='{' && board->matrix[i][j-1]==tile.x) ||
-                            (board->matrix[i][j-2]==tile.x && board->matrix[i][j-1]=='}') ||
-                            board->matrix[i][j-1]==']' && board->matrix[i][j-2]==tile.x) {
-
-                                /** caso in cui la tessere sia un'altra tessera qualsiasi tra numerata compresa  00*/
-                                if (tile.x=='M'&& tile.y=='R'){
-                                    if(board->matrix[i][j-2]=='{' && ((j+4 ==board->cols-1)||(board->matrix[i][j+4]==' ')||board->matrix)){
-                                    }
-
-
-                                }
-
-
                             }
+                            placed = true;
+                        }else if(board->matrix[i][j-2]=='{' && board->matrix[i][j-1]==tile.x){
+                            if(board->matrix[i][j+4]==' ' || board->matrix[i][j+4]==tile.y){
+                                for (int k = 0; k < 4; ++k) {
+                                    board->matrix[i][j+k]=h[k];
+                                }
+                            }
+
+                        }
+
+                    }else{
+                        //todo se non entro in nessuno dei casi precedentemente elencati per aggiungere una tessera in
+                        // orizzontale faccio ripartire la ricerca di find_blank. se aggiungendo 1 a j sforo le colonne
+                        // riparto da i++ e j=0 quindi vado a ricercare su riga successiva.
+                        if (j+1>=board->cols-1){
+                            i++;
+                            j=0;
+                        }else{
+                            j++;
                         }
                     }
-
                 }
                 free(h);
 
