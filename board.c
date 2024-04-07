@@ -384,6 +384,27 @@ bool insert_right_2D(Matrix *board, Tile tile){
                 }else{
                     char** ver= tile_to_vertical(tile);
 
+                    if(i==0 && j==0){
+                        for (int k = 0; k <2 ; ++k) {
+                            for (int l = 0; l < 2; ++l) {
+                                board->matrix[i+k][j+l]=ver[k][l];
+                            }
+                        }
+                        placed=true;
+                    }else{
+                        if (check_blank(board,i,j,'V')){
+
+
+                        }else{
+                            if (j+1>=board->cols-1){
+                                i++;
+                                j=0;
+                            }else{
+                                j++;
+                            }
+                        }
+                    }
+
 
                     for (int k = 0; k < 2; ++k) {
                         free(ver[k]);
