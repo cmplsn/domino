@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
 int main(void) {
     system("clear");
 
@@ -43,7 +41,7 @@ int main(void) {
         }
     }else {
         board= newMatrix(2*n,4*n);
-        while(remain>0  /*todo: aggiungere && available moves*/){
+        while(remain>0  /* && available_move_2D todo: aggiungere && available moves*/){
             print_screen(&board, deck, remain);
             Tile x= select_tile(deck, remain,n,2);
             if(x.x=='+' && x.y=='1' && x.orientation=='V'){

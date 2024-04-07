@@ -239,7 +239,11 @@ void find_blank(Matrix *board, int* row, int* col){
             if(board->matrix[*row][*col]==' '){
                 return;
             }else{
-                *col++;
+                if(*col+1 > board->cols){
+                   row++;
+                }else{
+                    *col = *col+1;
+                }
             }
         }
     }
@@ -392,6 +396,13 @@ bool insert_right_2D(Matrix *board, Tile tile){
                         }
                         placed=true;
                     }else{
+
+                        //todo:controllo se il sia disponibile a partire da i/j una posizione 2x2 per aggiungere la
+                        // tessera in verticale. Va controllato anche che la tessere venga posizionata vicino ad un
+                        // altra tessera con un numero valido. e che se di fianco è presente un'altra tessera in
+                        // verticale, tutti i numeri che vengono affiancati siano uguali.
+
+
                         if (check_blank(board,i,j,'V')){
 
 

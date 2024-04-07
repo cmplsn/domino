@@ -48,4 +48,6 @@ void find_blank(Matrix *board, int* row, int* col);
 
 bool check_blank(Matrix *board, int i, int j, char orientation);
 
+bool available_moves_2D(Matrix* board, Tile* deck, int deck_size, int n);
+
 #endif //PROJECT_IAP_BOARD_H
