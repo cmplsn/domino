@@ -246,10 +246,37 @@ void find_blank(Matrix *board, int* row, int* col){
 
 }
 
+bool check_blank(Matrix *board, int i, int j, char orientation){
+    bool ok=true;
+    //todo: se uno dei char che la tessera nuova dovrà occupare in board è diverso da  ' ' oppure se lo spazio
+    // necessario "sfora" i limiti del tavolo di gioco, ok viene impostato
+    if(orientation=='O'){
+        int k=0;
+        while(k<4 &&ok){
+            if(j+k <= board->cols-1 && board->matrix[i][j+k] == ' '){
+                k++;
+            }else{
+                ok=false;
+            }
+        }
+    }else{
+        for (int k = 0; (k < 2) && ok; ++k) {
+            for (int l = 0; l < 2; ++l) {
+                if(board->matrix[i+k][j+l] != ' ' || i+k >= board->rows || j+l >= board->cols ){
+                    ok=false;
+                }
+            }
+        }
+    }
+    return ok;
+}
+
 bool insert_right_2D(Matrix *board, Tile tile){
     bool placed=false;
 
-    /**Tessera +1 aggiunta in modalità 2D aumenta tutta la board di 1*/
+    //todo:Qualsiasi sia il verso della tessera [+1] aggiunta quando la partita è in modalità 2D aumenta tutta la board
+    // di 1. Se board è vuota non fa nulla perchè utilizzo di [+1] viene bloccato già prima di entrare nella insert
+
     if(tile.x=='+' && tile.y=='1'){
         for (int i = 0; i <board->rows ; ++i) {
             for (int j = 0; j < board->cols; ++j) {
@@ -351,7 +378,19 @@ bool insert_right_2D(Matrix *board, Tile tile){
                 }
                 free(h);
 
-            }else{
+            }else if (tile.orientation == 'V'){
+                if(tile.x=='M' && tile.y=='R'){
+                    return false;
+                }else{
+                    char** ver= tile_to_vertical(tile);
+
+
+                    for (int k = 0; k < 2; ++k) {
+                        free(ver[k]);
+                    }
+                    free(ver);
+                }
+
 
             }
         }
@@ -361,62 +400,6 @@ bool insert_right_2D(Matrix *board, Tile tile){
     }else{
         return false;
     }
-
-   /* int i; int j;
-
-   if(tile.orientation=='O'){
-       char *hor= tile_to_horizontal(tile);
-
-
-
-       if(i==0 && j==0 ){
-           if(!(tile.x=='M'&&tile.y=='R')&& !(tile.x=='+' && tile.y=='1')) {
-               for (int k = 0; k < 4; ++k) {
-                   board->matrix[i][j + k] = hor[k];
-               }
-           }else{
-               return false;
-           }
-       }else{
-           if(tile.x=='+' && tile.y=='1'){
-               for (int k = 0; k < board->rows; ++k) {
-                   for (int l = 0; l < board->cols; ++l) {
-                       switch (board->matrix[k][l]) {
-                           default:
-                               break;
-                           case '1' ... '5':
-                               board->matrix[k][l]++;
-                               break;
-                           case '6':
-                               board->matrix[k][l]= '1';
-                       }
-                   }
-               }
-           }
-       }
-
-       free(hor);
-       return true;
-   }else{
-       char **ver = tile_to_vertical(tile);
-       if(tile.x=='+' && tile.y=='1'){
-           return false;
-       }else{
-           if (i==0 && j==0 && !(tile.x=='M'  && tile.y=='R')){
-               for (int k = 0; k < 2; ++k) {
-                   for (int l = 0; l <2 ; ++l) {
-                       board->matrix[i+k][j+l]=ver[k][l];
-                   }
-               }
-           }
-           for (int k = 0; k < 2; ++k) {
-               free(ver[k]);
-           }
-           free(ver);
-           return true;
-       }
-   }
-   return false;*/
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){
