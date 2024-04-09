@@ -86,6 +86,23 @@ char select_pos(void){
     }
     return x;
 }
+//todo: funzione che viene richiamata quando viene inserita sulla board una tessera [+1]
+void plus_one(Matrix *board){
+        for (int i = 0; i < board->rows; ++i) {
+            for (int j = 0; j < board->cols; ++j) {
+                switch (board->matrix[i][j]) {
+                    default:
+                        break;
+                    case '1' ... '5':
+                        board->matrix[i][j]++;
+                        break;
+                    case '6':
+                        board->matrix[i][j] = '1';
+                        break;
+                }
+            }
+        }
+}
 
 bool insert_right(Matrix *board, Tile tile) {
     bool ok=false;
@@ -101,18 +118,7 @@ bool insert_right(Matrix *board, Tile tile) {
         board->matrix[0][i+3]=']';
         ok=true;
     }else if((tile.x=='+' && tile.y=='1') && i>3){
-        for (int j = 0; j < i; ++j) {
-            switch(board->matrix[0][j]){
-                default:
-                    break;
-                case '1' ... '5':
-                    board->matrix[0][j]++;
-                    break;
-                case '6':
-                    board->matrix[0][j]='1';
-                    break;
-            }
-        }
+        plus_one(board);
         ok=true;
     }else if(i==0 ||(board->matrix[0][i-2]==tile.x || board->matrix[0][i-2]=='0'||(tile.x=='0'&& tile.y=='0')) ){
         board->matrix[0][i]='[';
@@ -124,6 +130,7 @@ bool insert_right(Matrix *board, Tile tile) {
     system("clear");
     return ok;
 }
+
 
 bool insert_left(Matrix* board, Tile tile){
     bool ok=false;
@@ -139,18 +146,7 @@ bool insert_left(Matrix* board, Tile tile){
         ok=true;
     }else{
         if(tile.x == '+' && tile.y == '1'){
-            for (int j = 0; j < i; ++j) {
-                switch (board->matrix[0][j]) {
-                    default:
-                        break;
-                    case '1' ... '5':
-                        board->matrix[0][j]++;
-                        break;
-                    case '6':
-                        board->matrix[0][j]='1';
-                        break;
-                }
-            }
+            plus_one(board);
             ok=true;
         }else if((tile.x=='M'&& tile.y=='R') ||board->matrix[0][1]==tile.y || board->matrix[0][1]=='0'||tile.y=='0'){
             for (int j = i-1; j >= 0; --j) {
@@ -279,6 +275,8 @@ bool check_blank(Matrix *board, int i, int j, char orientation){
     return ok;
 }
 
+
+
 bool insert_right_2D(Matrix *board, Tile tile){
     bool placed=false;
 
@@ -286,19 +284,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
     // di 1. Se board è vuota non fa nulla perchè utilizzo di [+1] viene bloccato già prima di entrare nella insert
 
     if(tile.x=='+' && tile.y=='1'){
-        for (int i = 0; i <board->rows ; ++i) {
-            for (int j = 0; j < board->cols; ++j) {
-                switch (board->matrix[i][j]) {
-                    default:
-                        break;
-                    case '1' ... '5':
-                        board->matrix[i][j]++;
-                        break;
-                    case '6':
-                        board->matrix[i][j]='1';
-                }
-            }
-        }
+        plus_one(board);
         placed=true;
     }else{
         int i=0;int j=0;
@@ -472,19 +458,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
     bool placed=false;
 
     if(tile.x=='+' && tile.y=='1'){
-        for (int i = 0; i <board->rows ; ++i) {
-            for (int j = 0; j < board->cols; ++j) {
-                switch (board->matrix[i][j]) {
-                    default:
-                        break;
-                    case '1' ... '5':
-                        board->matrix[i][j]++;
-                        break;
-                    case '6':
-                        board->matrix[i][j]='1';
-                }
-            }
-        }
+        plus_one(board);
         placed=true;
     }else{
 
