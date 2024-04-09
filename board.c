@@ -131,7 +131,6 @@ bool insert_right(Matrix *board, Tile tile) {
     return ok;
 }
 
-
 bool insert_left(Matrix* board, Tile tile){
     bool ok=false;
     int i=0;
@@ -201,7 +200,7 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
         while(!found && j<deck_size){
             if((deck[j].x=='0'&& deck[j].y=='0')
             || (deck[j].x=='M' && deck[j].y=='R')
-            || (deck[j].x=='+' && deck[j].y=='1')) {
+            || (deck[j].x=='+' && deck[j].y=='1')){
                 found=true;
             }else if(board->matrix[0][i-2]=='0' || board->matrix[0][1]=='0'){
                 found=true;
@@ -224,6 +223,7 @@ void end_game(Matrix* board){
 }
 
  void print_screen(Matrix* board, Tile* deck, int decksize){
+    system("clear");
      printf("Score: %d\n", get_score(board));
      print_board(board);
      print_hand(deck,decksize);
@@ -237,6 +237,7 @@ void find_blank(Matrix *board, int* row, int* col){
             }else{
                 if(*col+1 > board->cols){
                    row++;
+                   *col=0;
                 }else{
                     *col = *col+1;
                 }
@@ -274,8 +275,6 @@ bool check_blank(Matrix *board, int i, int j, char orientation){
     }
     return ok;
 }
-
-
 
 bool insert_right_2D(Matrix *board, Tile tile){
     bool placed=false;
