@@ -7,10 +7,10 @@ int main(void) {
     system("clear");
 
     int n = choose_valid_n();
-    /** scelgo numero di tessere con cui inizia il gioco*/
+    //todo: scelgo numero di tessere con cui inizia il gioco
 
     Tile* deck = assegna(n);
-    deck[0].x='+'; deck[0].y='1';
+    deck[0].x='0'; deck[0].y='0';
 
 
     Matrix board;
@@ -73,7 +73,3 @@ int main(void) {
 
     return 0;
 }
-
-/*TODO: MODIFICARE FIRMA INSERT_RIGHT E INSERT_LEFT: INSERIRE UN INT CHE MI INDICHI LA RIGA A CUI VADO A FARE
- * L'INSERIMENTO. PER DOMINO LINEARE SARÀ SEMPRE 0 MENTRE CAPIRE PER DOMINO 2D COSA FARE (PER ESEMPIO ESPLORARE LA BOARD
- * E PRIMA POSIZIONE LIBERA DOVE CI STÁ TESSERA E MATCHA CON UNO DEI NUMERI PRESENTI IN BOARD DARGLI QUELLA RIGA LÁ.*/

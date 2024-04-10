@@ -104,6 +104,23 @@ void plus_one(Matrix *board){
         }
 }
 
+void move_board(Matrix *board, int mode){
+    //todo: in mode==1 ricopio tutto spostato di 4 chae se necessario per creare spazio per una nuova tessera orizzontale
+    if(mode==1){
+        for (int i = 0; i <board->rows; ++i) {
+            for (int j = board->cols-1; j >=4; --j) {
+                board->matrix[i][j]=board->matrix[i][j-4];
+            }
+            for (int j = 0; j < 4; ++j) {
+                board->matrix[i][j]=' ';
+            }
+        }
+    }else{
+
+    }
+    print_board(board);
+}
+
 bool insert_right(Matrix *board, Tile tile) {
     bool ok=false;
     int i=0;
@@ -134,7 +151,7 @@ bool insert_right(Matrix *board, Tile tile) {
 bool insert_left(Matrix* board, Tile tile){
     bool ok=false;
     int i=0;
-    while(board->matrix[0][i] != ' '&& i<board->cols) {
+    while(board->matrix[0][i] != ' ' && i<board->cols) {
         i++;
     }
     if(i==0 && !((tile.x == 'M' && tile.y == 'R')||(tile.x == '+' && tile.y == '1'))){
@@ -148,12 +165,7 @@ bool insert_left(Matrix* board, Tile tile){
             plus_one(board);
             ok=true;
         }else if((tile.x=='M'&& tile.y=='R') ||board->matrix[0][1]==tile.y || board->matrix[0][1]=='0'||tile.y=='0'){
-            for (int j = i-1; j >= 0; --j) {
-                board->matrix[0][j+4]=board->matrix[0][j];
-            }
-            for (int j = 0; j < 4; ++j) {
-                board->matrix[0][j]=' ';
-            }
+            move_board(board,1);
             board->matrix[0][0]='[';
             board->matrix[0][3]=']';
             if(tile.x == 'M' && tile.y == 'R'){
@@ -166,7 +178,6 @@ bool insert_left(Matrix* board, Tile tile){
             ok=true;
         }
     }
-
     return ok;
 }
 
@@ -453,6 +464,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
    return placed;
 }
 
+
 bool insert_left_2D(Matrix *board, Tile tile){
     bool placed=false;
 
@@ -460,6 +472,25 @@ bool insert_left_2D(Matrix *board, Tile tile){
         plus_one(board);
         placed=true;
     }else{
+        if(tile.orientation=='O'){
+            char *hor= tile_to_horizontal(tile);
+            if (tile.x=='0'&&tile.y=='0'){
+                move_board(board,1);
+                for (int k = 0; k < 4; ++k) {
+                    board->matrix[0][k]=hor[k];
+                }
+                placed=true;
+            }
+            free(hor);
+        }else{
+            char** ver = tile_to_vertical(tile);
+
+            for (int i = 0; i < 2; ++i) {
+                free(ver[i]);
+            }
+            free(ver);
+        }
+
 
     }
     return placed;
