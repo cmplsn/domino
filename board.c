@@ -116,9 +116,16 @@ void move_board(Matrix *board, int mode){
             }
         }
     }else{
+        for (int i = 0; i < board->rows; ++i) {
+            for (int j = board->cols-1; j >=2 ; --j) {
+                board->matrix[i][j]=board->matrix[i][j-2];
+            }
+            for (int j = 0; j < 2; ++j) {
+                board->matrix[i][j]=' ';
+            }
+        }
 
     }
-    print_board(board);
 }
 
 bool insert_right(Matrix *board, Tile tile) {
@@ -311,7 +318,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
                     //todo: se find_blank trova la board completamente vuota e la tile è diversa da [MR]
                     if(!(tile.x=='M' && tile.y=='R')){
                         for (int k = 0; k < 4; ++k) {
-                            board->matrix[i][j+k]=h[k];
+                            board->matrix[i][k]=h[k];
                         }
                         placed = true;
                     }
@@ -464,34 +471,30 @@ bool insert_right_2D(Matrix *board, Tile tile){
    return placed;
 }
 
+/*void find_blank_left(Matrix *board, int *row, int *col, Tile tile){
+    while(*row<board->rows){
+        while(*col<board->cols){
+            if()
+        }
+    }
+}*/
 
 bool insert_left_2D(Matrix *board, Tile tile){
     bool placed=false;
-
-    if(tile.x=='+' && tile.y=='1'){
+    if(tile.x=='+'&&tile.y=='1'){
         plus_one(board);
         placed=true;
     }else{
-        if(tile.orientation=='O'){
-            char *hor= tile_to_horizontal(tile);
-            if (tile.x=='0'&&tile.y=='0'){
-                move_board(board,1);
-                for (int k = 0; k < 4; ++k) {
-                    board->matrix[0][k]=hor[k];
-                }
-                placed=true;
-            }
-            free(hor);
-        }else{
-            char** ver = tile_to_vertical(tile);
+        int  i=0; int j=0;
+        while(!placed && i<board->rows && j<board->cols){
+            find_blank(board, &i, &j);
+            if(tile.orientation=='O'){
 
-            for (int i = 0; i < 2; ++i) {
-                free(ver[i]);
             }
-            free(ver);
+
         }
-
-
     }
+
+
     return placed;
 }
