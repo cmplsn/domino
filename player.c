@@ -99,5 +99,17 @@ Tile select_tile(Tile* deck, int size, int n, int mode){
             res.orientation='V';
         }
     }
+
+    //todo: per motivi di correttezza e controlli del resto del codice impedisco che [+1] e [MR] vengano switchate
+    // ovvero anche se l'utente inserisce in input di voler utilizzare [1+] ed [RM], la tile selezionata viene comunque
+    // salvata come [+1] o [MR].
+    if(res.x=='R' && res.y=='M'){
+        res.x='M';
+        res.y='R';
+    }
+    if(res.x=='1' && res.y=='+'){
+        res.x='+';
+        res.y='1';
+    }
     return res;
 }

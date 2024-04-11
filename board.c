@@ -477,10 +477,8 @@ void find_blank_left(Matrix *board, int *row, int *col){
         while(*col<board->cols&& !found){
 
             //todo: se i==0 e j==0: ritorno subito quei valore perchè board è vuota
-            if(*row==0 && *col==0){
-                if(board->matrix[*row][*col]==' '){
-                    found=true;
-                }
+            if(*row==0 && *col==0 && board->matrix[*row][*col]==' '){
+                found=true;
             }else{
 
                 //todo: se trovo una cella ' ' e la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè
@@ -515,15 +513,46 @@ bool insert_left_2D(Matrix *board, Tile tile){
             find_blank_left(board, &i, &j);
             if(tile.orientation=='O'){
                 char *h= tile_to_horizontal(tile);
-                if(tile.x=='0' && tile.y=='0'){
+                if(i==0 && j==0 && !(tile.x=='M' && tile.y=='R')){
+                    for (int k = 0; k < 4; ++k) {
+                        board->matrix[0][k]=h[k];
+                    }
+                    placed=true;
+
+                }else if(tile.x=='0' && tile.y=='0'){
                     move_board(board,1);
                     for (int k = 0; k < 4; ++k) {
                         board->matrix[0][k]=h[k];
                     }
+                    placed=true;
                 }else{
 
                 }
                 free(h);
+            }else{
+                char **ver= tile_to_vertical(tile);
+                if(i==0 && j==0 && !(tile.x=='M' && tile.y=='R')){
+                    for (int k = 0; k < 2; ++k) {
+                        for (int l = 0; l < 2; ++l) {
+                            board->matrix[k][l]=ver[k][l];
+                        }
+                    }
+                    placed=true;
+
+                }else if(tile.x=='0'&& tile.y=='0'){
+                    move_board(board,2);
+                    for (int k = 0; k < 2; ++k) {
+                        for (int l = 0; l < 2; ++l) {
+                            board->matrix[k][l]=ver[k][l];
+                        }
+                    }
+                    placed=true;
+                }
+
+                for (int k = 0; k < 2; ++k) {
+                    free(ver[k]);
+                }
+                free(ver);
             }
 
         }
@@ -532,3 +561,5 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
     return placed;
 }
+
+//todo: AGGIUNGERE AVAILABLES_MOVES_2D
