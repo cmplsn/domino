@@ -44,7 +44,9 @@ void end_game(Matrix* board);
 
 void print_screen(Matrix* board, Tile* deck, int decksize);
 
-void find_blank(Matrix *board, int* row, int* col);
+void find_blank(Matrix *board, int *row, int *col);
+
+void find_blank_left(Matrix *board, int *row, int *col);
 
 bool check_blank(Matrix *board, int i, int j, char orientation);
 
