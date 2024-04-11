@@ -475,20 +475,23 @@ void find_blank_left(Matrix *board, int *row, int *col){
     bool found=false;
     while(*row<board->rows && !found){
         while(*col<board->cols&& !found){
+
+            //todo: se i==0 e j==0: ritorno subito quei valore perchè board è vuota
             if(*row==0 && *col==0){
                 if(board->matrix[*row][*col]==' '){
                     found=true;
                 }
             }else{
 
-                //todo: se i==0 e j==0 ritorno subito vuol dire che la board è vuota altrimenti se trovo una cella ' ' e
-                // la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè vuol dire che ho trovato una cella a cui
-                // attaccarmi quindi mantengo *col *row come valori per il prossimo check_blank
+                //todo: se trovo una cella ' ' e la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè
+                // vuol dire che ho trovato una cella a cui attaccarmi A SINISTRA
 
                 if(*row!=0 && *col==0 ||(board->matrix[*row][*col]==' '
                 && *col+1<=board->cols&& board->matrix[*row][*col]!=' ')){
                     found=true;
                 }else{
+
+                    //todo: se *col+1 out of bound faccio ripartire la ricerca da *row+1 *col=0 altrimenti *col+1
                     if(*col+1>=board->cols){
                         *row=*row+1;
                         *col=0;
