@@ -253,7 +253,7 @@ void find_blank(Matrix *board, int* row, int* col){
             if(board->matrix[*row][*col]==' '){
                 return;
             }else{
-                if(*col+1 > board->cols){
+                if(*col+1 >= board->cols){
                    row++;
                    *col=0;
                 }else{
@@ -471,13 +471,35 @@ bool insert_right_2D(Matrix *board, Tile tile){
    return placed;
 }
 
-/*void find_blank_left(Matrix *board, int *row, int *col, Tile tile){
-    while(*row<board->rows){
-        while(*col<board->cols){
-            if()
+void find_blank_left(Matrix *board, int *row, int *col){
+    bool found=false;
+    while(*row<board->rows && !found){
+        while(*col<board->cols&& !found){
+            if(*row==0 && *col==0){
+                if(board->matrix[*row][*col]==' '){
+                    found=true;
+                }
+            }else{
+
+                //todo: se i==0 e j==0 ritorno subito vuol dire che la board è vuota altrimenti se trovo una cella ' ' e
+                // la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè vuol dire che ho trovato una cella a cui
+                // attaccarmi quindi mantengo *col *row come valori per il prossimo check_blank
+
+                if(*row!=0 && *col==0 ||(board->matrix[*row][*col]==' '
+                && *col+1<=board->cols&& board->matrix[*row][*col]!=' ')){
+                    found=true;
+                }else{
+                    if(*col+1>=board->cols){
+                        *row=*row+1;
+                        *col=0;
+                    }else{
+                        *col=*col+1;
+                    }
+                }
+            }
         }
     }
-}*/
+}
 
 bool insert_left_2D(Matrix *board, Tile tile){
     bool placed=false;
@@ -487,9 +509,18 @@ bool insert_left_2D(Matrix *board, Tile tile){
     }else{
         int  i=0; int j=0;
         while(!placed && i<board->rows && j<board->cols){
-            find_blank(board, &i, &j);
+            find_blank_left(board, &i, &j);
             if(tile.orientation=='O'){
+                char *h= tile_to_horizontal(tile);
+                if(tile.x=='0' && tile.y=='0'){
+                    move_board(board,1);
+                    for (int k = 0; k < 4; ++k) {
+                        board->matrix[0][k]=h[k];
+                    }
+                }else{
 
+                }
+                free(h);
             }
 
         }
