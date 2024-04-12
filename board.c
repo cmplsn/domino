@@ -482,10 +482,14 @@ void find_blank_left(Matrix *board, int *row, int *col){
             }else{
 
                 //todo: se trovo una cella ' ' e la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè
-                // vuol dire che ho trovato una cella a cui attaccarmi A SINISTRA
+                // vuol dire che ho trovato una cella a cui attaccarmi A SINISTRA. restituisco come posizione
+                // la prima cella occupata a dx di ' '
 
-                if(*row!=0 && *col==0 ||(board->matrix[*row][*col]==' '
-                && *col+1<=board->cols&& board->matrix[*row][*col]!=' ')){
+                if(*row!=0 && *col==0 && board->matrix[*row][*col]!=' '){
+                    found=true;
+
+                }else if(board->matrix[*row][*col]==' ' && *col+1<=board->cols-1 && board->matrix[*row][*col+1]!=' '){
+                    *col=*col+1;
                     found=true;
                 }else{
 
@@ -502,7 +506,20 @@ void find_blank_left(Matrix *board, int *row, int *col){
     }
 }
 bool check_blank_left(Matrix *board, int i, int j, char orientation){
+    bool ok=true;
+    if(orientation=='O' && j>=4){
+        //todo: se i 4 char del blank che ho trovato sono tutti liberi allora ok resta a true e posso inserire lì una
+        // tessera in orizzontale
+        for (int k = j; k >= j-3 && ok; --k) {
+            if(board->matrix[i][k]!=' '){
+                ok=false;
+            }
+        }
+    }else{
+        //todo: aggiungere stessa cosa per tessera in verticale quindi due for o due while annidati
 
+    }
+    return ok;
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){
@@ -526,12 +543,14 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     }
 
                 }else if(tile.x=='0' && tile.y=='0'){
+                    //todo: se la tessera == [00] viene inserita a sinistra sempre sulla prima riga
                     move_board(board,1);
                     for (int k = 0; k < 4; ++k) {
                         board->matrix[0][k]=h[k];
                     }
                     placed=true;
                 }else if(tile.x=='M'&& tile.y=='R'){
+                    // todo: se tessera == [MR] viene inserita sempre su prima riga.
                     move_board(board,1);
                     h[1]=tile.x;
                     h[2]=tile.y;
@@ -539,17 +558,39 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         board->matrix[i][k]=h[k];
                     }
                     placed=true;
-                }else if(j==0 &&(((board->matrix[i][j]=='{'|| board->matrix[i][j]=='[')&&(board->matrix[i][j+1]==tile.y
+                }else if(j<=board->cols-2 && (((board->matrix[i][j]=='{'|| board->matrix[i][j]=='[')&&(board->matrix[i][j+1]==tile.y
                 || board->matrix[i][j]=='0'))|| (board->matrix[i][j+1]=='}'&&
                 (board->matrix[i][j]==tile.y|| board->matrix[i][j]=='0')))){
-                    //todo: se j==0 e trovo {y oppure [y oppure y} dove y è uguale o a tile.y oppure a '0' devo spostare
-                    // la board ed inserire la tessera all'inizio della riga
+                    //todo: controllo se c'è almeno un char dopo j (quindi 2 char dopo l'ultimo ' '
+                    // perchè devo fare controlli su j+1) e se c'è e trovo [x {x oppure x} tali che x==tile.y oppure x==0
 
-                    move_board(board,1);
-                    for (int k = 0; k < 4; ++k) {
-                        board->matrix[i][k]=h[k];
+                    if(j==0) {
+
+                        //todo: se j==0 vuol dire che mi trovo all'inizio della riga quindi dovrò ricopiare la
+                        // board spostata di 4 verso dx
+
+                        move_board(board, 1);
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][k] = h[k];
+                        }
+                        placed = true;
+                    }else{
+
+                        //todo: altrimenti controllo che i 4 char antecedenti j siano tutti a blank per permettere
+                        // inserimento tessera
+                        if(check_blank_left(board,i,j-1,'O')){
+
+                            //todo: infine inserisco tessera solo se il char antecedente ai 4 char dove vado a
+                            // posizionare la tessera è == ' ' oppure se trovo y] y} o {y tale che x==tile.x
+                            if(j-4==0 || board->matrix[i][j-5]==' ' ||((board->matrix[i][j-5]=='}'
+                            || board->matrix[i][j-5]==']') && board->matrix[i][j-6]==tile.x)|| board->matrix[i][j-5]==tile.x){
+                                for (int k = 0; k <4 ;++k) {
+                                    board->matrix[i][j-4+k]=h[k];
+                                }
+                                placed=true;
+                            }
+                        }
                     }
-                    placed=true;
 
                 }else{
 
