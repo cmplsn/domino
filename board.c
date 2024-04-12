@@ -505,9 +505,10 @@ void find_blank_left(Matrix *board, int *row, int *col){
         }
     }
 }
+
 bool check_blank_left(Matrix *board, int i, int j, char orientation){
     bool ok=true;
-    if(orientation=='O' && j>=4){
+    if(orientation=='O' && j>=3){
         //todo: se i 4 char del blank che ho trovato sono tutti liberi allora ok resta a true e posso inserire lì una
         // tessera in orizzontale
         for (int k = j; k >= j-3 && ok; --k) {
@@ -515,8 +516,15 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation){
                 ok=false;
             }
         }
-    }else{
+    }else if(orientation=='V' && j>=1){
         //todo: aggiungere stessa cosa per tessera in verticale quindi due for o due while annidati
+        for (int k = 0; k <2 && ok; ++k) {
+            for (int l = j; l >=j-1 && ok ; ++l) {
+                if(board->matrix[i+k][l]==' '){
+                    ok=false;
+                }
+            }
+        }
 
     }
     return ok;
@@ -533,7 +541,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
             find_blank_left(board, &i, &j);
             if(tile.orientation=='O'){
                 char *h= tile_to_horizontal(tile);
-                //todo: se la board è vuota e la tessera è diversa da
+                //todo: se la board è vuota e la tessera è diversa da [MR]
                 if(i==0 && j==0){
                     if(!(tile.x=='M' && tile.y=='R')) {
                         for (int k = 0; k < 4; ++k) {
@@ -592,21 +600,22 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         }
                     }
 
-                }else{
-
                 }
                 free(h);
             }else{
                 char **ver= tile_to_vertical(tile);
-                if(i==0 && j==0 && !(tile.x=='M' && tile.y=='R')){
-                    for (int k = 0; k < 2; ++k) {
-                        for (int l = 0; l < 2; ++l) {
-                            board->matrix[k][l]=ver[k][l];
+                if(i==0 && j==0){
+                    if(tile.x!='M' && tile.y!='R') {
+                        for (int k = 0; k < 2; ++k) {
+                            for (int l = 0; l < 2; ++l) {
+                                board->matrix[k][l] = ver[k][l];
+                            }
                         }
+                        placed = true;
                     }
-                    placed=true;
 
                 }else if(tile.x=='0'&& tile.y=='0'){
+
                     move_board(board,2);
                     for (int k = 0; k < 2; ++k) {
                         for (int l = 0; l < 2; ++l) {
@@ -614,6 +623,43 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         }
                     }
                     placed=true;
+
+                //todo: la cella dove sto attaccando si presenta come {y [y oppure y} dove y==tile.x oppure y=='0'
+                }else if(i+1<=board->rows-1 && j<=board->cols-2 && (((board->matrix[i][j]=='{'|| board->matrix[i][j]=='[') &&
+                (board->matrix[i][j+1]==tile.x||board->matrix[i][j+1]=='0') )|| (board->matrix[i][j+1]=='}'&&
+                (board->matrix[i][j]==tile.x || board->matrix[i][j]=='0') ))){
+
+                    //todo: attaccando a SINISTRA ma in verticale devo controllare con gli stessi controlli di sopra ma
+                    // su tile.y anche la cella sottostante quella dove ho trovato il blank
+                    if(board->matrix[i+1][j]==' ' || (((board->matrix[i+1][j]=='{'|| board->matrix[i+1][j]=='[') &&
+                    (board->matrix[i+1][j+1]==tile.y||board->matrix[i+1][j+1]=='0'))|| (board->matrix[i+1][j+1]=='}'
+                    && (board->matrix[i+1][j]==tile.y || board->matrix[i+1][j]=='0')))){
+
+                        //todo: se il blank è stato trovato in corrispondenza di j==0 sposto board e attacco ad inizio board.
+                        if(j==0){
+
+                            move_board(board,2);
+                            for (int k = 0; k < 2; ++k) {
+                                for (int l = 0; l < 2; ++l) {
+                                    board->matrix[i+k][l]=ver[k][l];
+                                }
+                            }
+
+                            placed=true;
+                        }else{
+                            if(check_blank_left(board, i,j-1,'V')){
+
+                                //todo: finire tutti i controlli sulle a SINISTRA della nuova tesserea che sto mettendo
+                                /*if(j-2==0 ||(board->matrix[i][j-3]==' '||((((board->matrix[i][j-3]=='}'
+                                ||board->matrix[i][j-3]==']')&&(board->matrix[i][j-4]==tile.x ||
+                                board->matrix[i][j-4]=='0'))||board->matrix[i][j-3]==tile.x)) && (i+1<=board->rows-1 &&
+                                (board->matrix[i+1][j-3]==' ' ||((((board->matrix[i][j-3]==''))))))*/
+                            }
+                        }
+
+                    }
+
+                   placed = true;
                 }
 
                 for (int k = 0; k < 2; ++k) {
