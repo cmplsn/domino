@@ -649,7 +649,17 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         }else{
                             if(check_blank_left(board, i,j-1,'V')){
 
-                                //todo: finire tutti i controlli sulle a SINISTRA della nuova tesserea che sto mettendo
+                                //todo: finire tutti i controlli sui char a SINISTRA della nuova tesserea che sto mettendo
+                                if( j-2==0 ||( j-3>=0 && (board->matrix[i][j-3]==' ' || ((board->matrix[i][j-2]==']'||
+                                board->matrix[i][j-2]=='}')&&(board->matrix[i][j-3]==tile.x||board->matrix[i][j-3]=='0'))
+                                ||(board->matrix[i][j-3]=='{' && (board->matrix[i][j-2]==tile.x ||
+                                board->matrix[i][j-2]=='0'))))){
+
+                                    //todo: finire controlli su char a sinistra riga sotto perchè stiamo aggiungendo in verticale
+
+
+
+                                }
                                 /*if(j-2==0 ||(board->matrix[i][j-3]==' '||((((board->matrix[i][j-3]=='}'
                                 ||board->matrix[i][j-3]==']')&&(board->matrix[i][j-4]==tile.x ||
                                 board->matrix[i][j-4]=='0'))||board->matrix[i][j-3]==tile.x)) && (i+1<=board->rows-1 &&
