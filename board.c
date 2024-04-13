@@ -473,8 +473,8 @@ bool insert_right_2D(Matrix *board, Tile tile){
 
 void find_blank_left(Matrix *board, int *row, int *col){
     bool found=false;
-    while(*row<board->rows && !found){
-        while(*col<board->cols&& !found){
+    while(*row <board->rows-1 && !found){
+        while(*col<= board->cols-1 && !found){
 
             //todo: se i==0 e j==0: ritorno subito quei valore perchè board è vuota
             if(*row==0 && *col==0 && board->matrix[*row][*col]==' '){
@@ -537,7 +537,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
         placed=true;
     }else{
         int  i=0; int j=0;
-        while(!placed && i<board->rows && j<board->cols){
+        while(!placed && i<=board->rows-1 && j<=board->cols-1){
             find_blank_left(board, &i, &j);
             if(tile.orientation=='O'){
                 char *h= tile_to_horizontal(tile);
@@ -552,20 +552,46 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
                 }else if(tile.x=='0' && tile.y=='0'){
                     //todo: se la tessera == [00] viene inserita a sinistra sempre sulla prima riga
-                    move_board(board,1);
-                    for (int k = 0; k < 4; ++k) {
-                        board->matrix[0][k]=h[k];
+                    if(j==0){
+                        move_board(board,1);
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][k]=h[k];
+                        }
+                        placed=true;
+                    }else if(check_blank_left(board,i,j,'O')){
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][j-4+k]=h[k];
+                        }
+                        placed=true;
                     }
-                    placed=true;
+
                 }else if(tile.x=='M'&& tile.y=='R'){
                     // todo: se tessera == [MR] viene inserita sempre su prima riga.
-                    move_board(board,1);
-                    h[1]=tile.x;
-                    h[2]=tile.y;
-                    for (int k = 0; k < 4; ++k) {
-                        board->matrix[i][k]=h[k];
+                    if(j==0 && board->matrix[i][j]!= ' '){
+                        h[1]=board->matrix[i][2];
+                        h[2]=board->matrix[i][2];
+                        move_board(board,1);
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][k]=h[k];
+                        }
+                        placed=true;
+                    }else if(check_blank_left(board,i,j,'O')){
+                        if(board->matrix[i][j]=='['){
+                            h[1]=board->matrix[i][j+2];
+                            h[2]=board->matrix[i][j+1];
+                        }else if(board->matrix[i][j]=='{'){
+                            h[1]=board->matrix[i][j+1];
+                            h[2]=board->matrix[i][j+1];
+                        }else if(board->matrix[i][j+1]=='}'){
+                            h[1]=board->matrix[i][j];
+                            h[2]=board->matrix[i][j];
+                        }
+                        for (int k = 0; k < 4; ++k) {
+                            board->matrix[i][j-4+k]=h[k];
+                        }
+                        placed=true;
                     }
-                    placed=true;
+
                 }else if(j<=board->cols-2 && (((board->matrix[i][j]=='{'|| board->matrix[i][j]=='[')&&(board->matrix[i][j+1]==tile.y
                 || board->matrix[i][j]=='0'))|| (board->matrix[i][j+1]=='}'&&
                 (board->matrix[i][j]==tile.y|| board->matrix[i][j]=='0')))){
@@ -649,27 +675,31 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         }else{
                             if(check_blank_left(board, i,j-1,'V')){
 
-                                //todo: finire tutti i controlli sui char a SINISTRA della nuova tesserea che sto mettendo
+                                //todo: a destra della tessera o finisce la board oppure troviamo ' ' oppure y] y} o {y
+                                // tale che y==0 oppure y==tile.x
                                 if( j-2==0 ||( j-3>=0 && (board->matrix[i][j-3]==' ' || ((board->matrix[i][j-2]==']'||
                                 board->matrix[i][j-2]=='}')&&(board->matrix[i][j-3]==tile.x||board->matrix[i][j-3]=='0'))
                                 ||(board->matrix[i][j-3]=='{' && (board->matrix[i][j-2]==tile.x ||
                                 board->matrix[i][j-2]=='0'))))){
 
-                                    //todo: finire controlli su char a sinistra riga sotto perchè stiamo aggiungendo in verticale
-
-
-
+                                    //todo: a destra della tessera nella riga sotto stessa cosa della riga sopra.
+                                    if( i+1<=board->rows-1 && (j-2==0 || (j-3>=0 &&(board->matrix[i+1][j-3]==' '||
+                                    ((board->matrix[i+1][j-2]==']'|| board->matrix[i+1][j-2]=='}')&&
+                                    (board->matrix[i+1][j-3]==tile.y || board->matrix[i+1][j-3]=='0')) ||
+                                    (board->matrix[i+1][j-3]=='{' && (board->matrix[i+1][j-2]==tile.y ||
+                                    board->matrix[i+1][j-2]=='0')))))){
+                                        for (int k = 0; k <2 ; ++k) {
+                                            for (int l = 0; l <2 ; ++l) {
+                                                board->matrix[i+k][j-2+l]=ver[k][l];
+                                            }
+                                        }
+                                        placed=true;
+                                    }
                                 }
-                                /*if(j-2==0 ||(board->matrix[i][j-3]==' '||((((board->matrix[i][j-3]=='}'
-                                ||board->matrix[i][j-3]==']')&&(board->matrix[i][j-4]==tile.x ||
-                                board->matrix[i][j-4]=='0'))||board->matrix[i][j-3]==tile.x)) && (i+1<=board->rows-1 &&
-                                (board->matrix[i+1][j-3]==' ' ||((((board->matrix[i][j-3]==''))))))*/
                             }
                         }
 
                     }
-
-                   placed = true;
                 }
 
                 for (int k = 0; k < 2; ++k) {
