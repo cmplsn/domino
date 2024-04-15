@@ -471,7 +471,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
    return placed;
 }
 
-void find_blank_left(Matrix *board, int *row, int *col){
+/*void find_blank_left(Matrix *board, int *row, int *col){
     bool found=false;
     while(*row <board->rows-1 && !found){
         while(*col<= board->cols-1 && !found){
@@ -504,9 +504,9 @@ void find_blank_left(Matrix *board, int *row, int *col){
             }
         }
     }
-}
+}*/
 
-bool check_blank_left(Matrix *board, int i, int j, char orientation){
+/*bool check_blank_left(Matrix *board, int i, int j, char orientation){
     bool ok=true;
     if(orientation=='O' && j>=3){
         //todo: se i 4 char del blank che ho trovato sono tutti liberi allora ok resta a true e posso inserire lì una
@@ -528,9 +528,59 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation){
 
     }
     return ok;
+}*/
+
+bool first_empty(Matrix *board){
+    bool empty =true;
+    for (int i = 0; i < board->cols && empty; ++i) {
+        if(board->matrix[0][i]!=' '){
+            empty=false;
+        }
+    }
+    return empty;
+}
+
+void find_blank_left(Matrix *board, int *row, int *col){
+    bool found=false;
+    while ( !found && *row <= board->rows - 1 && *col <= board->cols - 2) {
+        if(*row==0 & *col==0 && first_empty(board)){
+            found=true;
+        }else{
+            if((*col==0 && board->matrix[*row][*col]!=' ') ||(board->matrix[*row][*col]==' ' &&
+            board->matrix[*row][*col+1]!=' ')){
+                found=true;
+            }
+        }
+
+        if(!found){
+            if(*col+1<=board->cols-1){
+                *row=*row+1;
+                *col=0;
+            }else{
+                *col = *col+1;
+            }
+        }
+
+    }
+
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){
+    bool placed =false;
+    if(tile.x=='+' && tile.y=='1'){
+        plus_one(board);
+        placed=true;
+    }else{
+        int i=0; int j=0;
+        find_blank_left(board, &i, &j);
+
+
+
+    }
+    return placed;
+}
+
+/*bool insert_left_2D(Matrix *board, Tile tile){
     bool placed=false;
     if(tile.x=='+'&&tile.y=='1'){
         plus_one(board);
@@ -721,6 +771,6 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
 
     return placed;
-}
+}*/
 
 //todo: AGGIUNGERE AVAILABLES_MOVES_2D
