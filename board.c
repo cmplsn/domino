@@ -126,6 +126,7 @@ void move_board(Matrix *board, int mode){
         }
 
     }
+    print_board(board);
 }
 
 bool insert_right(Matrix *board, Tile tile) {
@@ -313,14 +314,17 @@ bool insert_right_2D(Matrix *board, Tile tile){
 
                 char *h = tile_to_horizontal(tile);
 
-                if (i==0 && j==0 ){
+
+                if (i==0 && j==0 && first_empty(board) ){
 
                     //todo: se find_blank trova la board completamente vuota e la tile è diversa da [MR]
-                    if(!(tile.x=='M' && tile.y=='R')){
+                    if( !(tile.x=='M' && tile.y=='R')){
                         for (int k = 0; k < 4; ++k) {
                             board->m[i][k]=h[k];
                         }
                         placed = true;
+                    }else{
+
                     }
                 }else{
                     if(check_blank(board,i,j,'O')){
@@ -563,6 +567,27 @@ void find_blank_left(Matrix *board, int *row, int *col){
 
     }
 }
+
+bool check_blank_left(Matrix *board, int i, int j, char orientation){
+    bool empty=true;
+    if(orientation=='O') {
+        if (j < 4) {
+            empty=false;
+        } else {
+            int cont = 0;
+            while (cont < j  && empty) {
+                if (board->m[i][j-cont-1]!=' '){
+                    empty=false;
+                }else{
+                    j--;
+                }
+            }
+        }
+    }
+    return empty;
+
+}
+
 int count_blank(Matrix *board){
     int j=0;
     while(board->m[0][j]==' '){
@@ -583,7 +608,10 @@ bool insert_left_2D(Matrix *board, Tile tile){
         if(tile.orientation=='O') {
             char *hor = tile_to_horizontal(tile);
             while(!placed && i<=board->rows-1 ) {
-                if (i == 0 & j == 0) {
+                if (i == 0 & j == 0 && first_empty(board)) {
+
+                    //todo: se la board è vuota  le tessera è diversa da [MR] inserisco nei primi 4 char. non controllo
+                    // per [+1] perchè ho già considerato in precedenza
 
                     if (tile.x != 'M' && tile.y != 'R') {
                         for (int k = 0; k < 4; ++k) {
@@ -614,21 +642,33 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     }
                     placed=true;
 
-                } else if (j == 0 && (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
+                } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
-                && board->m[i][j + 1] == '}'))) {
-
-                    for (int k = 0; k < 4; ++k) {
-                        board->m[i][k] = hor[k];
+                && board->m[i][j + 1] == '}')) {
+                    if(j==0){
+                        move_board(board,1);
+                        j=j+4;
+                    }else if(j-2==0 && count_blank(board)==2){
+                        move_board(board,2);
+                        j=j+2;
                     }
-                    placed = true;
+                    if(check_blank_left(board,i,j,'O')) {
+                        if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
+                        (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
+                        (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
+                            for (int k = 0; k < 4; ++k) {
+                                board->m[i][j-4+k] = hor[k];
+                            }
+                            placed = true;
+                        }
 
+                    }
                 }else{
-
+                    //todo:DA COMPLETARE
                 }
 
                 if(!placed){
-                    if(j+1>=board->rows-1){
+                    if(j+1>=board->cols-1){
                         i++;
                         j=0;
                     }else{
