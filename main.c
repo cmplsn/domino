@@ -6,12 +6,15 @@
 int main(void) {
     system("clear");
 
-    int n = choose_valid_n();
+    int n = 10; //choose_valid_n();
     //todo: scelgo numero di tessere con cui inizia il gioco
 
-    Tile* deck = assegna(n);
-    /*deck[0].x='M'; deck[0].y='R';
-    deck[1].x='+'; deck[1].y='1';*/
+    Tile* deck = assegna(10);
+    deck[0].x='2'; deck[0].y='5';
+    deck[1].x='2'; deck[1].y='5';
+    deck[2].x='2'; deck[2].y='2';
+    deck[3].x='5'; deck[3].y='5';
+    deck[4].x='2'; deck[4].y='6';
 
 
     Matrix board;

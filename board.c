@@ -551,13 +551,13 @@ void find_blank_left(Matrix *board, int *row, int *col){
         if(*row==0 & *col==0 && first_empty(board)){
             found=true;
         }else{
-            if((*col==0 && board->m[*row][*col]!=' ') ||(board->m[*row][*col]==' ' && board->m[*row][*col+1]!=' ')){
+            if((*col==0 && board->m[*row][*col]!=' ') ||(board->m[*row][*col-1]==' ' && board->m[*row][*col]!=' ')){
                 found=true;
             }
         }
 
         if(!found){
-            if(*col+1<=board->cols-1){
+            if(*col+1>=board->cols-1){
                 *row=*row+1;
                 *col=0;
             }else{
@@ -604,10 +604,11 @@ bool insert_left_2D(Matrix *board, Tile tile){
     }else{
         int i=0; int j=0;
 
-        find_blank_left(board, &i, &j);
+
         if(tile.orientation=='O') {
             char *hor = tile_to_horizontal(tile);
-            while(!placed && i<=board->rows-1 ) {
+            while(!placed && i<=board->rows-2 ) {
+                find_blank_left(board, &i, &j);
                 if (i == 0 & j == 0 && first_empty(board)) {
 
                     //todo: se la board è vuota  le tessera è diversa da [MR] inserisco nei primi 4 char. non controllo
@@ -621,6 +622,10 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     }
 
                 }else if((tile.x=='M' && tile.y=='R') || (tile.x=='0' && tile.y=='0')){
+
+                    //todo: se la tessera da aggiungere è [MR] oppure [00] aggiungo sempre e solo su prima riga ma
+                    // controllo se m[0][0] != ' ' sposto di 4 se count blank trova solo due spazzi altrimenti appendo
+                    // altrimenti ho già 4 spazi liberi per aggiungere
                     if(board->m[0][0]!=' '){
                         move_board(board,1);
                     }else{
@@ -628,40 +633,57 @@ bool insert_left_2D(Matrix *board, Tile tile){
                             move_board(board,2);
                         }
                     }
-                    if(tile.x=='M') {
-                        if (board->m[0][4] == '[') {
-                            hor[1] = board->m[0][6]; hor[2] = board->m[0][5];
-                        } else if (board->m[0][4] == '{') {
-                            hor[1] = board->m[0][5]; hor[2] = board->m[0][5];
-                        } else if (board->m[0][5] == '}') {
-                            hor[1] = board->m[0][4]; hor[2] = board->m[0][4];
-                        }
+                     //todo: mi posiziono su prima m[0][j] != ' '
+                    while(board->m[0][j]==' '){
+                        j++;
                     }
-                    for (int k = 0; k < 4; ++k) {
-                        board->m[0][k]=hor[k];
+
+                    //todo:
+                    if(tile.x=='M') {
+                        if (board->m[0][j] == '[') {
+                            hor[1] = board->m[0][j+2]; hor[2] = board->m[0][j+1];
+                        } else if (board->m[0][j] == '{') {
+                            hor[1] = board->m[0][j+1]; hor[2] = board->m[0][j+1];
+                        } else if (board->m[0][j+1] == '}') {
+                            hor[1] = board->m[0][j]; hor[2] = board->m[0][j];
+                        }
+                        placed=true;
+                    }
+
+                    for (int k = 0; k < 4 ; ++k) {
+                        board->m[0][j-4+k]=hor[k];
                     }
                     placed=true;
+
+
 
                 } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
                 && board->m[i][j + 1] == '}')) {
                     if(j==0){
                         move_board(board,1);
-                        j=j+4;
+                        for (int k = 0; k < 4; ++k) {
+                            board->m[i][k]=hor[k];
+                        }
+                        placed=true;
+
                     }else if(j-2==0 && count_blank(board)==2){
                         move_board(board,2);
-                        j=j+2;
-                    }
-                    if(check_blank_left(board,i,j,'O')) {
-                        if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
-                        (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
-                        (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
-                            for (int k = 0; k < 4; ++k) {
-                                board->m[i][j-4+k] = hor[k];
-                            }
-                            placed = true;
+                        for (int k = 0; k < 4; ++k) {
+                            board->m[i][k]=hor[k];
                         }
-
+                        placed=true;
+                    }else{
+                        if(check_blank_left(board,i,j,'O')) {
+                            if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
+                            (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
+                            (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
+                                for (int k = 0; k < 4; ++k) {
+                                    board->m[i][j-4+k] = hor[k];
+                                }
+                                placed = true;
+                            }
+                        }
                     }
                 }else{
                     //todo:DA COMPLETARE
@@ -678,9 +700,14 @@ bool insert_left_2D(Matrix *board, Tile tile){
             }
             free(hor);
         }else{
+            char** ver= tile_to_vertical(tile);
 
             //todo: AGGIUNTA VERTICALE
 
+            for (int k = 0; k < 2; ++k) {
+                free(ver[k]);
+            }
+            free(ver);
         }
     }
     return placed;
