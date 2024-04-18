@@ -7,4 +7,5 @@ add_executable(Project_IAP main.c
         board.c
         board.h
         player.h
-        player.c)
+        player.c
+        board.c)

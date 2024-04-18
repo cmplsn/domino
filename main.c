@@ -6,15 +6,10 @@
 int main(void) {
     system("clear");
 
-    int n = 10; //choose_valid_n();
+    int n = choose_valid_n();
     //todo: scelgo numero di tessere con cui inizia il gioco
 
-    Tile* deck = assegna(10);
-    deck[0].x='2'; deck[0].y='5';
-    deck[1].x='2'; deck[1].y='5';
-    deck[2].x='2'; deck[2].y='2';
-    deck[3].x='5'; deck[3].y='5';
-    deck[4].x='2'; deck[4].y='6';
+    Tile* deck = assegna(n);
 
 
     Matrix board;
@@ -46,8 +41,8 @@ int main(void) {
         while(remain>0  /* && available_move_2D todo: aggiungere && available moves*/){
             print_screen(&board, deck, remain);
             Tile x= select_tile(deck, remain,n,2);
-            if(x.x=='+' && x.y=='1' && x.orientation=='V'){
-                printf("[+1] non può essere utilizzata in verticale\n");
+            if(((x.x=='+' && x.y=='1') || (x.x=='M' && x.y=='R')) && x.orientation=='V'){
+                printf("[%c%c] non può essere utilizzata in verticale\n", x.x,x.y);
                 continue;
             }
             if(select_pos()=='D'){

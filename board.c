@@ -1,4 +1,7 @@
 //
+// Created by Alessandro on 18/04/24.
+//
+//
 // Created by Alessandro on 14/03/24.
 //
 #include <stdlib.h>
@@ -88,20 +91,20 @@ char select_pos(void){
 }
 //todo: funzione che viene richiamata quando viene inserita sulla board una tessera [+1]
 void plus_one(Matrix *board){
-        for (int i = 0; i < board->rows; ++i) {
-            for (int j = 0; j < board->cols; ++j) {
-                switch (board->m[i][j]) {
-                    default:
-                        break;
-                    case '1' ... '5':
-                        board->m[i][j]++;
-                        break;
-                    case '6':
-                        board->m[i][j] = '1';
-                        break;
-                }
+    for (int i = 0; i < board->rows; ++i) {
+        for (int j = 0; j < board->cols; ++j) {
+            switch (board->m[i][j]) {
+                default:
+                    break;
+                case '1' ... '5':
+                    board->m[i][j]++;
+                    break;
+                case '6':
+                    board->m[i][j] = '1';
+                    break;
             }
         }
+    }
 }
 
 void move_board(Matrix *board, int mode){
@@ -136,7 +139,7 @@ bool insert_right(Matrix *board, Tile tile) {
         i++;
     }
     if((tile.x=='M' && tile.y=='R') && i>3){ //tessere Mirror può essere utilizzata solo se è presente almeno
-                                             // un altra tessera
+        // un altra tessera
         board->m[0][i]='[';
         board->m[0][i+1]=board->m[0][i-2];
         board->m[0][i+2]=board->m[0][i-3];
@@ -218,13 +221,13 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
         }
         while(!found && j<deck_size){
             if((deck[j].x=='0'&& deck[j].y=='0')
-            || (deck[j].x=='M' && deck[j].y=='R')
-            || (deck[j].x=='+' && deck[j].y=='1')){
+               || (deck[j].x=='M' && deck[j].y=='R')
+               || (deck[j].x=='+' && deck[j].y=='1')){
                 found=true;
             }else if(board->m[0][i-2]=='0' || board->m[0][1]=='0'){
                 found=true;
             }else if(deck[j].x==board->m[0][i-2]||deck[j].x==board->m[0][1]||
-                deck[j].y==board->m[0][i-2] ||deck[j].y==board->m[0][1]){
+                     deck[j].y==board->m[0][i-2] ||deck[j].y==board->m[0][1]){
                 found=true;
             }else{
                 j++;
@@ -241,11 +244,11 @@ void end_game(Matrix* board){
     printf("Non hai più mosse disponibili. Punteggio Finale: %d\n", get_score(board));
 }
 
- void print_screen(Matrix* board, Tile* deck, int decksize){
+void print_screen(Matrix* board, Tile* deck, int decksize){
     system("clear");
-     printf("Score: %d\n", get_score(board));
-     print_board(board);
-     print_hand(deck,decksize);
+    printf("Score: %d\n", get_score(board));
+    print_board(board);
+    print_hand(deck,decksize);
 }
 
 void find_blank(Matrix *board, int* row, int* col){
@@ -255,8 +258,8 @@ void find_blank(Matrix *board, int* row, int* col){
                 return;
             }else{
                 if(*col+1 >= board->cols){
-                   row++;
-                   *col=0;
+                    row++;
+                    *col=0;
                 }else{
                     *col = *col+1;
                 }
@@ -331,7 +334,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
 
                         //todo: caso in cui la tessera sia [00] oppure sia presente sul tavolo {0, 0} o 0]
                         if(tile.x=='0' ||(board->m[i][j-2]=='{' && board->m[i][j-1]=='0') ||
-                        (board->m[i][j-2]=='0'&&(board->m[i][j-1]=='}' || board->m[i][j-1]==']'))){
+                           (board->m[i][j-2]=='0'&&(board->m[i][j-1]=='}' || board->m[i][j-1]==']'))){
 
                             for (int k = 0; k < 4; ++k) {
                                 board->m[i][j+k]=h[k];
@@ -364,7 +367,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
                             // -se su tavolo ho y} oppure y] che tile.x==y e che se board->m[i][j+4] != ' '
                             // che tile.y==board->m[i][j+4]
                         }else if((board->m[i][j-1]==']'||board->m[i][j-1]=='}')&&board->m[i][j-2]==tile.x ||
-                        board->m[i][j-1]==tile.x && board->m[i][j-2]=='{'){
+                                 board->m[i][j-1]==tile.x && board->m[i][j-2]=='{'){
 
                             if(board->m[i][j+4]==' ' || board->m[i][j+4]==tile.y){
                                 for (int k = 0; k < 4; ++k) {
@@ -425,7 +428,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
                             //todo: sto aggiungendo su board in presenza 0], 0} oppure {0 oppure la tessera che io
                             // voglio aggiungere è [00]
                             if (((board->m[i][j-1]=='}'||board->m[i][j-1]==']') && board->m[i][j-2]=='0')
-                            ||(board->m[i][j-2]=='{' && board->m[i][j-1]=='0') || (tile.x=='0'&&tile.y=='0')){
+                                ||(board->m[i][j-2]=='{' && board->m[i][j-1]=='0') || (tile.x=='0'&&tile.y=='0')){
                                 for (int k = 0; k < 2; ++k) {
                                     for (int l = 0; l< 2; ++l) {
                                         board->m[i+k][j+l]=ver[k][l];
@@ -434,11 +437,11 @@ bool insert_right_2D(Matrix *board, Tile tile){
                                 placed=true;
                             }else{
                                 if (((board->m[i][j-1]==']' || board->m[i][j-1]=='}')&&
-                                board->m[i][j-2]==tile.x) || (board->m[i][j-2]=='{'&&board->m[i][j-1]==tile.x)){
+                                     board->m[i][j-2]==tile.x) || (board->m[i][j-2]=='{'&&board->m[i][j-1]==tile.x)){
 
                                     if (((board->m[i+1][j-2]==tile.y || board->m[i+1][j-1]==tile.y||
-                                    board->m[i+1][j-1]==' ') && board->m[i+1][j+2]==' ' || board->m[i+1][j+2]==tile.y) &&
-                                    (board->m[i][j+2]==' ' || board->m[i][j+2]==tile.x || j+2==board->cols-1)){
+                                          board->m[i+1][j-1]==' ') && board->m[i+1][j+2]==' ' || board->m[i+1][j+2]==tile.y) &&
+                                        (board->m[i][j+2]==' ' || board->m[i][j+2]==tile.x || j+2==board->cols-1)){
 
                                         for (int k = 0; k < 2 ; ++k) {
                                             for (int l = 0; l < 2 ; ++l) {
@@ -473,7 +476,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
             }
         }
     }
-   return placed;
+    return placed;
 }
 
 /*void find_blank_left(Matrix *board, int *row, int *col){
@@ -633,7 +636,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
                             move_board(board,2);
                         }
                     }
-                     //todo: mi posiziono su prima m[0][j] != ' '
+                    //todo: mi posiziono su prima m[0][j] != ' '
                     while(board->m[0][j]==' '){
                         j++;
                     }
@@ -658,8 +661,8 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
 
                 } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
-                board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
-                && board->m[i][j + 1] == '}')) {
+                                                                                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
+                                                                                                                 && board->m[i][j + 1] == '}')) {
                     if(j==0){
                         move_board(board,1);
                         for (int k = 0; k < 4; ++k) {
@@ -676,8 +679,8 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     }else{
                         if(check_blank_left(board,i,j,'O')) {
                             if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
-                            (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
-                            (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
+                                                                                     (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
+                                                                                                                                                        (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
                                 for (int k = 0; k < 4; ++k) {
                                     board->m[i][j-4+k] = hor[k];
                                 }
@@ -702,6 +705,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
         }else{
             char** ver= tile_to_vertical(tile);
 
+
             //todo: AGGIUNTA VERTICALE
 
             for (int k = 0; k < 2; ++k) {
@@ -712,198 +716,5 @@ bool insert_left_2D(Matrix *board, Tile tile){
     }
     return placed;
 }
-
-/*bool insert_left_2D(Matrix *board, Tile tile){
-    bool placed=false;
-    if(tile.x=='+'&&tile.y=='1'){
-        plus_one(board);
-        placed=true;
-    }else{
-        int  i=0; int j=0;
-        while(!placed && i<=board->rows-1 && j<=board->cols-1){
-            find_blank_left(board, &i, &j);
-            if(tile.orientation=='O'){
-                char *h= tile_to_horizontal(tile);
-                //todo: se la board è vuota e la tessera è diversa da [MR]
-                if(i==0 && j==0){
-                    if(!(tile.x=='M' && tile.y=='R')) {
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[0][k] = h[k];
-                        }
-                        placed = true;
-                    }
-
-                }else if(tile.x=='0' && tile.y=='0'){
-                    //todo: se la tessera == [00] viene inserita a sinistra sempre sulla prima riga
-                    if(j==0){
-                        move_board(board,1);
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[i][k]=h[k];
-                        }
-                        placed=true;
-                    }else if(check_blank_left(board,i,j,'O')){
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[i][j-4+k]=h[k];
-                        }
-                        placed=true;
-                    }
-
-                }else if(tile.x=='M'&& tile.y=='R'){
-                    // todo: se tessera == [MR] viene inserita sempre su prima riga.
-                    if(j==0 && board->m[i][j]!= ' '){
-                        h[1]=board->m[i][2];
-                        h[2]=board->m[i][2];
-                        move_board(board,1);
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[i][k]=h[k];
-                        }
-                        placed=true;
-                    }else if(check_blank_left(board,i,j,'O')){
-                        if(board->m[i][j]=='['){
-                            h[1]=board->m[i][j+2];
-                            h[2]=board->m[i][j+1];
-                        }else if(board->m[i][j]=='{'){
-                            h[1]=board->m[i][j+1];
-                            h[2]=board->m[i][j+1];
-                        }else if(board->m[i][j+1]=='}'){
-                            h[1]=board->m[i][j];
-                            h[2]=board->m[i][j];
-                        }
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[i][j-4+k]=h[k];
-                        }
-                        placed=true;
-                    }
-
-                }else if(j<=board->cols-2 && (((board->m[i][j]=='{'|| board->m[i][j]=='[')&&(board->m[i][j+1]==tile.y
-                || board->m[i][j]=='0'))|| (board->m[i][j+1]=='}'&&
-                (board->m[i][j]==tile.y|| board->m[i][j]=='0')))){
-                    //todo: controllo se c'è almeno un char dopo j (quindi 2 char dopo l'ultimo ' '
-                    // perchè devo fare controlli su j+1) e se c'è e trovo [x {x oppure x} tali che x==tile.y oppure x==0
-
-                    if(j==0) {
-
-                        //todo: se j==0 vuol dire che mi trovo all'inizio della riga quindi dovrò ricopiare la
-                        // board spostata di 4 verso dx
-
-                        move_board(board, 1);
-                        for (int k = 0; k < 4; ++k) {
-                            board->m[i][k] = h[k];
-                        }
-                        placed = true;
-                    }else{
-
-                        //todo: altrimenti controllo che i 4 char antecedenti j siano tutti a blank per permettere
-                        // inserimento tessera
-                        if(check_blank_left(board,i,j-1,'O')){
-
-                            //todo: infine inserisco tessera solo se il char antecedente ai 4 char dove vado a
-                            // posizionare la tessera è == ' ' oppure se trovo y] y} o {y tale che x==tile.x
-                            if(j-4==0 || board->m[i][j-5]==' ' ||((board->m[i][j-5]=='}'
-                            || board->m[i][j-5]==']') && board->m[i][j-6]==tile.x)|| board->m[i][j-5]==tile.x){
-                                for (int k = 0; k <4 ;++k) {
-                                    board->m[i][j-4+k]=h[k];
-                                }
-                                placed=true;
-                            }
-                        }
-                    }
-
-                }
-                free(h);
-            }else{
-                char **ver= tile_to_vertical(tile);
-                if(i==0 && j==0){
-                    if(tile.x!='M' && tile.y!='R') {
-                        for (int k = 0; k < 2; ++k) {
-                            for (int l = 0; l < 2; ++l) {
-                                board->m[k][l] = ver[k][l];
-                            }
-                        }
-                        placed = true;
-                    }
-
-                }else if(tile.x=='0'&& tile.y=='0'){
-
-                    move_board(board,2);
-                    for (int k = 0; k < 2; ++k) {
-                        for (int l = 0; l < 2; ++l) {
-                            board->m[k][l]=ver[k][l];
-                        }
-                    }
-                    placed=true;
-
-                //todo: la cella dove sto attaccando si presenta come {y [y oppure y} dove y==tile.x oppure y=='0'
-                }else if(i+1<=board->rows-1 && j<=board->cols-2 && (((board->m[i][j]=='{'|| board->m[i][j]=='[') &&
-                (board->m[i][j+1]==tile.x||board->m[i][j+1]=='0') )|| (board->m[i][j+1]=='}'&&
-                (board->m[i][j]==tile.x || board->m[i][j]=='0') ))){
-
-                    //todo: attaccando a SINISTRA ma in verticale devo controllare con gli stessi controlli di sopra ma
-                    // su tile.y anche la cella sottostante quella dove ho trovato il blank
-                    if(board->m[i+1][j]==' ' || (((board->m[i+1][j]=='{'|| board->m[i+1][j]=='[') &&
-                    (board->m[i+1][j+1]==tile.y||board->m[i+1][j+1]=='0'))|| (board->m[i+1][j+1]=='}'
-                    && (board->m[i+1][j]==tile.y || board->m[i+1][j]=='0')))){
-
-                        //todo: se il blank è stato trovato in corrispondenza di j==0 sposto board e attacco ad inizio board.
-                        if(j==0){
-
-                            move_board(board,2);
-                            for (int k = 0; k < 2; ++k) {
-                                for (int l = 0; l < 2; ++l) {
-                                    board->m[i+k][l]=ver[k][l];
-                                }
-                            }
-
-                            placed=true;
-                        }else{
-                            if(check_blank_left(board, i,j-1,'V')){
-
-                                //todo: a destra della tessera o finisce la board oppure troviamo ' ' oppure y] y} o {y
-                                // tale che y==0 oppure y==tile.x
-                                if( j-2==0 ||( j-3>=0 && (board->m[i][j-3]==' ' || ((board->m[i][j-2]==']'||
-                                board->m[i][j-2]=='}')&&(board->m[i][j-3]==tile.x||board->m[i][j-3]=='0'))
-                                ||(board->m[i][j-3]=='{' && (board->m[i][j-2]==tile.x ||
-                                board->m[i][j-2]=='0'))))){
-
-                                    //todo: a destra della tessera nella riga sotto stessa cosa della riga sopra.
-                                    if( i+1<=board->rows-1 && (j-2==0 || (j-3>=0 &&(board->m[i+1][j-3]==' '||
-                                    ((board->m[i+1][j-2]==']'|| board->m[i+1][j-2]=='}')&&
-                                    (board->m[i+1][j-3]==tile.y || board->m[i+1][j-3]=='0')) ||
-                                    (board->m[i+1][j-3]=='{' && (board->m[i+1][j-2]==tile.y ||
-                                    board->m[i+1][j-2]=='0')))))){
-                                        for (int k = 0; k <2 ; ++k) {
-                                            for (int l = 0; l <2 ; ++l) {
-                                                board->m[i+k][j-2+l]=ver[k][l];
-                                            }
-                                        }
-                                        placed=true;
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                }
-
-                for (int k = 0; k < 2; ++k) {
-                    free(ver[k]);
-                }
-                free(ver);
-            }
-            if (!placed){
-                if(j+1>board->cols-1){
-                    i++;
-                    j=0;
-                }else{
-                    j++;
-                }
-            }
-
-        }
-    }
-
-
-    return placed;
-}*/
 
 //todo: AGGIUNGERE AVAILABLES_MOVES_2D
