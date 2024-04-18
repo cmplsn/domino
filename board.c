@@ -254,7 +254,10 @@ void print_screen(Matrix* board, Tile* deck, int decksize){
 void find_blank(Matrix *board, int* row, int* col){
     while(*row< board->rows){
         while(*col<board->cols){
-            if(board->m[*row][*col]==' '){
+            if(*row==0 && *col==0 && first_empty(board)){
+                return;
+            }else if(board->m[*row][*col]!=' ' && board->m[*row][*col+1]==' '){
+                *col=*col+1;
                 return;
             }else{
                 if(*col+1 >= board->cols){
@@ -479,64 +482,6 @@ bool insert_right_2D(Matrix *board, Tile tile){
     return placed;
 }
 
-/*void find_blank_left(Matrix *board, int *row, int *col){
-    bool found=false;
-    while(*row <board->rows-1 && !found){
-        while(*col<= board->cols-1 && !found){
-
-            //todo: se i==0 e j==0: ritorno subito quei valore perchè board è vuota
-            if(*row==0 && *col==0 && board->m[*row][*col]==' '){
-                found=true;
-            }else{
-
-                //todo: se trovo una cella ' ' e la sua successiva è diversa da ' ' e IN-BOUND ritorna perchè
-                // vuol dire che ho trovato una cella a cui attaccarmi A SINISTRA. restituisco come posizione
-                // la prima cella occupata a dx di ' '
-
-                if(*row!=0 && *col==0 && board->m[*row][*col]!=' '){
-                    found=true;
-
-                }else if(board->m[*row][*col]==' ' && *col+1<=board->cols-1 && board->m[*row][*col+1]!=' '){
-                    *col=*col+1;
-                    found=true;
-                }else{
-
-                    //todo: se *col+1 out of bound faccio ripartire la ricerca da *row+1 *col=0 altrimenti *col+1
-                    if(*col+1>=board->cols){
-                        *row=*row+1;
-                        *col=0;
-                    }else{
-                        *col=*col+1;
-                    }
-                }
-            }
-        }
-    }
-}*/
-
-/*bool check_blank_left(Matrix *board, int i, int j, char orientation){
-    bool ok=true;
-    if(orientation=='O' && j>=3){
-        //todo: se i 4 char del blank che ho trovato sono tutti liberi allora ok resta a true e posso inserire lì una
-        // tessera in orizzontale
-        for (int k = j; k >= j-3 && ok; --k) {
-            if(board->m[i][k]!=' '){
-                ok=false;
-            }
-        }
-    }else if(orientation=='V' && j>=1){
-        //todo: aggiungere stessa cosa per tessera in verticale quindi due for o due while annidati
-        for (int k = 0; k <2 && ok; ++k) {
-            for (int l = j; l >=j-1 && ok ; ++l) {
-                if(board->m[i+k][l]==' '){
-                    ok=false;
-                }
-            }
-        }
-
-    }
-    return ok;
-}*/
 
 bool first_empty(Matrix *board){
     bool empty =true;

@@ -10,6 +10,10 @@ int main(void) {
     //todo: scelgo numero di tessere con cui inizia il gioco
 
     Tile* deck = assegna(n);
+    deck[0].x='4'; deck[0].y='6';
+    deck[1].x='4'; deck[1].y='6';
+    deck[2].x='4'; deck[2].y='4';
+    deck[3].x='M'; deck[3].y='R';
 
 
     Matrix board;
