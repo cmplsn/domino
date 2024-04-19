@@ -412,12 +412,14 @@ bool insert_right_2D(Matrix *board, Tile tile){
                     char** ver= tile_to_vertical(tile);
 
                     if(i==0 && j==0 && first_empty(board) ){
+
                         for (int k = 0; k <2 ; ++k) {
                             for (int l = 0; l < 2; ++l) {
                                 board->m[i+k][j+l]=ver[k][l];
                             }
                         }
                         placed=true;
+
                     }else{
 
                         //todo:controllo se sia disponibile a partire da m[i][j] una posizione 2x2 per aggiungere la
@@ -498,7 +500,7 @@ bool first_empty(Matrix *board){
 
 void find_blank_left(Matrix *board, int *row, int *col){
     bool found=false;
-    while ( !found && *row <= board->rows - 1 && *col <= board->cols - 2) {
+    while ( !found && *row <= board->rows - 1 && *col <= board->cols-2) {
         if(*row==0 & *col==0 && first_empty(board)){
             found=true;
         }else{
@@ -506,7 +508,6 @@ void find_blank_left(Matrix *board, int *row, int *col){
                 found=true;
             }
         }
-
         if(!found){
             if(*col+1>=board->cols-1){
                 *row=*row+1;
