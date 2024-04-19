@@ -50,7 +50,7 @@ void find_blank(Matrix *board, int *row, int *col);
 
 void find_blank_left(Matrix *board, int *row, int *col);
 
-int count_blank(Matrix *board);
+int count_blank(Matrix *board, int i, int j);
 
 bool check_blank(Matrix *board, int i, int j, char orientation);
 

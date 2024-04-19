@@ -18,6 +18,7 @@ int main(void) {
     deck[5].x='1'; deck[5].y='6';
     deck[6].x='1'; deck[6].y='1';
     deck[7].x='1'; deck[7].y='4';
+    deck[8].x='0'; deck[8].y='0';
 
 
     Matrix board;

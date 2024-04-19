@@ -560,12 +560,14 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation){
 
 }
 
-int count_blank(Matrix *board){
-    int j=0;
-    while(board->m[0][j]==' '){
-        j++;
+int count_blank(Matrix *board,int i, int j){
+    int count=0;
+    j=j-1;
+    while(j>=0 && board->m[i][j]==' '){
+        j--;
+        count++;
     }
-    return j;
+    return count;
 }
 
 bool insert_left_2D(Matrix *board, Tile tile){
@@ -601,7 +603,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     if(board->m[0][0]!=' '){
                         move_board(board,1);
                     }else{
-                        if(count_blank(board)==2){
+                        if(count_blank(board,i,j)==2){
                             move_board(board,2);
                         }
                     }
@@ -646,7 +648,7 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         }
                         placed=true;
 
-                    }else if(j-2==0 && count_blank(board)==2){
+                    }else if(j-2==0 && count_blank(board,i,j)==2){
 
                         //todo: se invece j-2 =0 e i due char prima di j sono entrambi ' ' devo spostare la board solo
                         // di 2 e per come per j==0 no controlli aggiuntivi richiesti -> aggiungo OK
@@ -679,17 +681,46 @@ bool insert_left_2D(Matrix *board, Tile tile){
                 }
 
                 if(!placed){
-                    if(j+1>=board->cols-1){
-                        i++;
-                        j=0;
-                    }else{
-                        j++;
-                    }
+                    if(j+1>=board->cols-1){ i++; j=0;}
+                    else{ j++; }
                 }
             }
             free(hor);
         }else{
             char** ver= tile_to_vertical(tile);
+            while(!placed && i<=board->rows-2){
+
+                find_blank_left(board,&i,&j);
+
+                if(i==0 && j==0 && first_empty(board)){
+                    for (int k = 0; k < 2; ++k) {
+                        for (int l = 0; l < 2; ++l) {
+                            board->m[l][k]=ver[l][k];
+                        }
+                    }
+                    placed=true;
+                }else if(tile.x=='0' && tile.y=='0'){
+
+                    if(j==0 && board->m[i][j] !=' '){
+
+                        move_board(board,2);
+                        for (int k = 0; k < 2; ++k) {
+                            for (int l = 0; l < 2; ++l) {
+                                board->m[i+k][l]=ver[k][l];
+                            }
+                        }
+                        placed=true;
+                    }
+
+                }else{
+
+                }
+
+                if(!placed){
+                    if(j+1>=board->cols-1){ i++; j=0;}
+                    else{ j++; }
+                }
+            }
 
 
             //todo: AGGIUNTA VERTICALE
