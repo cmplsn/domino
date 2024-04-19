@@ -632,7 +632,14 @@ bool insert_left_2D(Matrix *board, Tile tile){
                 } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
                 && board->m[i][j + 1] == '}')) {
+                    //todo: aggiunta tessera orizzontale if esterno guarda se a dx della tessera c'è numero che combacia
+                    // con tile.y oppure 0
+
                     if(j==0){
+
+                        //todo: se sto aggiungendo in testa alla riga sposto tutta la board di 4 ma non sono necessari
+                        // altri controlli perchè so già che numero a dx combacia -> aggiungo OK
+
                         move_board(board,1);
                         for (int k = 0; k < 4; ++k) {
                             board->m[i][k]=hor[k];
@@ -640,13 +647,24 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         placed=true;
 
                     }else if(j-2==0 && count_blank(board)==2){
+
+                        //todo: se invece j-2 =0 e i due char prima di j sono entrambi ' ' devo spostare la board solo
+                        // di 2 e per come per j==0 no controlli aggiuntivi richiesti -> aggiungo OK
+
                         move_board(board,2);
                         for (int k = 0; k < 4; ++k) {
                             board->m[i][k]=hor[k];
                         }
                         placed=true;
                     }else{
+                        //todo: in questo caso prima controllo che siano disponibili 4 char ' ' prima di j con chec_blank
                         if(check_blank_left(board,i,j,'O')) {
+
+                            //todo: se sono disponibili controllo anche che o il char prima deli 4 blank sia anch'esso
+                            // vuoto o che la tessera venga in testa ma non era necessario muovere la board perchè erano
+                            // già vuoti i char oppure che la tessera a sinistra del blank sia [00] oppure il num
+                            // combaci con tile.x
+
                             if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
                             (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x
                             || (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
@@ -658,8 +676,6 @@ bool insert_left_2D(Matrix *board, Tile tile){
                             }
                         }
                     }
-                }else{
-                    //todo:DA COMPLETARE
                 }
 
                 if(!placed){
