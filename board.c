@@ -538,21 +538,13 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation){
         if(j<2){
             empty =false;
         }else {
-            int cont_i = 0;
-            int cont_j;
-            while (cont_i < 2 && empty) {
-                cont_j=0;
-                while (cont_j < 2 && empty) {
-                    if (board->m[i+cont_i][j-cont_j-1]!=' '){
-                        empty =false;
-                    }else{
-                        if(cont_j==1){
-                            cont_i++;
-                        }else{
-                            cont_j++;
-                        }
+            for (int k = 0; k < 2 && empty; ++k) {
+                for (int l = 0; l < 2 && empty; ++l) {
+                    if(board->m[i+k][j-2+l]!=' '){
+                        empty=false;
                     }
                 }
+
             }
         }
     }
