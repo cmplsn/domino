@@ -252,7 +252,7 @@ void print_screen(Matrix* board, Tile* deck, int decksize){
 }
 
 void find_blank(Matrix *board, int* row, int* col){
-    while(*row< board->rows){
+    while(*row <= board->rows-1){
         while(*col<board->cols){
             if(*row==0 && *col==0 && first_empty(board)){
                 return;
@@ -261,8 +261,10 @@ void find_blank(Matrix *board, int* row, int* col){
                 return;
             }else{
                 if(*col+1 >= board->cols){
-                    *row=*row+1;
-                    *col=0;
+                    if(*row+1<=board->rows-1){
+                        *row=*row+1;
+                        *col=0;
+                    }
                 }else{
                     *col = *col+1;
                 }
