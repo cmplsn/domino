@@ -712,7 +712,49 @@ bool insert_left_2D(Matrix *board, Tile tile){
                         placed=true;
                     }
 
-                }else{
+                }else if(j<=board->cols-2 && (((board->m[i][j]=='[' || board->m[i][j]=='{')&&(board->m[i][j+1]==tile.x
+                || board->m[i][j+1]=='0'))|| (board->m[i][j+1]=='}' && (board->m[i][j]==tile.x ||
+                board->m[i][j]=='0')))) {
+
+                    if(i<=board->rows-2 && (board->m[i+1][j]==' ' || ((board->m[i+1][j]=='[' || board->m[i+1][j]=='{') &&
+                    (board->m[i+1][j+1]==tile.y|| board->m[i+1][j+1]=='0')) ||(board->m[i+1][j+1]=='}' &&
+                    (board->m[i+1][j]==tile.y ||board->m[i+1][j]=='0')))){
+
+                        if(j==0){
+
+                            move_board(board,2);
+
+                            for (int k = 0; k < 2; ++k) {
+                                for (int l = 0; l < 2; ++l) {
+                                    board->m[i+k][l]=ver[k][l];
+                                }
+                            }
+
+                            placed=true;
+
+                        }else{
+                            if(check_blank_left(board,i, j,'V')){
+                                if(j-2==0){
+                                    for (int k = 0; k < 2; ++k) {
+                                        for (int l = 0; l < 2; ++l) {
+                                            board->m[i+k][l]=ver[k][l];
+                                        }
+                                    }
+                                    placed=true;
+                                }else if(j>=4 && (board->m[i][j-3]==' '||((board->m[i][j-3]==']'||board->m[i][j-3]=='}')
+                                && (board->m[i][j-4]==tile.x|| board->m[i][j-4]=='0')) || (board->m[i][j-4]=='{' &&
+                                (board->m[i][j-3]==tile.x || board->m[i][j-3]=='0')))){
+
+                                    if(board->m[i+1][j-3]==' ' || ((board->m[i+1][j-3]==']'||board->m[i+1][j-3]=='}') &&
+                                    (board->m[i+1][j-4]==tile.y||board->m[i+1][j-4]=='0')) || (board->m[i+1][j-4]=='{'&&
+                                    (board->m[i+1][j-3]==tile.y || board->m[i+1][j-3]=='0'))){
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
 
                 }
 
