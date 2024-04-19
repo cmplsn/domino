@@ -261,7 +261,7 @@ void find_blank(Matrix *board, int* row, int* col){
                 return;
             }else{
                 if(*col+1 >= board->cols){
-                    row++;
+                    *row=*row+1;
                     *col=0;
                 }else{
                     *col = *col+1;
@@ -411,7 +411,7 @@ bool insert_right_2D(Matrix *board, Tile tile){
                 }else{
                     char** ver= tile_to_vertical(tile);
 
-                    if(i==0 && j==0){
+                    if(i==0 && j==0 && first_empty(board) ){
                         for (int k = 0; k <2 ; ++k) {
                             for (int l = 0; l < 2; ++l) {
                                 board->m[i+k][j+l]=ver[k][l];
@@ -431,20 +431,23 @@ bool insert_right_2D(Matrix *board, Tile tile){
                             //todo: sto aggiungendo su board in presenza 0], 0} oppure {0 oppure la tessera che io
                             // voglio aggiungere è [00]
                             if (((board->m[i][j-1]=='}'||board->m[i][j-1]==']') && board->m[i][j-2]=='0')
-                                ||(board->m[i][j-2]=='{' && board->m[i][j-1]=='0') || (tile.x=='0'&&tile.y=='0')){
+                            ||(board->m[i][j-2]=='{' && board->m[i][j-1]=='0') || (tile.x=='0'&&tile.y=='0')){
+
                                 for (int k = 0; k < 2; ++k) {
                                     for (int l = 0; l< 2; ++l) {
                                         board->m[i+k][j+l]=ver[k][l];
                                     }
                                 }
+
                                 placed=true;
+
                             }else{
                                 if (((board->m[i][j-1]==']' || board->m[i][j-1]=='}')&&
-                                     board->m[i][j-2]==tile.x) || (board->m[i][j-2]=='{'&&board->m[i][j-1]==tile.x)){
+                                board->m[i][j-2]==tile.x) || (board->m[i][j-2]=='{'&&board->m[i][j-1]==tile.x)){
 
                                     if (((board->m[i+1][j-2]==tile.y || board->m[i+1][j-1]==tile.y||
-                                          board->m[i+1][j-1]==' ') && board->m[i+1][j+2]==' ' || board->m[i+1][j+2]==tile.y) &&
-                                        (board->m[i][j+2]==' ' || board->m[i][j+2]==tile.x || j+2==board->cols-1)){
+                                    board->m[i+1][j-1]==' ') && board->m[i+1][j+2]==' ' || board->m[i+1][j+2]==tile.y)
+                                    && (board->m[i][j+2]==' ' || board->m[i][j+2]==tile.x || j+2==board->cols-1)){
 
                                         for (int k = 0; k < 2 ; ++k) {
                                             for (int l = 0; l < 2 ; ++l) {
@@ -606,8 +609,8 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
 
                 } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
-                                                                                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
-                                                                                                                 && board->m[i][j + 1] == '}')) {
+                board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
+                && board->m[i][j + 1] == '}')) {
                     if(j==0){
                         move_board(board,1);
                         for (int k = 0; k < 4; ++k) {
@@ -624,8 +627,9 @@ bool insert_left_2D(Matrix *board, Tile tile){
                     }else{
                         if(check_blank_left(board,i,j,'O')) {
                             if((j>=5 && board->m[i][j-5]==' ') || j-4==0 ||(j>=8 && (board->m[i][j-5]==']' &&
-                                                                                     (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x ||
-                                                                                                                                                        (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
+                            (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))) || (j>=6 && (board->m[i][j-5]==tile.x
+                            || (board->m[i][j-5]=='}' && (board->m[i][j-6]==tile.x || board->m[i][j-6]=='0'))))  ) {
+
                                 for (int k = 0; k < 4; ++k) {
                                     board->m[i][j-4+k] = hor[k];
                                 }

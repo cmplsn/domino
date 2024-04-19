@@ -14,6 +14,10 @@ int main(void) {
     deck[1].x='4'; deck[1].y='6';
     deck[2].x='4'; deck[2].y='4';
     deck[3].x='M'; deck[3].y='R';
+    deck[4].x='M'; deck[4].y='R';
+    deck[5].x='1'; deck[5].y='6';
+    deck[6].x='1'; deck[6].y='1';
+    deck[7].x='1'; deck[7].y='4';
 
 
     Matrix board;
