@@ -749,24 +749,23 @@ bool insert_left_2D(Matrix *board, Tile tile){
                                     (board->m[i+1][j-4]==tile.y||board->m[i+1][j-4]=='0')) || (board->m[i+1][j-4]=='{'&&
                                     (board->m[i+1][j-3]==tile.y || board->m[i+1][j-3]=='0'))){
 
+                                        for (int k = 0; k < 2; ++k) {
+                                            for (int l = 0; l < 2; ++l) {
+                                                board->m[i+k][j-2+l]=ver[k][l];
+                                            }
+                                        }
+                                        placed=true;
                                     }
                                 }
                             }
-
                         }
                     }
-
                 }
-
                 if(!placed){
                     if(j+1>=board->cols-1){ i++; j=0;}
                     else{ j++; }
                 }
             }
-
-
-            //todo: AGGIUNTA VERTICALE
-
             for (int k = 0; k < 2; ++k) {
                 free(ver[k]);
             }
