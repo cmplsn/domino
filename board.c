@@ -487,7 +487,6 @@ bool insert_right_2D(Matrix *board, Tile tile){
     return placed;
 }
 
-
 bool first_empty(Matrix *board){
     bool empty =true;
     for (int i = 0; i < board->cols && empty; ++i) {
@@ -532,6 +531,27 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation){
                     empty=false;
                 }else{
                     j--;
+                }
+            }
+        }
+    }else if(orientation=='V'){
+        if(j<2){
+            empty =false;
+        }else {
+            int cont_i = 0;
+            int cont_j;
+            while (cont_i < 2 && empty) {
+                cont_j=0;
+                while (cont_j < 2 && empty) {
+                    if (board->m[i+cont_i][j-cont_j-1]!=' '){
+                        empty =false;
+                    }else{
+                        if(cont_j==1){
+                            cont_i++;
+                        }else{
+                            cont_j++;
+                        }
+                    }
                 }
             }
         }
