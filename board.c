@@ -814,11 +814,40 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
         }
         free_board(&copy);
     }
-
-
     return avail;
+}
+
+void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
+    //todo:mode==1 -> Domino Lineare
+    if(mode==1){
+        while(remain>0 && available_moves_linear(board,deck, remain, n)){
+            print_screen(board,deck,remain);
+            int i=0;
+            while(i<remain){
+                if(deck[i].x=='M' || deck[i].x=='+'){
+                    if(remain<n){
+                       Tile chosen=deck[i];
+                       if(insert_right(board,chosen) || insert_left(board, chosen)){
+                           Tile tmp;
+                           tmp=deck[i];
+                           deck[i]=deck[remain];
+                           deck[remain]=tmp;
+                           remain--;
+                       }else{
+                           i++;
+                       }
+                    }else{
+                        i++;
+                    }
+                }else{
+
+                }
+            }
+        }
+    }else{
+
+
+    }
 
 
 }
-
-//todo: AGGIUNGERE AVAILABLES_MOVES_2D
