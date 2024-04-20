@@ -237,7 +237,6 @@ bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n){
     return found;
 }
 
-
 void end_game(Matrix* board){
     system("clear");
     print_board(board);
@@ -767,6 +766,40 @@ bool insert_left_2D(Matrix *board, Tile tile){
         }
     }
     return placed;
+}
+
+char** copy_board(Matrix *board){
+
+    char** aux = initboard(board->rows,board->cols);
+
+    for (int i = 0; i < board->rows; ++i) {
+        for (int j = 0; j < board->cols; ++j) {
+            aux[i][j]=board->m[i][j];
+
+        }
+    }
+
+    return aux;
+}
+
+bool available_moves_2D(Matrix* board, Tile* deck, int deck_size, int n){
+    bool avail = false;
+    char** copy = copy_board(board);
+    while(!avail) {
+        if (deck_size == n) {
+            avail=true;
+        }else{
+            for (int i = 0; i < deck_size && !avail; ++i) {
+                if((deck[i].x=='M' && deck[i].y=='R') || (deck[i].x=='0' && deck[i].y=='0')){
+                    avail=true;
+                }else if(){
+
+                }
+            }
+        }
+    }
+
+
 }
 
 //todo: AGGIUNGERE AVAILABLES_MOVES_2D
