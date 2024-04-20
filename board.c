@@ -263,6 +263,9 @@ void find_blank(Matrix *board, int* row, int* col){
                     if(*row+1<=board->rows-1){
                         *row=*row+1;
                         *col=0;
+                    }else{
+                        *col=board->cols;
+                        *row=board->rows;
                     }
                 }else{
                     *col = *col+1;
@@ -510,8 +513,13 @@ void find_blank_left(Matrix *board, int *row, int *col){
         }
         if(!found){
             if(*col+1>=board->cols-1){
-                *row=*row+1;
-                *col=0;
+                if(*row+1<=board->rows-1) {
+                    *row = *row + 1;
+                    *col = 0;
+                }else{
+                    *row=board->rows;
+                    *col=board->cols;
+                }
             }else{
                 *col = *col+1;
             }
@@ -624,9 +632,9 @@ bool insert_left_2D(Matrix *board, Tile tile){
 
 
 
-                } else if (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
+                } else if (j+1<=board->cols-1 && (((board->m[i][j] == '[' || board->m[i][j] == '{') && (board->m[i][j + 1] == tile.y ||
                 board->m[i][j + 1] == '0')) || ((board->m[i][j] == tile.y || board->m[i][j] == '0')
-                && board->m[i][j + 1] == '}')) {
+                && board->m[i][j + 1] == '}'))) {
                     //todo: aggiunta tessera orizzontale if esterno guarda se a dx della tessera c'è numero che combacia
                     // con tile.y oppure 0
 
@@ -782,22 +790,33 @@ char** copy_board(Matrix *board){
     return aux;
 }
 
-bool available_moves_2D(Matrix* board, Tile* deck, int deck_size, int n){
+bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
     bool avail = false;
-    char** copy = copy_board(board);
-    while(!avail) {
-        if (deck_size == n) {
-            avail=true;
-        }else{
-            for (int i = 0; i < deck_size && !avail; ++i) {
-                if((deck[i].x=='M' && deck[i].y=='R') || (deck[i].x=='0' && deck[i].y=='0')){
-                    avail=true;
-                }else if(){
 
-                }
+    if(remain==n){
+        avail=true;
+    }else{
+        Matrix copy= newMatrix(board->rows,board->cols);
+        copy.m = copy_board(board);
+        int i=0;
+        while(!avail && i < remain ) {
+            Tile o=deck[i]; o.orientation='O';
+            Tile v=deck[i]; v.orientation='V';
+            if(deck[i].x=='M' || deck[i].x=='0'||deck[i].x=='+'){
+                avail=true;
+            }else if(insert_right_2D(&copy,o) ||insert_left_2D(&copy,o) ||
+            insert_right_2D(&copy,v)|| insert_left_2D(&copy,v)){
+                avail=true;
+            }else{
+                i++;
             }
+
         }
+        free_board(&copy);
     }
+
+
+    return avail;
 
 
 }
