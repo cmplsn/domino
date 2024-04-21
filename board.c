@@ -842,30 +842,20 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 print_screen(board,deck,remain);
                 inserted=false;
             }
-            sleep(2);
+            sleep(3);
             if(deck[i].x=='M' || deck[i].x=='+'){
                 if(remain<n){
                     Tile chosen=deck[i];
                     if(insert_right(board,chosen) || insert_left(board, chosen)){
-                        Tile tmp;
-                        tmp=deck[i];
-                        deck[i]=deck[remain-1];
-                        deck[remain-1]=tmp;
-                        remain--;
                         inserted=true;
-                    }else{
-                        i++;
                     }
-                }else{
-                    i++;
                 }
-            }else {
+            }else{
                 Tile a=deck[i];
                 Tile b; b.x=deck[i].y; b.y=deck[i].x;
 
-                if(insert_right(board,a) ){
+                if(insert_right(board,a)){
                     inserted=true;
-
                 }else if(insert_left(board,a)){
                     inserted=true;
                 }else if(insert_right(board,b)){
@@ -873,18 +863,18 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 }else if(insert_left(board, b)){
                     inserted=true;
                 }
-                if(inserted){
 
-                    Tile tmp;
-                    tmp=deck[i];
-                    deck[i]=deck[remain-1];
-                    deck[remain-1]=tmp;
-                    remain--;
-                    i=0;
-                }else{
-                    i++;
-                }
 
+            }
+            if(inserted){
+                Tile tmp;
+                tmp=deck[i];
+                deck[i]=deck[remain-1];
+                deck[remain-1]=tmp;
+                remain--;
+                i=0;
+            }else{
+                i++;
             }
         }
     }else{
