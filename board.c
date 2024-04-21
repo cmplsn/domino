@@ -776,28 +776,23 @@ bool insert_left_2D(Matrix *board, Tile tile){
     return placed;
 }
 
-char** copy_board(Matrix *board){
-
-    char** aux = initboard(board->rows,board->cols);
-
-    for (int i = 0; i < board->rows; ++i) {
-        for (int j = 0; j < board->cols; ++j) {
-            aux[i][j]=board->m[i][j];
-
+void copy_board(Matrix *destination, Matrix *source){
+    for (int i = 0; i < source->rows; ++i) {
+        for (int j = 0; j < source->cols; ++j) {
+            destination->m[i][j]=source->m[i][j];
         }
     }
-
-    return aux;
 }
 
 bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
     bool avail = false;
+    Matrix copy;
 
     if(remain==n){
         avail=true;
     }else{
-        Matrix copy= newMatrix(board->rows,board->cols);
-        copy.m = copy_board(board);
+        copy= newMatrix(board->rows,board->cols);
+        copy_board(&copy, board);
         int i=0;
         while(!avail && i < remain ) {
             Tile o=deck[i]; o.orientation='O';
@@ -812,8 +807,8 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
             }
 
         }
-        free_board(&copy);
     }
+    free_board(&copy);
     return avail;
 }
 
@@ -916,7 +911,6 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 i++;
             }
         }
-
-
     }
+    print_board(board);
 }

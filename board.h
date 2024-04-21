@@ -58,7 +58,7 @@ bool check_blank(Matrix *board, int i, int j, char orientation);
 
 bool check_blank_left(Matrix *board, int i, int j, char orientation);
 
-char** copy_board(Matrix* board);
+void copy_board(Matrix* destination, Matrix* source);
 
 bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n);
 
