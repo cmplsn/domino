@@ -156,7 +156,7 @@ bool insert_right(Matrix *board, Tile tile) {
         board->m[0][i+3]=']';
         ok=true;
     }
-    system("clear");
+    //system("clear");
     return ok;
 }
 
@@ -818,7 +818,7 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
     return avail;
 }
 
-bool select_autoplay(){
+bool select_autoplay(void){
     printf("Selezionare Partita:\n1: Interattiva\n2: IA\n");
     int x=-1;
     while(x!=1 && x!=2){
@@ -840,8 +840,9 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
         while(remain>0 && available_moves_linear(board,deck, remain, n) && i<remain){
             if(remain==n || inserted){
                 print_screen(board,deck,remain);
+                inserted=false;
             }
-            sleep(3);
+            sleep(2);
             if(deck[i].x=='M' || deck[i].x=='+'){
                 if(remain<n){
                     Tile chosen=deck[i];
@@ -851,6 +852,7 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                         deck[i]=deck[remain-1];
                         deck[remain-1]=tmp;
                         remain--;
+                        inserted=true;
                     }else{
                         i++;
                     }
