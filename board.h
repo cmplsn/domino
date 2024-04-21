@@ -16,6 +16,8 @@ Matrix newMatrix(int rows, int cols);
 
 void free_board(Matrix* board);
 
+void switch_tile(Tile* x);
+
 int select_mode(void);
 
 char** initboard(int rows, int cols);

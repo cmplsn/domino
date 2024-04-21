@@ -832,13 +832,20 @@ bool select_autoplay(void){
     }
 }
 
+void switch_tile(Tile* x){
+    char tmp=x->y;
+    x->y=x->x;
+    x->x=tmp;
+}
+
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
     bool inserted =false;
     //todo:mode==1 -> Domino Lineare
     if(mode==1){
         int i=0;
-        while(remain>0 && available_moves_linear(board,deck, remain, n) && i<remain){
-            if(remain==n || inserted){
+        print_screen(board,deck,remain);
+        while(remain>0 && i<remain && available_moves_linear(board,deck, remain, n) ){
+            if(inserted){
                 print_screen(board,deck,remain);
                 inserted=false;
             }
@@ -854,21 +861,12 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 Tile a=deck[i];
                 Tile b; b.x=deck[i].y; b.y=deck[i].x;
 
-                if(insert_right(board,a)){
-                    inserted=true;
-                }else if(insert_left(board,a)){
-                    inserted=true;
-                }else if(insert_right(board,b)){
-                    inserted=true;
-                }else if(insert_left(board, b)){
+                if(insert_right(board,a)|| insert_left(board,a)|| insert_right(board,b)|| insert_left(board,b)){
                     inserted=true;
                 }
-
-
             }
             if(inserted){
-                Tile tmp;
-                tmp=deck[i];
+                Tile tmp=deck[i];
                 deck[i]=deck[remain-1];
                 deck[remain-1]=tmp;
                 remain--;
@@ -878,9 +876,46 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
             }
         }
     }else{
+        int i=0;
+        print_screen(board,deck,remain);
+        while( remain>0 && i<remain && available_moves_2D(board,deck,remain,n)){
+            if(inserted){
+                print_screen(board,deck,remain);
+                inserted=false;
+            }
+            sleep(2);
+            if(deck[i].x=='+'){
+                if(remain<n && insert_right_2D(board,deck[i])){
+                    inserted=true;
+                }
+            }else if(deck[i].x=='M'){
+                if(remain<n && (insert_right_2D(board, deck[i])|| insert_left_2D(board,deck[i]))){
+                    inserted=true;
+                }
+            }else{
+                Tile a_o=deck[i];a_o.orientation='O';
+                Tile b_o=a_o; switch_tile(&b_o);
+                Tile a_v=a_o; a_v.orientation='V';
+                Tile b_v=b_o; b_v.orientation='V';
+
+                if(insert_right_2D(board,a_o) || insert_left_2D(board,a_o)|| insert_right_2D(board,b_o) ||
+                insert_left_2D(board,b_o) || insert_right_2D(board,a_v)|| insert_left_2D(board,a_v) ||
+                insert_right_2D(board,b_v)|| insert_left_2D(board,b_v)){
+                    inserted=true;
+                }
+
+            }
+            if(inserted){
+                Tile tmp=deck[i];
+                deck[i]=deck[remain-1];
+                deck[remain-1]=tmp;
+                remain--;
+                i=0;
+            }else{
+                i++;
+            }
+        }
 
 
     }
-
-
 }
