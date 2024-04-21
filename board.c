@@ -833,13 +833,15 @@ bool select_autoplay(){
 }
 
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
+    bool inserted =false;
     //todo:mode==1 -> Domino Lineare
     if(mode==1){
         int i=0;
         while(remain>0 && available_moves_linear(board,deck, remain, n) && i<remain){
-            bool inserted =false;
-            print_screen(board,deck,remain);
-            sleep(2);
+            if(remain==n || inserted){
+                print_screen(board,deck,remain);
+            }
+            sleep(3);
             if(deck[i].x=='M' || deck[i].x=='+'){
                 if(remain<n){
                     Tile chosen=deck[i];
