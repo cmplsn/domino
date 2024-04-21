@@ -130,7 +130,6 @@ void move_board(Matrix *board, int mode){
         }
 
     }
-    print_board(board);
 }
 
 bool insert_right(Matrix *board, Tile tile) {
@@ -885,11 +884,13 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
             }
             sleep(2);
             if(deck[i].x=='+'){
-                if(remain<n && insert_right_2D(board,deck[i])){
+                Tile chosen=deck[i]; chosen.orientation='O';
+                if(remain<n && insert_right_2D(board,chosen)){
                     inserted=true;
                 }
             }else if(deck[i].x=='M'){
-                if(remain<n && (insert_right_2D(board, deck[i])|| insert_left_2D(board,deck[i]))){
+                Tile chosen=deck[i]; chosen.orientation='O';
+                if(remain< n && (insert_right_2D(board, chosen)|| insert_left_2D(board,chosen))){
                     inserted=true;
                 }
             }else{

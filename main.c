@@ -10,6 +10,7 @@ int main(void) {
     //todo: scelgo numero di tessere con cui inizia il gioco
 
     Tile* deck = assegna(n);
+    deck[1].x='M'; deck[1].y='R';
     //Tile a={'2','3','O'};
     //switch_tile(&a);
     /*deck[0].x='4'; deck[0].y='6';
