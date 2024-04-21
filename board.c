@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "board.h"
+#include <unistd.h>
 
 int select_mode(void){
     printf("seleziona modalità di gioco\n1: Domino Lineare\n2: Domino 2D\n");
@@ -817,31 +818,69 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
     return avail;
 }
 
+bool select_autoplay(){
+    printf("Selezionare Partita:\n1: Interattiva\n2: IA\n");
+    int x=-1;
+    while(x!=1 && x!=2){
+        scanf(" %d", &x);
+    }
+    system("clear");
+    if(x==1){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
     //todo:mode==1 -> Domino Lineare
     if(mode==1){
-        while(remain>0 && available_moves_linear(board,deck, remain, n)){
+        int i=0;
+        while(remain>0 && available_moves_linear(board,deck, remain, n) && i<remain){
+            bool inserted =false;
             print_screen(board,deck,remain);
-            int i=0;
-            while(i<remain){
-                if(deck[i].x=='M' || deck[i].x=='+'){
-                    if(remain<n){
-                       Tile chosen=deck[i];
-                       if(insert_right(board,chosen) || insert_left(board, chosen)){
-                           Tile tmp;
-                           tmp=deck[i];
-                           deck[i]=deck[remain];
-                           deck[remain]=tmp;
-                           remain--;
-                       }else{
-                           i++;
-                       }
+            sleep(2);
+            if(deck[i].x=='M' || deck[i].x=='+'){
+                if(remain<n){
+                    Tile chosen=deck[i];
+                    if(insert_right(board,chosen) || insert_left(board, chosen)){
+                        Tile tmp;
+                        tmp=deck[i];
+                        deck[i]=deck[remain-1];
+                        deck[remain-1]=tmp;
+                        remain--;
                     }else{
                         i++;
                     }
                 }else{
-
+                    i++;
                 }
+            }else {
+                Tile a=deck[i];
+                Tile b; b.x=deck[i].y; b.y=deck[i].x;
+
+                if(insert_right(board,a) ){
+                    inserted=true;
+
+                }else if(insert_left(board,a)){
+                    inserted=true;
+                }else if(insert_right(board,b)){
+                    inserted=true;
+                }else if(insert_left(board, b)){
+                    inserted=true;
+                }
+                if(inserted){
+
+                    Tile tmp;
+                    tmp=deck[i];
+                    deck[i]=deck[remain-1];
+                    deck[remain-1]=tmp;
+                    remain--;
+                    i=0;
+                }else{
+                    i++;
+                }
+
             }
         }
     }else{

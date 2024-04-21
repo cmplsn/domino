@@ -62,4 +62,6 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n);
 
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode);
 
+bool select_autoplay();
+
 #endif //PROJECT_IAP_BOARD_H
