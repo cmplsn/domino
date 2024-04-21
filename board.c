@@ -1,7 +1,4 @@
 //
-// Created by Alessandro on 18/04/24.
-//
-//
 // Created by Alessandro on 14/03/24.
 //
 #include <stdlib.h>
