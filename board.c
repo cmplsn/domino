@@ -898,9 +898,9 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 Tile a_v=a_o; a_v.orientation='V';
                 Tile b_v=b_o; b_v.orientation='V';
 
-                if(insert_right_2D(board,a_o) || insert_left_2D(board,a_o)|| insert_right_2D(board,b_o) ||
-                insert_left_2D(board,b_o) || insert_right_2D(board,a_v)|| insert_left_2D(board,a_v) ||
-                insert_right_2D(board,b_v)|| insert_left_2D(board,b_v)){
+                if(insert_right_2D(board,a_v) || insert_right_2D(board,a_o) || insert_right_2D(board,b_v) ||
+                insert_right_2D(board,b_o) || insert_left_2D(board,a_v) || insert_left_2D(board,a_o) ||
+                insert_left_2D(board,b_v) || insert_left_2D(board,b_o)){
                     inserted=true;
                 }
 
