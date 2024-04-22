@@ -804,8 +804,10 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n){
             }
 
         }
+        free_board(&copy);
     }
-    free_board(&copy);
+
+
     return avail;
 }
 
