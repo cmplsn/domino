@@ -35,7 +35,35 @@ void print_hand(Tile* hand,int n){
 }
 
 int choose_valid_n(void){
-    printf("scegliere numero tessere con cui giocare:\n");
+    printf("scegliere lunghezza partita:\n1) CORTA: 5 tessere\n2) INTERMEDIA: 10 tessere\n"
+           "3) LUNGA: 15 tessere\n");
+    int diff;
+    int n=-1;
+    int res=scanf("%d",&diff);
+    while(res!=1 || diff<1||diff>3){
+        printf("NON VALIDO. Inserisci 1, 2, 3:\n");
+        res= scanf("%d",&diff);
+    }
+    switch (diff) {
+        default:
+            break;
+        case 1:
+            n=5;
+            printf("partita CORTA con 5 tessere\n");
+            break;
+        case 2:
+            n=10;
+            printf("partita INTERMEDIA con 10 tessere\n");
+            break;
+        case 3:
+            n=15;
+            printf("partita LUNGA con 15 tessere\n");
+            break;
+    }
+    system("clear");
+
+    return n;
+    /*printf("scegliere numero tessere tra :\n");
     int n;
     int res=scanf("%d",&n);
     while(res!=1 || n<1 || n>256){
@@ -44,7 +72,7 @@ int choose_valid_n(void){
     }
     //printf("si è scelto di giocare con -- %d -- tessere\n",n);
     system("clear");
-    return n;
+    return n;*/
 }
 
 bool valid_tile(Tile* deck, int size, Tile tile, int n){
