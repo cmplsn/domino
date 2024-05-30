@@ -1,0 +1,314 @@
+\doxysection{board.\+c File Reference}
+\hypertarget{board_8c}{}\label{board_8c}\index{board.c@{board.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}board.\+h"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{board_8c_a303a627e4ba296b5e8ea415c74b5a7b9}{select\+\_\+mode}} (void)
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{board_8c_a1c857fd0dcd55217d95f289f12ef0e6e}{initboard}} (int rows, int cols)
+\item 
+void \mbox{\hyperlink{board_8c_a3aa0239b7755a1de1360570d098e5a43}{print\+\_\+board}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{board_8c_adf2f0668482407dcc36c58262d0727f7}{tile\+\_\+to\+\_\+vertical}} (\mbox{\hyperlink{struct_tile}{Tile}} t)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{board_8c_ac15f9f890a419d2eea86e1f7b2f43afd}{tile\+\_\+to\+\_\+horizontal}} (\mbox{\hyperlink{struct_tile}{Tile}} t)
+\item 
+\mbox{\hyperlink{struct_matrix}{Matrix}} \mbox{\hyperlink{board_8c_a5bb7a8a8e92acce3fcb400b3c8e3539b}{new\+Matrix}} (int rows, int cols)
+\item 
+void \mbox{\hyperlink{board_8c_a43d797f1eca44a420287dd9a3947c96e}{free\+\_\+board}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+char \mbox{\hyperlink{board_8c_aa37f9cbe06f2e7203172e4f37b8c0a07}{select\+\_\+pos}} (void)
+\item 
+void \mbox{\hyperlink{board_8c_aa3157d1768611246cc12d70b133fdea9}{plus\+\_\+one}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+void \mbox{\hyperlink{board_8c_a0ff5ef337c70677d9e8f8e2290e674b3}{move\+\_\+board}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int mode)
+\item 
+bool \mbox{\hyperlink{board_8c_aa2c0686199549915ef2d6663a8f4d8dc}{insert\+\_\+right}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} tile)
+\item 
+bool \mbox{\hyperlink{board_8c_a2548a0007bdba02dce7a97debf511994}{insert\+\_\+left}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} tile)
+\item 
+int \mbox{\hyperlink{board_8c_a7db5c0c204bac8d59304f4e3bb2ade02}{get\+\_\+score}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+bool \mbox{\hyperlink{board_8c_ab7a8a953a4d501a57a0c16ad5d90a05f}{available\+\_\+moves\+\_\+linear}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int deck\+\_\+size, int n)
+\item 
+void \mbox{\hyperlink{board_8c_a7a512878b4f3d6c3ba044a4422507bb5}{end\+\_\+game}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+void \mbox{\hyperlink{board_8c_aac654f4dce8de976d25e8844dd5d9bb0}{print\+\_\+screen}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int decksize)
+\item 
+void \mbox{\hyperlink{board_8c_a368a485bcb02f8ec0d6d1ba44b7b7017}{find\+\_\+blank}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int \texorpdfstring{$\ast$}{*}row, int \texorpdfstring{$\ast$}{*}col)
+\item 
+bool \mbox{\hyperlink{board_8c_a131d9135e2a81963a798bbcd70528fbc}{check\+\_\+blank}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int i, int j, char orientation)
+\item 
+bool \mbox{\hyperlink{board_8c_a693bd885b4ddc8a19a1d3f49eac85cdb}{insert\+\_\+right\+\_\+2D}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} tile)
+\item 
+bool \mbox{\hyperlink{board_8c_ae48dcab6c9ecf039e85af529f2d686e7}{first\+\_\+empty}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board)
+\item 
+void \mbox{\hyperlink{board_8c_ad30943231bb031a1db095e51c458c846}{find\+\_\+blank\+\_\+left}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int \texorpdfstring{$\ast$}{*}row, int \texorpdfstring{$\ast$}{*}col)
+\item 
+bool \mbox{\hyperlink{board_8c_a4a239e5586e9ca513f40cbbc4a1aff24}{check\+\_\+blank\+\_\+left}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int i, int j, char orientation)
+\item 
+int \mbox{\hyperlink{board_8c_ad9838cf421f6f04ca69744cf9dc5f9e4}{count\+\_\+blank}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, int i, int j)
+\item 
+bool \mbox{\hyperlink{board_8c_a2b579a3bbf32552685e542de411758bd}{insert\+\_\+left\+\_\+2D}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} tile)
+\item 
+void \mbox{\hyperlink{board_8c_ae5fefbd33f2f2ad26d18fc9d0b925931}{copy\+\_\+board}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}destination, \mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}source)
+\item 
+bool \mbox{\hyperlink{board_8c_a292c3e64b265f60dfee211ca25a77522}{available\+\_\+moves\+\_\+2D}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int remain, int n)
+\item 
+bool \mbox{\hyperlink{board_8c_a90a1126377461cde912832c6735e42d6}{select\+\_\+autoplay}} (void)
+\item 
+void \mbox{\hyperlink{board_8c_a91ab112764167d32e08f3c9d8a7fc42c}{switch\+\_\+tile}} (\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}x)
+\item 
+void \mbox{\hyperlink{board_8c_a83f65a879f21b9d434de6aeecc32da60}{autoplay}} (\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int remain, int n, int mode)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{board_8c_a83f65a879f21b9d434de6aeecc32da60}\index{board.c@{board.c}!autoplay@{autoplay}}
+\index{autoplay@{autoplay}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{autoplay()}{autoplay()}}
+{\footnotesize\ttfamily \label{board_8c_a83f65a879f21b9d434de6aeecc32da60} 
+void autoplay (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{remain}{, }\item[{int}]{n}{, }\item[{int}]{mode}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a292c3e64b265f60dfee211ca25a77522}\index{board.c@{board.c}!available\_moves\_2D@{available\_moves\_2D}}
+\index{available\_moves\_2D@{available\_moves\_2D}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{available\_moves\_2D()}{available\_moves\_2D()}}
+{\footnotesize\ttfamily \label{board_8c_a292c3e64b265f60dfee211ca25a77522} 
+bool available\+\_\+moves\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{remain}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ab7a8a953a4d501a57a0c16ad5d90a05f}\index{board.c@{board.c}!available\_moves\_linear@{available\_moves\_linear}}
+\index{available\_moves\_linear@{available\_moves\_linear}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{available\_moves\_linear()}{available\_moves\_linear()}}
+{\footnotesize\ttfamily \label{board_8c_ab7a8a953a4d501a57a0c16ad5d90a05f} 
+bool available\+\_\+moves\+\_\+linear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{deck\+\_\+size}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a131d9135e2a81963a798bbcd70528fbc}\index{board.c@{board.c}!check\_blank@{check\_blank}}
+\index{check\_blank@{check\_blank}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{check\_blank()}{check\_blank()}}
+{\footnotesize\ttfamily \label{board_8c_a131d9135e2a81963a798bbcd70528fbc} 
+bool check\+\_\+blank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{char}]{orientation}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a4a239e5586e9ca513f40cbbc4a1aff24}\index{board.c@{board.c}!check\_blank\_left@{check\_blank\_left}}
+\index{check\_blank\_left@{check\_blank\_left}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{check\_blank\_left()}{check\_blank\_left()}}
+{\footnotesize\ttfamily \label{board_8c_a4a239e5586e9ca513f40cbbc4a1aff24} 
+bool check\+\_\+blank\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{char}]{orientation}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ae5fefbd33f2f2ad26d18fc9d0b925931}\index{board.c@{board.c}!copy\_board@{copy\_board}}
+\index{copy\_board@{copy\_board}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{copy\_board()}{copy\_board()}}
+{\footnotesize\ttfamily \label{board_8c_ae5fefbd33f2f2ad26d18fc9d0b925931} 
+void copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{destination}{, }\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{source}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ad9838cf421f6f04ca69744cf9dc5f9e4}\index{board.c@{board.c}!count\_blank@{count\_blank}}
+\index{count\_blank@{count\_blank}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{count\_blank()}{count\_blank()}}
+{\footnotesize\ttfamily \label{board_8c_ad9838cf421f6f04ca69744cf9dc5f9e4} 
+int count\+\_\+blank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int}]{i}{, }\item[{int}]{j}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a7a512878b4f3d6c3ba044a4422507bb5}\index{board.c@{board.c}!end\_game@{end\_game}}
+\index{end\_game@{end\_game}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{end\_game()}{end\_game()}}
+{\footnotesize\ttfamily \label{board_8c_a7a512878b4f3d6c3ba044a4422507bb5} 
+void end\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a368a485bcb02f8ec0d6d1ba44b7b7017}\index{board.c@{board.c}!find\_blank@{find\_blank}}
+\index{find\_blank@{find\_blank}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{find\_blank()}{find\_blank()}}
+{\footnotesize\ttfamily \label{board_8c_a368a485bcb02f8ec0d6d1ba44b7b7017} 
+void find\+\_\+blank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{row}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{col}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ad30943231bb031a1db095e51c458c846}\index{board.c@{board.c}!find\_blank\_left@{find\_blank\_left}}
+\index{find\_blank\_left@{find\_blank\_left}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{find\_blank\_left()}{find\_blank\_left()}}
+{\footnotesize\ttfamily \label{board_8c_ad30943231bb031a1db095e51c458c846} 
+void find\+\_\+blank\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{row}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{col}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ae48dcab6c9ecf039e85af529f2d686e7}\index{board.c@{board.c}!first\_empty@{first\_empty}}
+\index{first\_empty@{first\_empty}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{first\_empty()}{first\_empty()}}
+{\footnotesize\ttfamily \label{board_8c_ae48dcab6c9ecf039e85af529f2d686e7} 
+bool first\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a43d797f1eca44a420287dd9a3947c96e}\index{board.c@{board.c}!free\_board@{free\_board}}
+\index{free\_board@{free\_board}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{free\_board()}{free\_board()}}
+{\footnotesize\ttfamily \label{board_8c_a43d797f1eca44a420287dd9a3947c96e} 
+void free\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a7db5c0c204bac8d59304f4e3bb2ade02}\index{board.c@{board.c}!get\_score@{get\_score}}
+\index{get\_score@{get\_score}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{get\_score()}{get\_score()}}
+{\footnotesize\ttfamily \label{board_8c_a7db5c0c204bac8d59304f4e3bb2ade02} 
+int get\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: int
+
+Parametri\+: Matrix\texorpdfstring{$\ast$}{*} board \Hypertarget{board_8c_a1c857fd0dcd55217d95f289f12ef0e6e}\index{board.c@{board.c}!initboard@{initboard}}
+\index{initboard@{initboard}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{initboard()}{initboard()}}
+{\footnotesize\ttfamily \label{board_8c_a1c857fd0dcd55217d95f289f12ef0e6e} 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} initboard (\begin{DoxyParamCaption}\item[{int}]{rows}{, }\item[{int}]{cols}{}\end{DoxyParamCaption})}
+
+init\+\_\+board(int rows, int cols)
+
+tipo di ritorno\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/\texorpdfstring{$>$}{>} all\textquotesingle{}interno della struct \doxylink{struct_matrix}{Matrix} utilizzata per il tavolo di gioco, viene salavato il campo char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board viene ridimensionata in base al numero di tessere nella mano del giocatore.
+
+parametri\+: int rows, int cols.
+
+
+\begin{DoxyItemize}
+\item Domino Lineare\+: per le partite in questa modalità in numero di righe sarà sempre pari ad 1, le tessere vengono utilizzate solo in orizzontale. Per quanto riguarda le colonne invece, essendo ogni tessera rappresentata da 4 char, viene impostata come lunghezza 4\texorpdfstring{$\ast$}{*}n dove n rappresenta il numero di carte con cui si è iniziata la partita.
+\item Domino 2D\+: in questa modalità le tessere possono essere utilizzate sia in orizzontale che in verticale. quindi viene impostato come numero di righe 2\texorpdfstring{$\ast$}{*}n (una tessera in verticale occuperà 2 char in altezza) e 4\texorpdfstring{$\ast$}{*}n colonne.
+\end{DoxyItemize}
+
+Dopo aver fatto la malloc per dare la dimensione al tavolo di gioco, tutte le celle vengono inizializzate con un blank \textquotesingle{} \textquotesingle{}. \Hypertarget{board_8c_a2548a0007bdba02dce7a97debf511994}\index{board.c@{board.c}!insert\_left@{insert\_left}}
+\index{insert\_left@{insert\_left}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{insert\_left()}{insert\_left()}}
+{\footnotesize\ttfamily \label{board_8c_a2548a0007bdba02dce7a97debf511994} 
+bool insert\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
+
+Esegue gli stessi controlli di \doxylink{board_8h_aa2c0686199549915ef2d6663a8f4d8dc}{insert\+\_\+right()} però, se i controlli sulla tessera sono validi e può effettivamente essere inserita, in caso la tessera sia diversa dalla tessera speciale \mbox{[}+1\mbox{]}, il campo da gioco viene spostato verso destra con la funzione \doxylink{board_8h_a0ff5ef337c70677d9e8f8e2290e674b3}{move\+\_\+board()} così da non sovrascriverlo. \Hypertarget{board_8c_a2b579a3bbf32552685e542de411758bd}\index{board.c@{board.c}!insert\_left\_2D@{insert\_left\_2D}}
+\index{insert\_left\_2D@{insert\_left\_2D}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{insert\_left\_2D()}{insert\_left\_2D()}}
+{\footnotesize\ttfamily \label{board_8c_a2b579a3bbf32552685e542de411758bd} 
+bool insert\+\_\+left\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
+
+Per la tessera speciale \mbox{[}+1\mbox{]} viene richiamata la funzione \doxylink{board_8h_aa3157d1768611246cc12d70b133fdea9}{plus\+\_\+one()}. Altrimenti in base al verso in cui si vuole inserire la tessera (orizzontale/verticale, salvato come campo orientation in \doxylink{struct_tile}{Tile}) la funzione verrà eseguita sul corrispondente ramo di if-\/else nel quale verranno richiamate rispettivamente \doxylink{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd}{tile\+\_\+to\+\_\+horizontal()} o \doxylink{board_8h_adf2f0668482407dcc36c58262d0727f7}{tile\+\_\+to\+\_\+vertical()}. Entrambi i rami eseguono un ciclo while per la ricerca di una posizione disponibile per l\textquotesingle{}inserimento della tessera tramite \doxylink{board_8h_ad30943231bb031a1db095e51c458c846}{find\+\_\+blank\+\_\+left()}.
+
+
+\begin{DoxyItemize}
+\item Tessera da posizionare in ORIZZONTALE\+: se l\textquotesingle{}inserimento viene fatto a ridosso del lato sinistro del tavolo di gioco, quest\textquotesingle{}ultimo verrà spostato verso destra con la funzione \doxylink{board_8h_a0ff5ef337c70677d9e8f8e2290e674b3}{move\+\_\+board()}. Altrimenti, con la possibilità che la tessera venga inserita in uno spazio libero tra altre due tessere, vengono fatti controlli sia sul numero sinistro della tessera a cui sta per essere attaccata quella nuova, sia sulla cella a destra dello spazio dove sta per essere attaccata.
+\item Tessera da posizionare in VERTICALE\+: allo stesso modo dell\textquotesingle{}inserimento in orizzontale, dato lo spazio disponibile per il possibile inserimento, verranno controllati la compatibilità del numero della tessera alla sua destra ma anche la compatibilità a sinistra dello spazio libero. Da che la tessera viene inserita in verticale, verranno eseguiti gli stessi controlli anche per la riga sottostante dove verrà posizionata la seconda parte della tessera.
+\end{DoxyItemize}
+
+Viene ritornato un valore booleano che funge da guida per la funzione main per sapere se la tessera è stata inserita e quindi rimuovere la tessera dal deck del giocatore oppure se la tessera non rispetta le condizioni e quindi non è stata inserita. \Hypertarget{board_8c_aa2c0686199549915ef2d6663a8f4d8dc}\index{board.c@{board.c}!insert\_right@{insert\_right}}
+\index{insert\_right@{insert\_right}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{insert\_right()}{insert\_right()}}
+{\footnotesize\ttfamily \label{board_8c_aa2c0686199549915ef2d6663a8f4d8dc} 
+bool insert\+\_\+right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
+
+Funzione utilizzata per l\textquotesingle{}inserimento di una tessera a destra sul tavolo di gioco in modalità Domino Lineare. Viene impostata variabiel bool ok a false che viene cambiata a true solo dopo aver effettivamente inserito la tessera sul campo da gioco. un ciclo while incrementa la variabile i utilizzata come contatore fino quando non trova una cella della board contenente uno spazio \textquotesingle{} \textquotesingle{} per sapere la posizione in cui iniziare a posizionare la tessera sulla board.
+
+
+\begin{DoxyItemize}
+\item Prima sezione\+: controlla se la tessera da inserire è una tessera speciale \mbox{[}MR\mbox{]} e se è già stata inserita almeno un\textquotesingle{}altra tessera sul campo di gioco (i\texorpdfstring{$>$}{>}3). In caso le condizioni siano valide, la tessera viene inserita e come da specifica, la nuova tessera inserita avrà caratteri uguali ma specchiati rispetto alla tessera a cui si sta attaccando. \mbox{[}12\mbox{]}\mbox{[}MR\mbox{]} -\/\texorpdfstring{$>$}{>} \mbox{[}12\mbox{]}\mbox{[}21\mbox{]}.
+\item Seconda sezione\+: controlla se la tessera è una tessera speciale (+1) e che sia già stata inserita almeno uno tessera ed in caso positivo, richiama la funzione \doxylink{board_8h_aa3157d1768611246cc12d70b133fdea9}{plus\+\_\+one()} sulla board.
+\item Terza sezione\+: controllo se la tessera è la prima che stiamo inserendo, se la tessera è tessera speciale \mbox{[}00\mbox{]} oppure se il carattere sinistro della tessera che stiamo aggiungendo è compatibile con il carattere destro della tessera a cui si sta attaccando ed in caso positivo esegue l\textquotesingle{}inserimento.
+\end{DoxyItemize}
+
+la funzione ritorna il valore della variabile booleana ok che viene utilizzata come guida nella funzione main per sapere se la tessera è stata correttamente inserita o meno \Hypertarget{board_8c_a693bd885b4ddc8a19a1d3f49eac85cdb}\index{board.c@{board.c}!insert\_right\_2D@{insert\_right\_2D}}
+\index{insert\_right\_2D@{insert\_right\_2D}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{insert\_right\_2D()}{insert\_right\_2D()}}
+{\footnotesize\ttfamily \label{board_8c_a693bd885b4ddc8a19a1d3f49eac85cdb} 
+bool insert\+\_\+right\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
+
+Alla stessa maniera di \doxylink{board_8h_a2b579a3bbf32552685e542de411758bd}{insert\+\_\+left\+\_\+2\+D()} ricerca su ciclo while un posto disponibile per l\textquotesingle{}inserimento della tessera in verticale o orizzontale. Esegue i controlli di compatibilità sia a destra che a sinistra dello spazio disponibile e nel caso in cui la tessera debba essere posta in verticale controlla su tutte due le righe dove avverrà l\textquotesingle{}inserimento. Viene eseguito anche controllo di inserimento non out-\/of-\/bound della riga. \Hypertarget{board_8c_a0ff5ef337c70677d9e8f8e2290e674b3}\index{board.c@{board.c}!move\_board@{move\_board}}
+\index{move\_board@{move\_board}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{move\_board()}{move\_board()}}
+{\footnotesize\ttfamily \label{board_8c_a0ff5ef337c70677d9e8f8e2290e674b3} 
+void move\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int}]{mode}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a5bb7a8a8e92acce3fcb400b3c8e3539b}\index{board.c@{board.c}!newMatrix@{newMatrix}}
+\index{newMatrix@{newMatrix}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{newMatrix()}{newMatrix()}}
+{\footnotesize\ttfamily \label{board_8c_a5bb7a8a8e92acce3fcb400b3c8e3539b} 
+\mbox{\hyperlink{struct_matrix}{Matrix}} new\+Matrix (\begin{DoxyParamCaption}\item[{int}]{rows}{, }\item[{int}]{cols}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_aa3157d1768611246cc12d70b133fdea9}\index{board.c@{board.c}!plus\_one@{plus\_one}}
+\index{plus\_one@{plus\_one}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{plus\_one()}{plus\_one()}}
+{\footnotesize\ttfamily \label{board_8c_aa3157d1768611246cc12d70b133fdea9} 
+void plus\+\_\+one (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a3aa0239b7755a1de1360570d098e5a43}\index{board.c@{board.c}!print\_board@{print\_board}}
+\index{print\_board@{print\_board}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{print\_board()}{print\_board()}}
+{\footnotesize\ttfamily \label{board_8c_a3aa0239b7755a1de1360570d098e5a43} 
+void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
+
+\doxylink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\+\_\+board(\+Matrix\texorpdfstring{$\ast$}{*} board)}
+
+tipo di ritorno void
+
+parametri\+: Matrix\texorpdfstring{$\ast$}{*} board
+
+Viene preso in input l\textquotesingle{}oggetto board contente\+: il tavolo di gioco utilizzato (char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} m), il numero di righe ed il numero di colonne e viene stampato il contenuto del tavolo da gioco con le pedine posizionate fino a quel momento \Hypertarget{board_8c_aac654f4dce8de976d25e8844dd5d9bb0}\index{board.c@{board.c}!print\_screen@{print\_screen}}
+\index{print\_screen@{print\_screen}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{print\_screen()}{print\_screen()}}
+{\footnotesize\ttfamily \label{board_8c_aac654f4dce8de976d25e8844dd5d9bb0} 
+void print\+\_\+screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{decksize}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a90a1126377461cde912832c6735e42d6}\index{board.c@{board.c}!select\_autoplay@{select\_autoplay}}
+\index{select\_autoplay@{select\_autoplay}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{select\_autoplay()}{select\_autoplay()}}
+{\footnotesize\ttfamily \label{board_8c_a90a1126377461cde912832c6735e42d6} 
+bool select\+\_\+autoplay (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_a303a627e4ba296b5e8ea415c74b5a7b9}\index{board.c@{board.c}!select\_mode@{select\_mode}}
+\index{select\_mode@{select\_mode}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{select\_mode()}{select\_mode()}}
+{\footnotesize\ttfamily \label{board_8c_a303a627e4ba296b5e8ea415c74b5a7b9} 
+int select\+\_\+mode (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\doxylink{board_8h_a303a627e4ba296b5e8ea415c74b5a7b9}{select\+\_\+mode()}\+:
+
+nessun parametro e tipo di ritorno int
+
+Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 (Domino 2D). variabile int x impostata inizialmente a -\/1 e viene eseguito un ciclo while all\textquotesingle{}interno del quale eseguendo scanf viene assegnato ad x il valore ricevuto in input da tastiera. Fino a quando x non avrà uno dei due valori previsti (1/2), viene richiesto il rinserimento da tastiera dell\textquotesingle{}input. Per esperienza di gioco più pulita prima del return viene eseguita una system("{}clear"{}) per liberare lo schermo del terminale prima dell\textquotesingle{}azione successiva. \Hypertarget{board_8c_aa37f9cbe06f2e7203172e4f37b8c0a07}\index{board.c@{board.c}!select\_pos@{select\_pos}}
+\index{select\_pos@{select\_pos}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{select\_pos()}{select\_pos()}}
+{\footnotesize\ttfamily \label{board_8c_aa37f9cbe06f2e7203172e4f37b8c0a07} 
+char select\+\_\+pos (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: char
+
+Parametri\+: nessuno
+
+La funzione viene utilizzata per chiedere al giocatore se inserire la tessera a sinistra o a destra nel campo di gioco. Viene quindi chiesto di inserire il carattere D (destra) o S (sinistra) e viene ritornato il carattere ricevuto in input se valido altrimenti viene richiesto il rinserimento. \Hypertarget{board_8c_a91ab112764167d32e08f3c9d8a7fc42c}\index{board.c@{board.c}!switch\_tile@{switch\_tile}}
+\index{switch\_tile@{switch\_tile}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{switch\_tile()}{switch\_tile()}}
+{\footnotesize\ttfamily \label{board_8c_a91ab112764167d32e08f3c9d8a7fc42c} 
+void switch\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
+
+\Hypertarget{board_8c_ac15f9f890a419d2eea86e1f7b2f43afd}\index{board.c@{board.c}!tile\_to\_horizontal@{tile\_to\_horizontal}}
+\index{tile\_to\_horizontal@{tile\_to\_horizontal}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{tile\_to\_horizontal()}{tile\_to\_horizontal()}}
+{\footnotesize\ttfamily \label{board_8c_ac15f9f890a419d2eea86e1f7b2f43afd} 
+char \texorpdfstring{$\ast$}{*} tile\+\_\+to\+\_\+horizontal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{t}{}\end{DoxyParamCaption})}
+
+Tipo di Ritorno\+: char\texorpdfstring{$\ast$}{*}
+
+Parametri\+: tessera t di tipo struct \doxylink{struct_tile}{Tile}.
+
+La funzione restituisce un puntatore ad un array di char di dimensione 4 che conterra la tessera selezionata per l\textquotesingle{}inserimento nella board in formato orizzontale. Viene allocato un char\texorpdfstring{$\ast$}{*} 1\texorpdfstring{$\ast$}{*}4 che conterra in posizione \mbox{[}0\mbox{]}\mbox{[}1\mbox{]} il valore salvato in t.\+x ed in posizione \mbox{[}0\mbox{]}\mbox{[}2\mbox{]} il valore salvato in t.\+y \Hypertarget{board_8c_adf2f0668482407dcc36c58262d0727f7}\index{board.c@{board.c}!tile\_to\_vertical@{tile\_to\_vertical}}
+\index{tile\_to\_vertical@{tile\_to\_vertical}!board.c@{board.c}}
+\doxysubsubsection{\texorpdfstring{tile\_to\_vertical()}{tile\_to\_vertical()}}
+{\footnotesize\ttfamily \label{board_8c_adf2f0668482407dcc36c58262d0727f7} 
+char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} tile\+\_\+to\+\_\+vertical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{t}{}\end{DoxyParamCaption})}
+
+Tipo di ritorno\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}. la funzione restituisce doppio puntatore ad un array 2\texorpdfstring{$\ast$}{*}2 di char che conterrà la tessera selezionata per l\textquotesingle{}inserimento nella board già in formato verticale.
+
+Parametri\+: tessera di tipo struct \doxylink{struct_tile}{Tile}
+
+Viene creato un char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 2\texorpdfstring{$\ast$}{*}2 che conterra in posizione \mbox{[}0\mbox{]}\mbox{[}1\mbox{]} il valore di t.\+x ed in posizione \mbox{[}1\mbox{]}\mbox{[}0\mbox{]} il valore di t.\+y. 

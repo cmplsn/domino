@@ -1,0 +1,36 @@
+\doxysection{player.\+h}
+\hypertarget{player_8h_source}{}\label{player_8h_source}\mbox{\hyperlink{player_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ Alessandro\ on\ 14/03/24.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PROJECT\_IAP\_PLAYER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PROJECT\_IAP\_PLAYER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_tile}{Tile}}\{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_tile_ab06e9aa782b61ccfb42f7c48996f6ed4}{x}};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_tile_af22ee4279ee5363c31361a4e90db04db}{y}};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_tile_acd6f808002e675383a4e2fbd1b21ba19}{orientation}};}
+\DoxyCodeLine{00013\ \}\mbox{\hyperlink{player_8h_a22a602c99313e5674a7dcfbe87747689}{Tile}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \mbox{\hyperlink{struct_tile}{Tile}}*\ \mbox{\hyperlink{player_8h_a4014245a8af5fadf6316e5f918acac92}{assegna}}(\textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a}{print\_hand}}(\mbox{\hyperlink{struct_tile}{Tile}}*\ hand,\textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{player_8h_a4ddb956bcace6ca017ffec9871585420}{choose\_valid\_n}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}{valid\_tile}}(\mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ size,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \mbox{\hyperlink{struct_tile}{Tile}}\ \mbox{\hyperlink{player_8h_a853d39672609f3467b658d4678bf11ca}{select\_tile}}(\mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ size,\ \textcolor{keywordtype}{int}\ n,\textcolor{keywordtype}{int}\ mode);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//char\ select\_orientation(void);}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//Tile\ select\_tile\_2D(Tile*\ deck,\ int\ deck\_size,\ int\ n);}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//void\ switch\_tile(Tile*\ tile);}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_IAP\_PLAYER\_H}}
+
+\end{DoxyCode}

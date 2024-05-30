@@ -1,0 +1,24 @@
+\chapter{Domino}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Domino@{Domino}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Progetto di Introduzione alla Programmazione per A.\+A. 2022/2024}{Progetto di Introduzione alla Programmazione per A.\+A. 2022/2024}}\label{md__r_e_a_d_m_e_autotoc_md1}
+Viene richiesto di implementare il gioco del domino\+:
+\begin{DoxyItemize}
+\item {\bfseries{Lineare}} \+: tutte le tessere vengono utilizzate in orizzontale
+\item {\bfseries{2D}}\+: le tessere possono essere aggiunte sia in orizzontale sia in verticale
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysubsection{\texorpdfstring{Tessere}{Tessere}}\label{md__r_e_a_d_m_e_autotoc_md2}
+In entrambe le modalità ad inizio partità al giocatore vengono assegnate {\bfseries{{\itshape n}}} tessere con possibili ripetizioni fra queste\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{[}11\mbox{]} \mbox{[}12\mbox{]} \mbox{[}13\mbox{]} \mbox{[}14\mbox{]} \mbox{[}15\mbox{]} \mbox{[}16\mbox{]} \mbox{[}22\mbox{]} \mbox{[}23\mbox{]} \mbox{[}24\mbox{]} \mbox{[}25\mbox{]} \mbox{[}26\mbox{]} \mbox{[}33\mbox{]} \mbox{[}34\mbox{]} \mbox{[}35\mbox{]} \mbox{[}36\mbox{]} \mbox{[}44\mbox{]} \mbox{[}45\mbox{]} \mbox{[}46\mbox{]} \mbox{[}55\mbox{]} \mbox{[}56\mbox{]} \mbox{[}66\mbox{]} \mbox{[}MR\mbox{]} \mbox{[}+1\mbox{]} \mbox{[}00\mbox{]} 
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{Tessere Speciali}{Tessere Speciali}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item \mbox{[}00\mbox{]} \+: può essere posizionata anche a campo di gioco vuoto e in presenza di qualsiasi altra tessera (da considerare come una specie di jolly) \mbox{[}12\mbox{]} {\bfseries{\mbox{[}00\mbox{]}}} \mbox{[}66\mbox{]}
+\item \mbox{[}+1\mbox{]} \+: va ad aumentare di 1 tutti i numeri delle tessere già presenti sul campo di gioco ad eccezione di 6 che diventa 1 ==\texorpdfstring{$>$}{>} \mbox{[}12\mbox{]}\mbox{[}46\mbox{]} {\bfseries{\mbox{[}+1\mbox{]}}} -\/\texorpdfstring{$>$}{>} \mbox{[}23\mbox{]}\mbox{[}51\mbox{]}
+\item 
+\end{DoxyItemize}
+
+Ogni tessera può essere posizionata sul campo di gioco solo se in presenza di un un numero uguale a quello già presente sul campo di gioco oppure in presenza della tessera speciale \mbox{[}00\mbox{]} 

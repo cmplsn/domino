@@ -151,7 +151,6 @@ bool insert_right(Matrix *board, Tile tile) {
         board->m[0][i+3]=']';
         ok=true;
     }
-    //system("clear");
     return ok;
 }
 

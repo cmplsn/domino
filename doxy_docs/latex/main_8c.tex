@@ -1,0 +1,30 @@
+\doxysection{main.\+c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include "{}player.\+h"{}}\newline
+{\ttfamily \#include "{}board.\+h"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Funzione MAIN\+:
+
+Funzione principale da cui inizia l\textquotesingle{}esecuzione di tutto il gioco. All\textquotesingle{}interno di main viene selezionata la durata ed il numero di tessere con cui si svolgerà la partita tramite \doxylink{player_8c_a4ddb956bcace6ca017ffec9871585420}{choose\+\_\+valid\+\_\+n()}. Successivamente\+:
+\begin{DoxyItemize}
+\item viene creato e riempito l\textquotesingle{}array delle tessere del giocatore (Tile\texorpdfstring{$\ast$}{*} deck) tramite la funzione \doxylink{player_8c_a4014245a8af5fadf6316e5f918acac92}{assegna()}.
+\item viene selezionata la modalità di gioco (Lineare/2D) della partita tramite \doxylink{board_8c_a303a627e4ba296b5e8ea415c74b5a7b9}{select\+\_\+mode()}
+\item viene selezionata la tipologia di partità (Interattiva/\+AI) tramite \doxylink{board_8c_a90a1126377461cde912832c6735e42d6}{select\+\_\+autoplay()};
+\end{DoxyItemize}
+
+In base alla modalità di gioco selezionata si entrerà poi in uno dei due rami if-\/else che adatta i controlli, la dimensione e il formata del tavolo gioco (\doxylink{struct_matrix}{Matrix} board) in base alla necessità della modalità. All\textquotesingle{}interno di entrambi i rami dell\textquotesingle{}if-\/else vengono eseguite diverse azioni anche in base alla tipologia di partità selezionata. Se la tipologia di partita è stata impostata su Interattiva all\textquotesingle{}ora verrano ripetute le operazioni di controllo e di selezione in un ciclo lungo quanto la dimensione del deck del giocatore. 

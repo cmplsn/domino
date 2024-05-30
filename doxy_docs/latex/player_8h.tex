@@ -1,0 +1,68 @@
+\doxysection{player.\+h File Reference}
+\hypertarget{player_8h}{}\label{player_8h}\index{player.h@{player.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_tile}{Tile}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct Tile \mbox{\hyperlink{player_8h_a22a602c99313e5674a7dcfbe87747689}{Tile}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{player_8h_a4014245a8af5fadf6316e5f918acac92}{assegna}} (int n)
+\item 
+void \mbox{\hyperlink{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a}{print\+\_\+hand}} (\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}hand, int n)
+\item 
+int \mbox{\hyperlink{player_8h_a4ddb956bcace6ca017ffec9871585420}{choose\+\_\+valid\+\_\+n}} (void)
+\item 
+bool \mbox{\hyperlink{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}{valid\+\_\+tile}} (\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int size, \mbox{\hyperlink{struct_tile}{Tile}} tile, int n)
+\item 
+\mbox{\hyperlink{struct_tile}{Tile}} \mbox{\hyperlink{player_8h_a853d39672609f3467b658d4678bf11ca}{select\+\_\+tile}} (\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}deck, int size, int n, int mode)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{player_8h_a22a602c99313e5674a7dcfbe87747689}\index{player.h@{player.h}!Tile@{Tile}}
+\index{Tile@{Tile}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{Tile}{Tile}}
+{\footnotesize\ttfamily \label{player_8h_a22a602c99313e5674a7dcfbe87747689} 
+typedef struct Tile Tile}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{player_8h_a4014245a8af5fadf6316e5f918acac92}\index{player.h@{player.h}!assegna@{assegna}}
+\index{assegna@{assegna}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{assegna()}{assegna()}}
+{\footnotesize\ttfamily \label{player_8h_a4014245a8af5fadf6316e5f918acac92} 
+\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*} assegna (\begin{DoxyParamCaption}\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\Hypertarget{player_8h_a4ddb956bcace6ca017ffec9871585420}\index{player.h@{player.h}!choose\_valid\_n@{choose\_valid\_n}}
+\index{choose\_valid\_n@{choose\_valid\_n}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{choose\_valid\_n()}{choose\_valid\_n()}}
+{\footnotesize\ttfamily \label{player_8h_a4ddb956bcace6ca017ffec9871585420} 
+int choose\+\_\+valid\+\_\+n (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a}\index{player.h@{player.h}!print\_hand@{print\_hand}}
+\index{print\_hand@{print\_hand}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{print\_hand()}{print\_hand()}}
+{\footnotesize\ttfamily \label{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a} 
+void print\+\_\+hand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{hand}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\Hypertarget{player_8h_a853d39672609f3467b658d4678bf11ca}\index{player.h@{player.h}!select\_tile@{select\_tile}}
+\index{select\_tile@{select\_tile}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{select\_tile()}{select\_tile()}}
+{\footnotesize\ttfamily \label{player_8h_a853d39672609f3467b658d4678bf11ca} 
+\mbox{\hyperlink{struct_tile}{Tile}} select\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{size}{, }\item[{int}]{n}{, }\item[{int}]{mode}{}\end{DoxyParamCaption})}
+
+\Hypertarget{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}\index{player.h@{player.h}!valid\_tile@{valid\_tile}}
+\index{valid\_tile@{valid\_tile}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{valid\_tile()}{valid\_tile()}}
+{\footnotesize\ttfamily \label{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc} 
+bool valid\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{size}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+

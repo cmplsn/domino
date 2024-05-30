@@ -61,10 +61,10 @@ char** initboard(int rows, int cols);
  *
  * tipo di ritorno void
  *
- * parametri: Matrix* board
+ * parametri: Matrix *board
  *
  * Viene preso in input l'oggetto board contente: il tavolo di gioco utilizzato (char** m), il numero di righe ed il
- * numero di colonne e viene stampato il contenuto del tavolo da gioco con le pedine posizionate fino a quel momento
+ * numero di colonne e viene stampato il contenuto del tavolo da gioco con le tessere posizionate fino a quel momento
  * */
 void print_board(Matrix* board);
 
@@ -105,18 +105,97 @@ char select_pos(void);
  *
  * Parametri: Matrix *board, Tile tile
  *
- * Funzione utilizzata per l'inserimento di una tessera sulla destra del tavolo di gioco in modalità Domino Lineare.
+ * Funzione utilizzata per l'inserimento di una tessera a destra sul tavolo di gioco in modalità Domino Lineare.
+ * Viene impostata variabiel bool ok a false che viene cambiata a true solo dopo aver effettivamente inserito la tessera
+ * sul campo da gioco. un ciclo while incrementa la variabile i utilizzata come contatore fino quando non trova una cella
+ * della board contenente uno spazio ' ' per sapere la posizione in cui iniziare a posizionare la tessera sulla board.
+ *
+ * - Prima sezione: controlla se la tessera da inserire è una tessera speciale [MR] e se è già stata inserita almeno
+ * un'altra tessera sul campo di gioco (i>3). In caso le condizioni siano valide, la tessera viene inserita e come da
+ * specifica, la nuova tessera inserita avrà caratteri uguali ma specchiati rispetto alla tessera a cui si sta attaccando.
+ * [12][MR] -> [12][21].
+ *
+ * - Seconda sezione: controlla se la tessera è una tessera speciale (+1) e che sia già stata inserita almeno uno tessera
+ * ed in caso positivo, richiama la funzione plus_one() sulla board.
+ *
+ * - Terza sezione: controllo se la tessera è la prima che stiamo inserendo, se la tessera è tessera speciale [00] oppure
+ * se il carattere sinistro della tessera che stiamo aggiungendo è compatibile con il carattere destro della tessera a
+ * cui si sta attaccando ed in caso positivo esegue l'inserimento.
+ *
+ * la funzione ritorna il valore della variabile booleana ok che viene utilizzata come guida nella funzione main per
+ * sapere se la tessera è stata correttamente inserita o meno
  * */
 bool insert_right(Matrix *board, Tile tile);
 
+/*!
+ * Tipo di ritorno: bool
+ *
+ * Parametri: Matrix *board, Tile tile
+ *
+ * Esegue gli stessi controlli di insert_right() però, se i controlli sulla tessera
+ * sono validi e può effettivamente essere inserita, in caso la tessera sia diversa dalla tessera speciale [+1], il campo
+ * da gioco viene spostato verso destra con la funzione move_board() così da non sovrascriverlo.
+ * */
 bool insert_left(Matrix* board, Tile tile);
 
+/*!
+ * Tipo di ritorno: bool
+ *
+ * Parametri: Matrix *board, Tile tile
+ *
+ * Per la tessera speciale [+1] viene richiamata la funzione plus_one().
+ * Altrimenti in base al verso in cui si vuole inserire la tessera (orizzontale/verticale, salvato come campo orientation in Tile)
+ * la funzione verrà eseguita sul corrispondente ramo di if-else nel quale verranno richiamate rispettivamente tile_to_horizontal() o
+ * tile_to_vertical(). Entrambi i rami eseguono un ciclo while per la ricerca di una posizione disponibile per
+ * l'inserimento della tessera tramite find_blank_left().
+ *
+ * - Tessera da posizionare in ORIZZONTALE: se l'inserimento viene fatto a ridosso del lato sinistro del tavolo di gioco,
+ * quest'ultimo verrà spostato verso destra con la funzione move_board(). Altrimenti, con la possibilità che la tessera
+ * venga inserita in uno spazio libero tra altre due tessere, vengono fatti controlli sia  sul numero sinistro della
+ * tessera a cui sta per essere attaccata quella nuova, sia sulla cella a destra dello spazio dove sta per essere attaccata.
+ *
+ * - Tessera da posizionare in VERTICALE: allo stesso modo dell'inserimento in orizzontale, dato lo spazio disponibile per il
+ * possibile inserimento, verranno controllati la compatibilità del numero della tessera alla sua destra ma anche la
+ * compatibilità a sinistra dello spazio libero. Da che la tessera viene inserita in verticale, verranno eseguiti gli
+ * stessi controlli anche  per la riga sottostante dove verrà posizionata la seconda parte della tessera.
+ *
+ * Viene ritornato un valore booleano che funge da guida per la funzione main per sapere se la tessera è stata inserita e
+ * quindi rimuovere la tessera dal deck del giocatore oppure se la tessera non rispetta le condizioni e quindi non è stata inserita.
+ * */
 bool insert_left_2D(Matrix* board, Tile tile);
 
+/*!
+ * Tipo di ritorno: bool
+ *
+ * Parametri: Matrix *board, Tile tile
+ *
+ * Alla stessa maniera di insert_left_2D() ricerca su ciclo while un posto disponibile per l'inserimento della tessera
+ * in verticale o orizzontale. Esegue i controlli di compatibilità sia a destra che a sinistra dello spazio disponibile
+ * e nel caso in cui la tessera debba essere posta in verticale controlla su tutte due le righe dove avverrà l'inserimento.
+ * Viene eseguito anche controllo di inserimento non out-of-bound della riga.
+ * */
 bool insert_right_2D(Matrix* board, Tile tile);
 
+/*!
+ * Tipo di ritorno: int
+ *
+ * Parametri: Matrix *board
+ *
+ * La funzione scorre tutto il tavolo di gioco e somma riga per riga i numeri delle tessere posizionate.
+ * Restituisce il totale che rappresenta il punteggio accumulato fino a quel momento della partita.
+ * */
 int get_score(Matrix* board);
 
+/*!
+ * Tipo di ritorno: bool
+ *
+ * Parametri: Matrix *board, Tile *deck, int deck_size, int n;
+ * - Tile *deck: puntatore alla mano di tessere del giocatore
+ * - int deck_size: dimensione del deck al momento della chiamata a funzione. man mano che la partita procede, deck_size diminuisce.
+ * - int n: dimensione del deck del giocatore all'inizio della partita
+ *
+ *
+ * */
 bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n);
 
 void end_game(Matrix* board);
