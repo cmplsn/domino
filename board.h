@@ -46,19 +46,67 @@ int select_mode(void);
  * utilizzate solo in orizzontale. Per quanto riguarda le colonne invece, essendo ogni tessera rappresentata da 4 char,
  * viene impostata come lunghezza 4*n dove n rappresenta il numero di carte con cui si è iniziata la partita.
  *
- * - Domino 2D: in questa modalità le tessere possono essere utilizzate sia in orizzontale che in verticale
+ * - Domino 2D: in questa modalità le tessere possono essere utilizzate sia in orizzontale che in verticale. quindi
+ * viene impostato come numero di righe 2*n (una tessera in verticale occuperà 2 char in altezza) e 4*n colonne.
+ *
+ * Dopo aver fatto la malloc per dare la dimensione al tavolo di gioco, tutte le celle vengono inizializzate con un blank
+ * ' '.
+ *
  *
  * */
 char** initboard(int rows, int cols);
 
+/*!
+ * print_board(Matrix* board)
+ *
+ * tipo di ritorno void
+ *
+ * parametri: Matrix* board
+ *
+ * Viene preso in input l'oggetto board contente: il tavolo di gioco utilizzato (char** m), il numero di righe ed il
+ * numero di colonne e viene stampato il contenuto del tavolo da gioco con le pedine posizionate fino a quel momento
+ * */
 void print_board(Matrix* board);
 
+/*!
+ * Tipo di ritorno: char**. la funzione restituisce doppio puntatore ad un array 2*2 di char che conterrà la tessera
+ * selezionata per l'inserimento nella board già in formato verticale.
+ *
+ * Parametri: tessera di tipo struct Tile
+ *
+ * Viene creato un char** 2*2 che conterra in posizione [0][1] il valore di t.x ed in posizione [1][0] il valore di t.y.
+ * */
 char** tile_to_vertical(Tile t);
 
+/*!
+ * Tipo di Ritorno: char*
+ *
+ * Parametri: tessera t di tipo struct Tile.
+ *
+ * La funzione restituisce un puntatore ad un array di char di dimensione 4 che conterra la tessera selezionata per
+ * l'inserimento nella board in formato orizzontale. Viene allocato un char* 1*4 che conterra in posizione [0][1] il
+ * valore salvato in t.x ed in posizione [0][2] il valore salvato in t.y
+ * */
 char* tile_to_horizontal(Tile t);
 
+/*!
+ * Tipo di ritorno: char
+ *
+ * Parametri: nessuno
+ *
+ * La funzione viene utilizzata per chiedere al giocatore se inserire la tessera a sinistra o a destra nel campo di gioco.
+ * Viene quindi chiesto di inserire il carattere D (destra) o S (sinistra) e viene ritornato il carattere ricevuto in input
+ * se valido altrimenti viene richiesto il rinserimento.
+ * */
 char select_pos(void);
 
+/*!
+ * Tipo di ritorno: bool
+ *
+ * Parametri: Matrix *board, Tile tile
+ *
+ * Funzione utilizzata per l'inserimento di una tessera sulla destra del tavolo di gioco in modalità Domino Lineare.
+ * */
 bool insert_right(Matrix *board, Tile tile);
 
 bool insert_left(Matrix* board, Tile tile);
@@ -94,6 +142,10 @@ bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n);
 bool select_autoplay(void);
 
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode);
+
+void plus_one(Matrix *board);
+
+void move_board(Matrix *board, int mode);
 
 
 

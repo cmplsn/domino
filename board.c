@@ -14,6 +14,7 @@ int select_mode(void){
     system("clear");
     return x;
 }
+
 char** initboard(int rows, int cols){
     char** m=(char**) malloc(rows* sizeof(char*));
     for (int i = 0; i < rows; i++) {
@@ -80,7 +81,7 @@ char select_pos(void){
     char x;
     scanf(" %c",&x);
     while (!(x=='D' || x=='S')){
-        printf("Formato Errato, selezionare Destra (D) o Sinistra ( S ):\n");
+        printf("Formato Errato, selezionare Destra ( D ) o Sinistra ( S ):\n");
         scanf(" %c",&x);
     }
     return x;
