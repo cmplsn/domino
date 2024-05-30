@@ -18,8 +18,37 @@ void free_board(Matrix* board);
 
 void switch_tile(Tile* x);
 
+
+/*!
+ * select_mode():
+ *
+ * nessun parametro e tipo di ritorno int
+ *
+ * Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 (Domino 2D). variabile int x impostata
+ * inizialmente a -1 e viene eseguito un ciclo while all'interno del quale eseguendo scanf viene assegnato ad x il valore
+ * ricevuto in input da tastiera.
+ * Fino a quando x non avrà uno dei due valori previsti (1/2), viene richiesto il rinserimento da tastiera dell'input.
+ * Per esperienza di gioco più pulita prima del return viene eseguita una system("clear") per liberare lo schermo del terminale
+ * prima dell'azione successiva.
+ * */
 int select_mode(void);
 
+/*!
+ * init_board(int rows, int cols)
+ *
+ * tipo di ritorno: char** -> all'interno della struct Matrix utilizzata per il tavolo di gioco, viene salavato il campo
+ * char** board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board
+ * viene ridimensionata in base al numero di tessere nella mano del giocatore.
+ *
+ * parametri: int rows, int cols.
+ *
+ * - Domino Lineare: per le partite in questa modalità in numero di righe sarà sempre pari ad 1, le tessere vengono
+ * utilizzate solo in orizzontale. Per quanto riguarda le colonne invece, essendo ogni tessera rappresentata da 4 char,
+ * viene impostata come lunghezza 4*n dove n rappresenta il numero di carte con cui si è iniziata la partita.
+ *
+ * - Domino 2D: in questa modalità le tessere possono essere utilizzate sia in orizzontale che in verticale
+ *
+ * */
 char** initboard(int rows, int cols);
 
 void print_board(Matrix* board);

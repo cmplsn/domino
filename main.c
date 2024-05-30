@@ -17,6 +17,7 @@
  * selezionata.
  * Se la tipologia di partita è stata impostata su Interattiva all'ora verrano ripetute le operazioni di controllo e
  * di selezione in un ciclo lungo quanto la dimensione del deck del giocatore.
+ *
  */
 int main(void) {
     system("clear");
@@ -86,11 +87,7 @@ int main(void) {
             autoplay(&board, deck, remain,n,2);
         }
     }
-
-
     end_game(&board);
-
-    /** operazione di free finale per evitare memory leaks*/
     free(deck);
     free_board(&board);
 

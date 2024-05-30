@@ -5,19 +5,6 @@
 #include <stdio.h>
 #include "board.h"
 #include <unistd.h>
-
-/*!
- * select_mode():
- *
- * nessun parametro e tipo di ritorno int
- *
- * Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 (Domino 2D). variabile int x impostata
- * inizialmente a -1 e viene eseguito un ciclo while all'interno del quale eseguendo scanf viene assegnato ad x il valore
- * ricevuto in input da tastiera.
- * Fino a quando x non avrà uno dei due valori previsti (1/2), viene richiesto il rinserimento da tastiera dell'input.
- * Per esperienza di gioco più pulita prima del return viene eseguita una system("clear") per liberare lo schermo del terminale
- * prima dell'azione successiva.
- * */
 int select_mode(void){
     printf("seleziona modalità di gioco\n1: Domino Lineare\n2: Domino 2D\n");
     int x=-1;
@@ -27,21 +14,6 @@ int select_mode(void){
     system("clear");
     return x;
 }
-
-/*!
- * init_board(int rows, int cols)
- *
- * tipo di ritorno: char** -> all'interno della struct Matrix utilizzata per il tavolo di gioco, viene salavato il campo
- * char** board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board
- * viene ridimensionata in base al numero di tessere nella mano del giocatore.
- *
- * parametri: int rows, int cols.
- *
- * - Domino Lineare: per le partite in questa modalità in numero di righe sarà sempre pari ad 1, le tessere vengono
- * utilizzate solo in orizzontale
- *
- *
- * */
 char** initboard(int rows, int cols){
     char** m=(char**) malloc(rows* sizeof(char*));
     for (int i = 0; i < rows; i++) {
