@@ -60,7 +60,7 @@ int choose_valid_n(void){
             printf("partita LUNGA con 15 tessere\n");
             break;
     }
-    system("clear");
+
 
     return n;
     /*printf("scegliere numero tessere tra :\n");

@@ -3,6 +3,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*! Funzione MAIN:
+ *
+ * Funzione principale da cui inizia l'esecuzione di tutto il gioco. All'interno di main viene selezionata la durata
+ * ed il numero di tessere con cui si svolgerà la partita tramite choose_valid_n(). Successivamente:
+ * - viene creato e riempito l'array delle tessere del giocatore (Tile* deck) tramite la funzione assegna().
+ * - viene selezionata la modalità di gioco (Lineare/2D) della partita tramite select_mode()
+ * - viene selezionata la tipologia di partità (Interattiva/AI) tramite select_autoplay();
+ *
+ * In base alla modalità di gioco selezionata si entrerà poi in uno dei due rami if-else che adatta i controlli, la
+ * dimensione e il formata del tavolo gioco (Matrix board) in base alla necessità della modalità.
+ * All'interno di entrambi i rami dell'if-else vengono eseguite diverse azioni anche in base alla tipologia di partità
+ * selezionata.
+ * Se la tipologia di partita è stata impostata su Interattiva all'ora verrano ripetute le operazioni di controllo e
+ * di selezione in un ciclo lungo quanto la dimensione del deck del giocatore.
+ */
 int main(void) {
     system("clear");
 
@@ -10,24 +25,6 @@ int main(void) {
     //todo: scelgo numero di tessere con cui inizia il gioco
 
     Tile* deck = assegna(n);
-    deck[1].x='M'; deck[1].y='R';
-    //Tile a={'2','3','O'};
-    //switch_tile(&a);
-    /*deck[0].x='4'; deck[0].y='6';
-    deck[1].x='4'; deck[1].y='6';
-    deck[2].x='3'; deck[2].y='3';
-    deck[2].x='M'; deck[2].y='R';
-    deck[3].x='4'; deck[3].y='4';
-    deck[4].x='M'; deck[4].y='R';
-    deck[5].x='1'; deck[5].y='6';
-    deck[6].x='1'; deck[6].y='1';
-    deck[7].x='1'; deck[7].y='4';
-    deck[8].x='0'; deck[8].y='0';
-
-    for (int i = 2; i < 4; ++i) {
-        deck[i].x='3'; deck[i].y='3';
-    }*/
-
     int mode=select_mode();
     bool autplay=select_autoplay();
 
