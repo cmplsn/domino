@@ -1,7 +1,7 @@
 \doxysection{board.\+h File Reference}
 \hypertarget{board_8h}{}\label{board_8h}\index{board.h@{board.h}}
 {\ttfamily \#include "{}player.\+h"{}}\newline
-\doxysubsubsection*{Data Structures}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_matrix}{Matrix}}
@@ -81,7 +81,7 @@ void \mbox{\hyperlink{board_8h_a0ff5ef337c70677d9e8f8e2290e674b3}{move\+\_\+boar
 {\footnotesize\ttfamily \label{board_8h_a9570374e3dbc873595100dae1e584459} 
 typedef struct Matrix Matrix}
 
-
+struct utilizzata per la rappresentazione e gestione del tavolo di gioco 
 
 \doxysubsection{Function Documentation}
 \Hypertarget{board_8h_a83f65a879f21b9d434de6aeecc32da60}\index{board.h@{board.h}!autoplay@{autoplay}}
@@ -102,7 +102,24 @@ bool available\+\_\+moves\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperli
 {\footnotesize\ttfamily \label{board_8h_ab7a8a953a4d501a57a0c16ad5d90a05f} 
 bool available\+\_\+moves\+\_\+linear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{deck\+\_\+size}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_a131d9135e2a81963a798bbcd70528fbc}\index{board.h@{board.h}!check\_blank@{check\_blank}}
+Tipo\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}deck, int deck\+\_\+size, int n;
+\begin{DoxyItemize}
+\item \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}deck\+: puntatore alla mano di tessere del giocatore
+\item int deck\+\_\+size\+: dimensione del deck al momento della chiamata a funzione. man mano che la partita procede, deck\+\_\+size diminuisce.
+\item int n\+: dimensione del deck del giocatore all\textquotesingle{}inizio della partita
+\end{DoxyItemize}
+
+In modalità di gioco Domino Lineare, nel caso in cui non sia stata ancora giocata nessuna tesserea, restituisce true perchè è sicuramente possibile fare una mossa su tavolo di gioco vuoto. Altrimenti, andando a prendere una alla volta le tessere rimaste nella mano del giocatore\+:
+
+
+\begin{DoxyItemize}
+\item se la tessera è una tessera speciale \mbox{[}+1\mbox{]}\mbox{[}MR\mbox{]}\mbox{[}00\mbox{]} resituisce true perchè sicuramente è possibile una mossa con quelle tessere
+\item se la tessera è una tessera normale numerica \mbox{[}xy\mbox{]} controlla se ultimo numero a destra sulla board è ==x oppure 0, oppure se il primo numero a sinistra sulla board sia ==y oppure 0.
+\end{DoxyItemize}
+
+Se nessuno dei controlli è valido, ripete sulla tessera successiva e in caso siano state provate tutte le tessere senza successo, la funzione ritorna false e manda il gioco in "{}game over"{}. \Hypertarget{board_8h_a131d9135e2a81963a798bbcd70528fbc}\index{board.h@{board.h}!check\_blank@{check\_blank}}
 \index{check\_blank@{check\_blank}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{check\_blank()}{check\_blank()}}
 {\footnotesize\ttfamily \label{board_8h_a131d9135e2a81963a798bbcd70528fbc} 
@@ -132,13 +149,24 @@ int count\+\_\+blank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_mat
 {\footnotesize\ttfamily \label{board_8h_a7a512878b4f3d6c3ba044a4422507bb5} 
 void end\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_a368a485bcb02f8ec0d6d1ba44b7b7017}\index{board.h@{board.h}!find\_blank@{find\_blank}}
+Tipo\+: void
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board
+
+richiama la funzione \doxylink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\+\_\+board()}, informa il giocatore di non avere più mosse disponibili e stampa il punteggio finale con \doxylink{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}{get\+\_\+score()} \Hypertarget{board_8h_a368a485bcb02f8ec0d6d1ba44b7b7017}\index{board.h@{board.h}!find\_blank@{find\_blank}}
 \index{find\_blank@{find\_blank}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{find\_blank()}{find\_blank()}}
 {\footnotesize\ttfamily \label{board_8h_a368a485bcb02f8ec0d6d1ba44b7b7017} 
 void find\+\_\+blank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{row}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{col}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_ad30943231bb031a1db095e51c458c846}\index{board.h@{board.h}!find\_blank\_left@{find\_blank\_left}}
+Tipo\+: void
+
+Parametri\+:
+\begin{DoxyItemize}
+\item \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board\+: tavolo di gioco in uso
+\item int \texorpdfstring{$\ast$}{*}row\+: variabile su cui verrà salvato l\textquotesingle{}indice della riga in cui è stato trovato un possibile spazio vuoto per l\textquotesingle{}inserimento di una tessera
+\item int \texorpdfstring{$\ast$}{*}col\+:variabile su cui verrà salvato l\textquotesingle{}indice della colonna in cui è stato trovato un possibile spazio vuoto per l\textquotesingle{}inserimento di una tessera 
+\end{DoxyItemize}\Hypertarget{board_8h_ad30943231bb031a1db095e51c458c846}\index{board.h@{board.h}!find\_blank\_left@{find\_blank\_left}}
 \index{find\_blank\_left@{find\_blank\_left}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{find\_blank\_left()}{find\_blank\_left()}}
 {\footnotesize\ttfamily \label{board_8h_ad30943231bb031a1db095e51c458c846} 
@@ -150,21 +178,31 @@ void find\+\_\+blank\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{
 {\footnotesize\ttfamily \label{board_8h_ae48dcab6c9ecf039e85af529f2d686e7} 
 bool first\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_a43d797f1eca44a420287dd9a3947c96e}\index{board.h@{board.h}!free\_board@{free\_board}}
+Tipo\+: bool
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board
+
+Controlla se tutta la prima riga della board è vuota. \Hypertarget{board_8h_a43d797f1eca44a420287dd9a3947c96e}\index{board.h@{board.h}!free\_board@{free\_board}}
 \index{free\_board@{free\_board}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{free\_board()}{free\_board()}}
 {\footnotesize\ttfamily \label{board_8h_a43d797f1eca44a420287dd9a3947c96e} 
 void free\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}\index{board.h@{board.h}!get\_score@{get\_score}}
+Tipo\+: void
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board
+
+In un ciclo for sulle righe di board-\/\texorpdfstring{$>$}{>}m esegue la free di ogni riga di tipo char\texorpdfstring{$\ast$}{*} e a fine ciclo esegue la free della struttura stessa. \Hypertarget{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}\index{board.h@{board.h}!get\_score@{get\_score}}
 \index{get\_score@{get\_score}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{get\_score()}{get\_score()}}
 {\footnotesize\ttfamily \label{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02} 
 int get\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: int
+Tipo\+: int
 
-Parametri\+: Matrix\texorpdfstring{$\ast$}{*} board \Hypertarget{board_8h_a1c857fd0dcd55217d95f289f12ef0e6e}\index{board.h@{board.h}!initboard@{initboard}}
+Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board
+
+La funzione scorre tutto il tavolo di gioco e somma riga per riga i numeri delle tessere posizionate. Restituisce il totale che rappresenta il punteggio accumulato fino a quel momento della partita. \Hypertarget{board_8h_a1c857fd0dcd55217d95f289f12ef0e6e}\index{board.h@{board.h}!initboard@{initboard}}
 \index{initboard@{initboard}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{initboard()}{initboard()}}
 {\footnotesize\ttfamily \label{board_8h_a1c857fd0dcd55217d95f289f12ef0e6e} 
@@ -172,7 +210,7 @@ char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} initboard (\begin{Doxy
 
 init\+\_\+board(int rows, int cols)
 
-tipo di ritorno\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/\texorpdfstring{$>$}{>} all\textquotesingle{}interno della struct \doxylink{struct_matrix}{Matrix} utilizzata per il tavolo di gioco, viene salavato il campo char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board viene ridimensionata in base al numero di tessere nella mano del giocatore.
+Tipo\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/\texorpdfstring{$>$}{>} all\textquotesingle{}interno della struct \doxylink{struct_matrix}{Matrix} utilizzata per il tavolo di gioco, viene salavato il campo char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board viene ridimensionata in base al numero di tessere nella mano del giocatore.
 
 parametri\+: int rows, int cols.
 
@@ -188,7 +226,7 @@ Dopo aver fatto la malloc per dare la dimensione al tavolo di gioco, tutte le ce
 {\footnotesize\ttfamily \label{board_8h_a2548a0007bdba02dce7a97debf511994} 
 bool insert\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: bool
+Tipo\+: bool
 
 Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
 
@@ -198,7 +236,7 @@ Esegue gli stessi controlli di \doxylink{board_8h_aa2c0686199549915ef2d6663a8f4d
 {\footnotesize\ttfamily \label{board_8h_a2b579a3bbf32552685e542de411758bd} 
 bool insert\+\_\+left\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: bool
+Tipo\+: bool
 
 Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
 
@@ -216,7 +254,7 @@ Viene ritornato un valore booleano che funge da guida per la funzione main per s
 {\footnotesize\ttfamily \label{board_8h_aa2c0686199549915ef2d6663a8f4d8dc} 
 bool insert\+\_\+right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: bool
+Tipo\+: bool
 
 Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
 
@@ -235,7 +273,7 @@ la funzione ritorna il valore della variabile booleana ok che viene utilizzata c
 {\footnotesize\ttfamily \label{board_8h_a693bd885b4ddc8a19a1d3f49eac85cdb} 
 bool insert\+\_\+right\+\_\+2D (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: bool
+Tipo\+: bool
 
 Parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board, \doxylink{struct_tile}{Tile} tile
 
@@ -251,7 +289,11 @@ void move\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_mat
 {\footnotesize\ttfamily \label{board_8h_a5bb7a8a8e92acce3fcb400b3c8e3539b} 
 \mbox{\hyperlink{struct_matrix}{Matrix}} new\+Matrix (\begin{DoxyParamCaption}\item[{int}]{rows}{, }\item[{int}]{cols}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_aa3157d1768611246cc12d70b133fdea9}\index{board.h@{board.h}!plus\_one@{plus\_one}}
+Tipo\+: \doxylink{struct_matrix}{Matrix}
+
+Parametri\+: int rows, int cols
+
+Creazione di un nuovo oggetto di tipo struct \doxylink{struct_matrix}{Matrix} i cui campi avranno come valore i valori passati alla funzione come parametri. Creazione e malloc nuovo array char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} m tramite init\+\_\+board() \Hypertarget{board_8h_aa3157d1768611246cc12d70b133fdea9}\index{board.h@{board.h}!plus\_one@{plus\_one}}
 \index{plus\_one@{plus\_one}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{plus\_one()}{plus\_one()}}
 {\footnotesize\ttfamily \label{board_8h_aa3157d1768611246cc12d70b133fdea9} 
@@ -265,17 +307,21 @@ void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ma
 
 \doxylink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\+\_\+board(\+Matrix\texorpdfstring{$\ast$}{*} board)}
 
-tipo di ritorno void
+Tipo\+: void
 
-parametri\+: Matrix\texorpdfstring{$\ast$}{*} board
+parametri\+: \doxylink{struct_matrix}{Matrix} \texorpdfstring{$\ast$}{*}board
 
-Viene preso in input l\textquotesingle{}oggetto board contente\+: il tavolo di gioco utilizzato (char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} m), il numero di righe ed il numero di colonne e viene stampato il contenuto del tavolo da gioco con le pedine posizionate fino a quel momento \Hypertarget{board_8h_aac654f4dce8de976d25e8844dd5d9bb0}\index{board.h@{board.h}!print\_screen@{print\_screen}}
+Viene preso in input l\textquotesingle{}oggetto board contente\+: il tavolo di gioco utilizzato (char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} m), il numero di righe ed il numero di colonne e viene stampato il contenuto del tavolo da gioco con le tessere posizionate fino a quel momento \Hypertarget{board_8h_aac654f4dce8de976d25e8844dd5d9bb0}\index{board.h@{board.h}!print\_screen@{print\_screen}}
 \index{print\_screen@{print\_screen}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{print\_screen()}{print\_screen()}}
 {\footnotesize\ttfamily \label{board_8h_aac654f4dce8de976d25e8844dd5d9bb0} 
 void print\+\_\+screen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matrix}{Matrix}} \texorpdfstring{$\ast$}{*}}]{board}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{decksize}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_a90a1126377461cde912832c6735e42d6}\index{board.h@{board.h}!select\_autoplay@{select\_autoplay}}
+Tipo\+: void
+
+Parametri\+: \doxylink{struct_matrix}{Matrix} {\itshape board, \doxylink{struct_tile}{Tile}} deck, int decksize
+
+Esegue una clear su terminale e stampa la schermata di gioco richiamando \doxylink{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}{get\+\_\+score()}, \doxylink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\+\_\+board()} e \doxylink{player_8c_a5f3859b7c5b6436e7e10d21bfa3f763a}{print\+\_\+hand()} \Hypertarget{board_8h_a90a1126377461cde912832c6735e42d6}\index{board.h@{board.h}!select\_autoplay@{select\_autoplay}}
 \index{select\_autoplay@{select\_autoplay}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{select\_autoplay()}{select\_autoplay()}}
 {\footnotesize\ttfamily \label{board_8h_a90a1126377461cde912832c6735e42d6} 
@@ -289,7 +335,9 @@ int select\+\_\+mode (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCap
 
 \doxylink{board_8h_a303a627e4ba296b5e8ea415c74b5a7b9}{select\+\_\+mode()}\+:
 
-nessun parametro e tipo di ritorno int
+Tipo\+: int
+
+Parametri\+: nessuno
 
 Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 (Domino 2D). variabile int x impostata inizialmente a -\/1 e viene eseguito un ciclo while all\textquotesingle{}interno del quale eseguendo scanf viene assegnato ad x il valore ricevuto in input da tastiera. Fino a quando x non avrà uno dei due valori previsti (1/2), viene richiesto il rinserimento da tastiera dell\textquotesingle{}input. Per esperienza di gioco più pulita prima del return viene eseguita una system("{}clear"{}) per liberare lo schermo del terminale prima dell\textquotesingle{}azione successiva. \Hypertarget{board_8h_aa37f9cbe06f2e7203172e4f37b8c0a07}\index{board.h@{board.h}!select\_pos@{select\_pos}}
 \index{select\_pos@{select\_pos}!board.h@{board.h}}
@@ -297,7 +345,7 @@ Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 
 {\footnotesize\ttfamily \label{board_8h_aa37f9cbe06f2e7203172e4f37b8c0a07} 
 char select\+\_\+pos (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: char
+Tipo\+: char
 
 Parametri\+: nessuno
 
@@ -307,13 +355,17 @@ La funzione viene utilizzata per chiedere al giocatore se inserire la tessera a 
 {\footnotesize\ttfamily \label{board_8h_a91ab112764167d32e08f3c9d8a7fc42c} 
 void switch\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
 
-\Hypertarget{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd}\index{board.h@{board.h}!tile\_to\_horizontal@{tile\_to\_horizontal}}
+Tipo\+: void
+
+Parametri\+: \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}x
+
+funzione che scambia l\textquotesingle{}ordine dei numeri all\textquotesingle{}interno di una tessera. Se \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}x era \mbox{[}xy\mbox{]}, la funzione la trasforma in \mbox{[}yx\mbox{]}. \Hypertarget{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd}\index{board.h@{board.h}!tile\_to\_horizontal@{tile\_to\_horizontal}}
 \index{tile\_to\_horizontal@{tile\_to\_horizontal}!board.h@{board.h}}
 \doxysubsubsection{\texorpdfstring{tile\_to\_horizontal()}{tile\_to\_horizontal()}}
 {\footnotesize\ttfamily \label{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd} 
 char \texorpdfstring{$\ast$}{*} tile\+\_\+to\+\_\+horizontal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{t}{}\end{DoxyParamCaption})}
 
-Tipo di Ritorno\+: char\texorpdfstring{$\ast$}{*}
+Tipo\+: char\texorpdfstring{$\ast$}{*}
 
 Parametri\+: tessera t di tipo struct \doxylink{struct_tile}{Tile}.
 
@@ -323,7 +375,7 @@ La funzione restituisce un puntatore ad un array di char di dimensione 4 che con
 {\footnotesize\ttfamily \label{board_8h_adf2f0668482407dcc36c58262d0727f7} 
 char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} tile\+\_\+to\+\_\+vertical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{t}{}\end{DoxyParamCaption})}
 
-Tipo di ritorno\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}. la funzione restituisce doppio puntatore ad un array 2\texorpdfstring{$\ast$}{*}2 di char che conterrà la tessera selezionata per l\textquotesingle{}inserimento nella board già in formato verticale.
+Tipo\+: char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}. la funzione restituisce doppio puntatore ad un array 2\texorpdfstring{$\ast$}{*}2 di char che conterrà la tessera selezionata per l\textquotesingle{}inserimento nella board già in formato verticale.
 
 Parametri\+: tessera di tipo struct \doxylink{struct_tile}{Tile}
 

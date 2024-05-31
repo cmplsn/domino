@@ -9,73 +9,76 @@
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PROJECT\_IAP\_BOARD\_H}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{player_8h}{player.h}}"{}}}
 \DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_matrix}{Matrix}}\{}
-\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_matrix_a061459acc9e078fa4699e0e349887215}{rows}};}
-\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_matrix_a4407a60bc4387adae24cee658711f2d9}{cols}};}
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{struct_matrix_a566006cd32b3327de631cd188e675fba}{m}};}
-\DoxyCodeLine{00013\ \}\mbox{\hyperlink{board_8h_a9570374e3dbc873595100dae1e584459}{Matrix}};}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \mbox{\hyperlink{struct_matrix}{Matrix}}\ \mbox{\hyperlink{board_8h_a5bb7a8a8e92acce3fcb400b3c8e3539b}{newMatrix}}(\textcolor{keywordtype}{int}\ rows,\ \textcolor{keywordtype}{int}\ cols);}
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_matrix}{Matrix}}\{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_matrix_a994b1578e9a64d5cc3c4d0b11d7532a9}{rows}};}
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a43d797f1eca44a420287dd9a3947c96e}{free\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a91ab112764167d32e08f3c9d8a7fc42c}{switch\_tile}}(\mbox{\hyperlink{struct_tile}{Tile}}*\ x);}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_a303a627e4ba296b5e8ea415c74b5a7b9}{select\_mode}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00057\ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{board_8h_a1c857fd0dcd55217d95f289f12ef0e6e}{initboard}}(\textcolor{keywordtype}{int}\ rows,\ \textcolor{keywordtype}{int}\ cols);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00079\ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{board_8h_adf2f0668482407dcc36c58262d0727f7}{tile\_to\_vertical}}(\mbox{\hyperlink{struct_tile}{Tile}}\ t);}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00090\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd}{tile\_to\_horizontal}}(\mbox{\hyperlink{struct_tile}{Tile}}\ t);}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00101\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{board_8h_aa37f9cbe06f2e7203172e4f37b8c0a07}{select\_pos}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00128\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_aa2c0686199549915ef2d6663a8f4d8dc}{insert\_right}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_matrix_a2067cc7ed367cc427cd869b3e1074ad7}{cols}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{struct_matrix_ac24fcd6c07408948f8a6a9b012d634be}{m}};}
+\DoxyCodeLine{00025\ \}\mbox{\hyperlink{board_8h_a9570374e3dbc873595100dae1e584459}{Matrix}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{struct_matrix}{Matrix}}\ \mbox{\hyperlink{board_8h_a5bb7a8a8e92acce3fcb400b3c8e3539b}{newMatrix}}(\textcolor{keywordtype}{int}\ rows,\ \textcolor{keywordtype}{int}\ cols);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a43d797f1eca44a420287dd9a3947c96e}{free\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a91ab112764167d32e08f3c9d8a7fc42c}{switch\_tile}}(\mbox{\hyperlink{struct_tile}{Tile}}*\ x);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_a303a627e4ba296b5e8ea415c74b5a7b9}{select\_mode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{board_8h_a1c857fd0dcd55217d95f289f12ef0e6e}{initboard}}(\textcolor{keywordtype}{int}\ rows,\ \textcolor{keywordtype}{int}\ cols);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a3aa0239b7755a1de1360570d098e5a43}{print\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{board_8h_adf2f0668482407dcc36c58262d0727f7}{tile\_to\_vertical}}(\mbox{\hyperlink{struct_tile}{Tile}}\ t);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{board_8h_ac15f9f890a419d2eea86e1f7b2f43afd}{tile\_to\_horizontal}}(\mbox{\hyperlink{struct_tile}{Tile}}\ t);}
 \DoxyCodeLine{00129\ }
-\DoxyCodeLine{00139\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a2548a0007bdba02dce7a97debf511994}{insert\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
+\DoxyCodeLine{00139\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{board_8h_aa37f9cbe06f2e7203172e4f37b8c0a07}{select\_pos}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00140\ }
-\DoxyCodeLine{00165\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a2b579a3bbf32552685e542de411758bd}{insert\_left\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
-\DoxyCodeLine{00166\ }
-\DoxyCodeLine{00177\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a693bd885b4ddc8a19a1d3f49eac85cdb}{insert\_right\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
+\DoxyCodeLine{00166\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_aa2c0686199549915ef2d6663a8f4d8dc}{insert\_right}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a2548a0007bdba02dce7a97debf511994}{insert\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
 \DoxyCodeLine{00178\ }
-\DoxyCodeLine{00185\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}{get\_score}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00187\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_ab7a8a953a4d501a57a0c16ad5d90a05f}{available\_moves\_linear}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\textcolor{keywordtype}{int}\ deck\_size,\ \textcolor{keywordtype}{int}\ n);}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a7a512878b4f3d6c3ba044a4422507bb5}{end\_game}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
-\DoxyCodeLine{00190\ }
-\DoxyCodeLine{00191\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_aac654f4dce8de976d25e8844dd5d9bb0}{print\_screen}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ decksize);}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_ae48dcab6c9ecf039e85af529f2d686e7}{first\_empty}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board);}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a368a485bcb02f8ec0d6d1ba44b7b7017}{find\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ *row,\ \textcolor{keywordtype}{int}\ *col);}
-\DoxyCodeLine{00196\ }
-\DoxyCodeLine{00197\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_ad30943231bb031a1db095e51c458c846}{find\_blank\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ *row,\ \textcolor{keywordtype}{int}\ *col);}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00199\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_ad9838cf421f6f04ca69744cf9dc5f9e4}{count\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a131d9135e2a81963a798bbcd70528fbc}{check\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{char}\ orientation);}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00203\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a4a239e5586e9ca513f40cbbc4a1aff24}{check\_blank\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{char}\ orientation);}
+\DoxyCodeLine{00203\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a2b579a3bbf32552685e542de411758bd}{insert\_left\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
 \DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_ae5fefbd33f2f2ad26d18fc9d0b925931}{copy\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ destination,\ \mbox{\hyperlink{struct_matrix}{Matrix}}*\ source);}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a292c3e64b265f60dfee211ca25a77522}{available\_moves\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ remain,\ \textcolor{keywordtype}{int}\ n);}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00209\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a90a1126377461cde912832c6735e42d6}{select\_autoplay}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00210\ }
-\DoxyCodeLine{00211\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a83f65a879f21b9d434de6aeecc32da60}{autoplay}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ remain,\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{int}\ mode);}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00213\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_aa3157d1768611246cc12d70b133fdea9}{plus\_one}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board);}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a0ff5ef337c70677d9e8f8e2290e674b3}{move\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ mode);}
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a693bd885b4ddc8a19a1d3f49eac85cdb}{insert\_right\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}\ tile);}
 \DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_IAP\_BOARD\_H}}
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_a7db5c0c204bac8d59304f4e3bb2ade02}{get\_score}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00248\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_ab7a8a953a4d501a57a0c16ad5d90a05f}{available\_moves\_linear}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\textcolor{keywordtype}{int}\ deck\_size,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a7a512878b4f3d6c3ba044a4422507bb5}{end\_game}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00267\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_aac654f4dce8de976d25e8844dd5d9bb0}{print\_screen}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ decksize);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00276\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_ae48dcab6c9ecf039e85af529f2d686e7}{first\_empty}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board);}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00290\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a368a485bcb02f8ec0d6d1ba44b7b7017}{find\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ *row,\ \textcolor{keywordtype}{int}\ *col);}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_ad30943231bb031a1db095e51c458c846}{find\_blank\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ *row,\ \textcolor{keywordtype}{int}\ *col);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{board_8h_ad9838cf421f6f04ca69744cf9dc5f9e4}{count\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a131d9135e2a81963a798bbcd70528fbc}{check\_blank}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{char}\ orientation);}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a4a239e5586e9ca513f40cbbc4a1aff24}{check\_blank\_left}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{char}\ orientation);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_ae5fefbd33f2f2ad26d18fc9d0b925931}{copy\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ destination,\ \mbox{\hyperlink{struct_matrix}{Matrix}}*\ source);}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a292c3e64b265f60dfee211ca25a77522}{available\_moves\_2D}}(\mbox{\hyperlink{struct_matrix}{Matrix}}*\ board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ remain,\ \textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{board_8h_a90a1126377461cde912832c6735e42d6}{select\_autoplay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a83f65a879f21b9d434de6aeecc32da60}{autoplay}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \mbox{\hyperlink{struct_tile}{Tile}}*\ deck,\ \textcolor{keywordtype}{int}\ remain,\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keywordtype}{int}\ mode);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_aa3157d1768611246cc12d70b133fdea9}{plus\_one}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{board_8h_a0ff5ef337c70677d9e8f8e2290e674b3}{move\_board}}(\mbox{\hyperlink{struct_matrix}{Matrix}}\ *board,\ \textcolor{keywordtype}{int}\ mode);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//PROJECT\_IAP\_BOARD\_H}}
 
 \end{DoxyCode}

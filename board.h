@@ -6,23 +6,61 @@
 #define PROJECT_IAP_BOARD_H
 #include "player.h"
 
+/*!
+ * struct utilizzata per la rappresentazione e gestione del tavolo di gioco
+ * */
 typedef struct Matrix{
+
+    /*! numero di righe che comporranno campo di gioco (char** m)*/
     int rows;
+
+    /*! numero di colonne che comporrano campo di gioco (char** m)*/
     int cols;
+
+    /*! vera e propria struttura che contiene il campo di gioco. per semplicità di gestione in entrambe le modalità di
+     * gioco rappresentato come char** di modo da poterlo adattare sia al domino lineare dove sarà un array in una dimensione,
+     * sia al domino 2D dove sarà un array bidimensionale.
+     * */
     char** m;
 }Matrix;
 
+/*!
+ * Tipo: Matrix
+ *
+ * Parametri: int rows, int cols
+ *
+ * Creazione di un nuovo oggetto di tipo struct Matrix i cui campi avranno come valore i valori passati alla funzione
+ * come parametri. Creazione e malloc nuovo array char** m tramite init_board()
+ * */
 Matrix newMatrix(int rows, int cols);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Matrix *board
+ *
+ * In un ciclo for sulle righe di board->m esegue la free di ogni riga di tipo char* e a fine ciclo esegue la free della
+ * struttura stessa.
+ * */
 void free_board(Matrix* board);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Tile *x
+ *
+ * funzione che scambia l'ordine dei numeri all'interno di una tessera. Se Tile *x era [xy], la funzione
+ * la trasforma in [yx].
+ * */
 void switch_tile(Tile* x);
 
 
 /*!
  * select_mode():
  *
- * nessun parametro e tipo di ritorno int
+ * Tipo: int
+ *
+ * Parametri: nessuno
  *
  * Viene chiesto al giocatore di dare in input da tastiera o 1(Domino Lineare) o 2 (Domino 2D). variabile int x impostata
  * inizialmente a -1 e viene eseguito un ciclo while all'interno del quale eseguendo scanf viene assegnato ad x il valore
@@ -36,7 +74,7 @@ int select_mode(void);
 /*!
  * init_board(int rows, int cols)
  *
- * tipo di ritorno: char** -> all'interno della struct Matrix utilizzata per il tavolo di gioco, viene salavato il campo
+ * Tipo: char** -> all'interno della struct Matrix utilizzata per il tavolo di gioco, viene salavato il campo
  * char** board e ad inizio partità il campo viene solamente dichiarato, una volta selezionato il numero di tessere, board
  * viene ridimensionata in base al numero di tessere nella mano del giocatore.
  *
@@ -59,7 +97,7 @@ char** initboard(int rows, int cols);
 /*!
  * print_board(Matrix* board)
  *
- * tipo di ritorno void
+ * Tipo: void
  *
  * parametri: Matrix *board
  *
@@ -69,7 +107,7 @@ char** initboard(int rows, int cols);
 void print_board(Matrix* board);
 
 /*!
- * Tipo di ritorno: char**. la funzione restituisce doppio puntatore ad un array 2*2 di char che conterrà la tessera
+ * Tipo: char**. la funzione restituisce doppio puntatore ad un array 2*2 di char che conterrà la tessera
  * selezionata per l'inserimento nella board già in formato verticale.
  *
  * Parametri: tessera di tipo struct Tile
@@ -79,7 +117,7 @@ void print_board(Matrix* board);
 char** tile_to_vertical(Tile t);
 
 /*!
- * Tipo di Ritorno: char*
+ * Tipo: char*
  *
  * Parametri: tessera t di tipo struct Tile.
  *
@@ -90,7 +128,7 @@ char** tile_to_vertical(Tile t);
 char* tile_to_horizontal(Tile t);
 
 /*!
- * Tipo di ritorno: char
+ * Tipo: char
  *
  * Parametri: nessuno
  *
@@ -101,7 +139,7 @@ char* tile_to_horizontal(Tile t);
 char select_pos(void);
 
 /*!
- * Tipo di ritorno: bool
+ * Tipo: bool
  *
  * Parametri: Matrix *board, Tile tile
  *
@@ -128,7 +166,7 @@ char select_pos(void);
 bool insert_right(Matrix *board, Tile tile);
 
 /*!
- * Tipo di ritorno: bool
+ * Tipo: bool
  *
  * Parametri: Matrix *board, Tile tile
  *
@@ -139,7 +177,7 @@ bool insert_right(Matrix *board, Tile tile);
 bool insert_left(Matrix* board, Tile tile);
 
 /*!
- * Tipo di ritorno: bool
+ * Tipo: bool
  *
  * Parametri: Matrix *board, Tile tile
  *
@@ -165,7 +203,7 @@ bool insert_left(Matrix* board, Tile tile);
 bool insert_left_2D(Matrix* board, Tile tile);
 
 /*!
- * Tipo di ritorno: bool
+ * Tipo: bool
  *
  * Parametri: Matrix *board, Tile tile
  *
@@ -177,7 +215,7 @@ bool insert_left_2D(Matrix* board, Tile tile);
 bool insert_right_2D(Matrix* board, Tile tile);
 
 /*!
- * Tipo di ritorno: int
+ * Tipo: int
  *
  * Parametri: Matrix *board
  *
@@ -187,34 +225,158 @@ bool insert_right_2D(Matrix* board, Tile tile);
 int get_score(Matrix* board);
 
 /*!
- * Tipo di ritorno: bool
+ * Tipo: bool
  *
  * Parametri: Matrix *board, Tile *deck, int deck_size, int n;
  * - Tile *deck: puntatore alla mano di tessere del giocatore
  * - int deck_size: dimensione del deck al momento della chiamata a funzione. man mano che la partita procede, deck_size diminuisce.
  * - int n: dimensione del deck del giocatore all'inizio della partita
  *
+ * In modalità di gioco Domino Lineare, nel caso in cui non sia stata ancora giocata nessuna tesserea, restituisce true
+ * perchè è sicuramente possibile fare una mossa su tavolo di gioco vuoto.
+ * Altrimenti, andando a prendere una alla volta le tessere rimaste nella mano del giocatore:
  *
+ * - se la tessera è una tessera speciale [+1][MR][00] resituisce true perchè sicuramente è possibile una mossa con
+ * quelle tessere
+ *
+ * - se la tessera è una tessera normale numerica [xy] controlla se ultimo numero a destra sulla board è ==x oppure 0,
+ * oppure se il primo numero a sinistra sulla board sia ==y oppure 0.
+ *
+ * Se nessuno dei controlli è valido, ripete sulla tessera successiva e in caso siano state provate tutte le tessere
+ * senza successo, la funzione ritorna false e manda il gioco in "game over".
  * */
 bool available_moves_linear(Matrix* board, Tile* deck,int deck_size, int n);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Matrix *board
+ *
+ * richiama la funzione print_board(), informa il giocatore di non avere più mosse disponibili e stampa il punteggio finale
+ * con get_score()
+ * */
 void end_game(Matrix* board);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Matrix *board, Tile* deck, int decksize
+ *
+ * Esegue una clear su terminale e stampa la schermata di gioco richiamando get_score(), print_board() e print_hand()
+ * */
 void print_screen(Matrix* board, Tile* deck, int decksize);
 
+/*!
+ * Tipo: bool
+ *
+ * Parametri: Matrix *board
+ *
+ * Controlla se tutta la prima riga della board è vuota.
+ * */
 bool first_empty(Matrix *board);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri:
+ * - Matrix *board: tavolo di gioco in uso
+ * - int *row: variabile su cui verrà salvato l'indice della riga in cui è stato trovato un possibile spazio vuoto per
+ * l'inserimento di una tessera
+ * - int *col:variabile su cui verrà salvato l'indice della colonna in cui è stato trovato un possibile spazio vuoto per
+ * l'inserimento di una tessera
+ *
+ * La funzione scorre con due cicli while innestati il tavolo di gioco board->m e cerca una cella ' ' valida per possibile
+ * inserimento di tessera per le funzioni insert_right() e insert_right_2D(). Quando la funzione viene chiamata la
+ * prima volta ricere row e col impostati a 0:
+ *
+ * - Se row e col sono impostati a zero e la funzione first_empty() ritorna true allora la funzione lascia row e col
+ * invariati e indica che la board è vuota.
+ *
+ * -Altrimenti appena trova una cella contenente ' ' a destra di una cella != ' ' ritorna row e col della cella
+ * contenente ' '.
+ * */
 void find_blank(Matrix *board, int *row, int *col);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri:
+ * - Matrix *board: tavolo di gioco in uso
+ * - int *row: variabile su cui verrà salvato l'indice della riga in cui è stato trovato un possibile spazio vuoto per
+ * l'inserimento di una tessera
+ * - int *col:variabile su cui verrà salvato l'indice della colonna in cui è stato trovato un possibile spazio vuoto per
+ *
+ * Esegue gli stessi controlli di find_blank(). se *row e *col sono entrambi 0 e la prima riga è tutta vuota (first_empty())
+ * restitisce *row e *col altrimenti ricerca uno spazio vuoto esattamente prima di una cella diversa da ' '.
+ * */
 void find_blank_left(Matrix *board, int *row, int *col);
 
+/*!
+ * Tipo: int
+ *
+ * Parametri:
+ * - Matrix *board
+ * - int i: indice della riga su cui sta per essere eseguita l'ispezione
+ * - int j: indice della riga su cui sta per essere eseguita l'ispezione
+ *
+ * La funzione conta dalla cella j, decrementando j di un 1 ogni volta, quante sono le celle libere (' ') sulla riga prima
+ * della cella board->m[i][j]. Utilizzata in insert_left_2D() nel caso la board debba essere shiftata per permettere l'
+ * inserimento di una tessera ad inizio riga e le celle ' ' già presenti non siano sufficienti ad ospitare tutta la tessera
+ * */
 int count_blank(Matrix *board, int i, int j);
 
+/*!
+ * Tipo: bool
+ *
+ * Parametri: Matrix *board
+ * - int i: indice di riga
+ * - int j: indice di colonna
+ * - char orientation: char che indica l'orientamento della tessera che va inserita (Orizzontale/Verticale)
+ *
+ * Funzione che controlla per le funzioni di insert_right() ed insert_right_2D, se ci sono abbastanza celle libere a
+ * partire dalla posizione board->m[i][j] per posizionare la nuova tessera.
+ *
+ * - Se la tessera va inserita in orizzontale (orientation=='O') viene controllato che da board-> m[i][j] in poi ci siano
+ * 4 char == ' '
+ * - Se la tessera va inserita in verticale controlla che a partire da m[i][j] ci siano 2 char ==' ' ed esegue lo stesso
+ * controllo anche in riga i+1
+ *
+ * Ritorna True se lo spazio su board->m è sufficiente, False altrimenti.
+ * */
 bool check_blank(Matrix *board, int i, int j, char orientation);
 
+/*!
+ * Tipo: bool
+ *
+ * Parametri: Matrix *board
+ * - int i: indice di riga
+ * - int j: indice di colonna
+ * - char orientation: char che indica l'orientamento della tessera che va inserita (Orizzontale/Verticale)
+ *
+ * Funzione che controlla per le funzioni di insert_left() ed inser_left_2D, se ci sono abbastanza celle libere a
+ * partire prima della posizione board->m[i][j] per posizionare la nuova tessera.
+ *
+ * - Se la tessera va inserita in orizzontale (orientation == 'O') viene controllato che le 4 celle prima di board->m[i][j]
+ * siano tutte uguali a ' '.
+ *
+ * - Se la tessera va inserita in verticale controlla che le 2 celle prima della cella board->m[i][j] e le due celle
+ * prima della cella board->m[i+1][j] siano tutte uguali a ' '.
+ *
+ * Ritorna True se lo spazio su board->m è sufficiente, False altrimenti.
+ * */
 bool check_blank_left(Matrix *board, int i, int j, char orientation);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri:
+ * - Matrix *source: oggetto che verrà copiato
+ * - Matrix *destination: oggetto in cui verrà copiato source.
+ *
+ * La funzione esegue due cicli for innestati per copiare source->m dentro a destination->m.
+ * */
 void copy_board(Matrix* destination, Matrix* source);
+
 
 bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n);
 
@@ -222,6 +384,15 @@ bool select_autoplay(void);
 
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Matrix *board
+ *
+ * La funzione scorre tutta board->m con due cicli for innestati e incrementa di uno i valori di tutte le tessere sul
+ * campo da gioco tranne le tessere [00]. Per i numeri da 1 a 5 il numero viene incrementato di 1. Il numero 6 viene
+ * invece portato ad 1.
+ * */
 void plus_one(Matrix *board);
 
 void move_board(Matrix *board, int mode);

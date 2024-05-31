@@ -5,12 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>domino: board.h Source File</title>
+<title>My Project: board.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -25,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">domino
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -49,19 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="doc-content">
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('board_8h_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -95,76 +107,79 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define PROJECT_IAP_BOARD_H</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="player_8h.html">player.h</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="struct_matrix.html">    9</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_matrix.html">Matrix</a>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="struct_matrix.html#a061459acc9e078fa4699e0e349887215">   10</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_matrix.html#a061459acc9e078fa4699e0e349887215">rows</a>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="struct_matrix.html#a4407a60bc4387adae24cee658711f2d9">   11</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_matrix.html#a4407a60bc4387adae24cee658711f2d9">cols</a>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="struct_matrix.html#a566006cd32b3327de631cd188e675fba">   12</a></span>    <span class="keywordtype">char</span>** <a class="code hl_variable" href="struct_matrix.html#a566006cd32b3327de631cd188e675fba">m</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="board_8h.html#a9570374e3dbc873595100dae1e584459">   13</a></span>}<a class="code hl_typedef" href="board_8h.html#a9570374e3dbc873595100dae1e584459">Matrix</a>;</div>
-</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><a class="code hl_struct" href="struct_matrix.html">Matrix</a> <a class="code hl_function" href="board_8h.html#a5bb7a8a8e92acce3fcb400b3c8e3539b">newMatrix</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols);</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="struct_matrix.html">   12</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_matrix.html">Matrix</a>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_matrix.html#a994b1578e9a64d5cc3c4d0b11d7532a9">   15</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_matrix.html#a994b1578e9a64d5cc3c4d0b11d7532a9">rows</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a43d797f1eca44a420287dd9a3947c96e">free_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a91ab112764167d32e08f3c9d8a7fc42c">switch_tile</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a>* x);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#a303a627e4ba296b5e8ea415c74b5a7b9">select_mode</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">char</span>** <a class="code hl_function" href="board_8h.html#a1c857fd0dcd55217d95f289f12ef0e6e">initboard</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a3aa0239b7755a1de1360570d098e5a43">print_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">char</span>** <a class="code hl_function" href="board_8h.html#adf2f0668482407dcc36c58262d0727f7">tile_to_vertical</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a> t);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keywordtype">char</span>* <a class="code hl_function" href="board_8h.html#ac15f9f890a419d2eea86e1f7b2f43afd">tile_to_horizontal</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a> t);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keywordtype">char</span> <a class="code hl_function" href="board_8h.html#aa37f9cbe06f2e7203172e4f37b8c0a07">select_pos</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#aa2c0686199549915ef2d6663a8f4d8dc">insert_right</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_matrix.html#a2067cc7ed367cc427cd869b3e1074ad7">   18</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_matrix.html#a2067cc7ed367cc427cd869b3e1074ad7">cols</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_matrix.html#ac24fcd6c07408948f8a6a9b012d634be">   24</a></span>    <span class="keywordtype">char</span>** <a class="code hl_variable" href="struct_matrix.html#ac24fcd6c07408948f8a6a9b012d634be">m</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="board_8h.html#a9570374e3dbc873595100dae1e584459">   25</a></span>}<a class="code hl_typedef" href="board_8h.html#a9570374e3dbc873595100dae1e584459">Matrix</a>;</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><a class="code hl_struct" href="struct_matrix.html">Matrix</a> <a class="code hl_function" href="board_8h.html#a5bb7a8a8e92acce3fcb400b3c8e3539b">newMatrix</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a43d797f1eca44a420287dd9a3947c96e">free_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a91ab112764167d32e08f3c9d8a7fc42c">switch_tile</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a>* x);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#a303a627e4ba296b5e8ea415c74b5a7b9">select_mode</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">char</span>** <a class="code hl_function" href="board_8h.html#a1c857fd0dcd55217d95f289f12ef0e6e">initboard</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a3aa0239b7755a1de1360570d098e5a43">print_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keywordtype">char</span>** <a class="code hl_function" href="board_8h.html#adf2f0668482407dcc36c58262d0727f7">tile_to_vertical</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a> t);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keywordtype">char</span>* <a class="code hl_function" href="board_8h.html#ac15f9f890a419d2eea86e1f7b2f43afd">tile_to_horizontal</a>(<a class="code hl_struct" href="struct_tile.html">Tile</a> t);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a2548a0007bdba02dce7a97debf511994">insert_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keywordtype">char</span> <a class="code hl_function" href="board_8h.html#aa37f9cbe06f2e7203172e4f37b8c0a07">select_pos</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a2b579a3bbf32552685e542de411758bd">insert_left_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a693bd885b4ddc8a19a1d3f49eac85cdb">insert_right_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#aa2c0686199549915ef2d6663a8f4d8dc">insert_right</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a2548a0007bdba02dce7a97debf511994">insert_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#a7db5c0c204bac8d59304f4e3bb2ade02">get_score</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#ab7a8a953a4d501a57a0c16ad5d90a05f">available_moves_linear</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck,<span class="keywordtype">int</span> deck_size, <span class="keywordtype">int</span> n);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a7a512878b4f3d6c3ba044a4422507bb5">end_game</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#aac654f4dce8de976d25e8844dd5d9bb0">print_screen</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> decksize);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#ae48dcab6c9ecf039e85af529f2d686e7">first_empty</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a368a485bcb02f8ec0d6d1ba44b7b7017">find_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> *row, <span class="keywordtype">int</span> *col);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#ad30943231bb031a1db095e51c458c846">find_blank_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> *row, <span class="keywordtype">int</span> *col);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#ad9838cf421f6f04ca69744cf9dc5f9e4">count_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a131d9135e2a81963a798bbcd70528fbc">check_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">char</span> orientation);</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a4a239e5586e9ca513f40cbbc4a1aff24">check_blank_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">char</span> orientation);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a2b579a3bbf32552685e542de411758bd">insert_left_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#ae5fefbd33f2f2ad26d18fc9d0b925931">copy_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* destination, <a class="code hl_struct" href="struct_matrix.html">Matrix</a>* source);</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a292c3e64b265f60dfee211ca25a77522">available_moves_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> remain, <span class="keywordtype">int</span> n);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a90a1126377461cde912832c6735e42d6">select_autoplay</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a83f65a879f21b9d434de6aeecc32da60">autoplay</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> remain, <span class="keywordtype">int</span> n, <span class="keywordtype">int</span> mode);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#aa3157d1768611246cc12d70b133fdea9">plus_one</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a0ff5ef337c70677d9e8f8e2290e674b3">move_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a693bd885b4ddc8a19a1d3f49eac85cdb">insert_right_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a> tile);</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_IAP_BOARD_H</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#a7db5c0c204bac8d59304f4e3bb2ade02">get_score</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#ab7a8a953a4d501a57a0c16ad5d90a05f">available_moves_linear</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck,<span class="keywordtype">int</span> deck_size, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a7a512878b4f3d6c3ba044a4422507bb5">end_game</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#aac654f4dce8de976d25e8844dd5d9bb0">print_screen</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> decksize);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#ae48dcab6c9ecf039e85af529f2d686e7">first_empty</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a368a485bcb02f8ec0d6d1ba44b7b7017">find_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> *row, <span class="keywordtype">int</span> *col);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#ad30943231bb031a1db095e51c458c846">find_blank_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> *row, <span class="keywordtype">int</span> *col);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="keywordtype">int</span> <a class="code hl_function" href="board_8h.html#ad9838cf421f6f04ca69744cf9dc5f9e4">count_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a131d9135e2a81963a798bbcd70528fbc">check_blank</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">char</span> orientation);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a4a239e5586e9ca513f40cbbc4a1aff24">check_blank_left</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">char</span> orientation);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#ae5fefbd33f2f2ad26d18fc9d0b925931">copy_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* destination, <a class="code hl_struct" href="struct_matrix.html">Matrix</a>* source);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a292c3e64b265f60dfee211ca25a77522">available_moves_2D</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a>* board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> remain, <span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="keywordtype">bool</span> <a class="code hl_function" href="board_8h.html#a90a1126377461cde912832c6735e42d6">select_autoplay</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a83f65a879f21b9d434de6aeecc32da60">autoplay</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <a class="code hl_struct" href="struct_tile.html">Tile</a>* deck, <span class="keywordtype">int</span> remain, <span class="keywordtype">int</span> n, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#aa3157d1768611246cc12d70b133fdea9">plus_one</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keywordtype">void</span> <a class="code hl_function" href="board_8h.html#a0ff5ef337c70677d9e8f8e2290e674b3">move_board</a>(<a class="code hl_struct" href="struct_matrix.html">Matrix</a> *board, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_IAP_BOARD_H</span></div>
 <div class="ttc" id="aboard_8h_html_a0ff5ef337c70677d9e8f8e2290e674b3"><div class="ttname"><a href="board_8h.html#a0ff5ef337c70677d9e8f8e2290e674b3">move_board</a></div><div class="ttdeci">void move_board(Matrix *board, int mode)</div><div class="ttdef"><b>Definition</b> board.c:107</div></div>
 <div class="ttc" id="aboard_8h_html_a131d9135e2a81963a798bbcd70528fbc"><div class="ttname"><a href="board_8h.html#a131d9135e2a81963a798bbcd70528fbc">check_blank</a></div><div class="ttdeci">bool check_blank(Matrix *board, int i, int j, char orientation)</div><div class="ttdef"><b>Definition</b> board.c:274</div></div>
 <div class="ttc" id="aboard_8h_html_a1c857fd0dcd55217d95f289f12ef0e6e"><div class="ttname"><a href="board_8h.html#a1c857fd0dcd55217d95f289f12ef0e6e">initboard</a></div><div class="ttdeci">char ** initboard(int rows, int cols)</div><div class="ttdef"><b>Definition</b> board.c:18</div></div>
@@ -196,16 +211,19 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aboard_8h_html_ae48dcab6c9ecf039e85af529f2d686e7"><div class="ttname"><a href="board_8h.html#ae48dcab6c9ecf039e85af529f2d686e7">first_empty</a></div><div class="ttdeci">bool first_empty(Matrix *board)</div><div class="ttdef"><b>Definition</b> board.c:489</div></div>
 <div class="ttc" id="aboard_8h_html_ae5fefbd33f2f2ad26d18fc9d0b925931"><div class="ttname"><a href="board_8h.html#ae5fefbd33f2f2ad26d18fc9d0b925931">copy_board</a></div><div class="ttdeci">void copy_board(Matrix *destination, Matrix *source)</div><div class="ttdef"><b>Definition</b> board.c:774</div></div>
 <div class="ttc" id="aplayer_8h_html"><div class="ttname"><a href="player_8h.html">player.h</a></div></div>
-<div class="ttc" id="astruct_matrix_html"><div class="ttname"><a href="struct_matrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> board.h:9</div></div>
-<div class="ttc" id="astruct_matrix_html_a061459acc9e078fa4699e0e349887215"><div class="ttname"><a href="struct_matrix.html#a061459acc9e078fa4699e0e349887215">Matrix::rows</a></div><div class="ttdeci">int rows</div><div class="ttdef"><b>Definition</b> board.h:10</div></div>
-<div class="ttc" id="astruct_matrix_html_a4407a60bc4387adae24cee658711f2d9"><div class="ttname"><a href="struct_matrix.html#a4407a60bc4387adae24cee658711f2d9">Matrix::cols</a></div><div class="ttdeci">int cols</div><div class="ttdef"><b>Definition</b> board.h:11</div></div>
-<div class="ttc" id="astruct_matrix_html_a566006cd32b3327de631cd188e675fba"><div class="ttname"><a href="struct_matrix.html#a566006cd32b3327de631cd188e675fba">Matrix::m</a></div><div class="ttdeci">char ** m</div><div class="ttdef"><b>Definition</b> board.h:12</div></div>
+<div class="ttc" id="astruct_matrix_html"><div class="ttname"><a href="struct_matrix.html">Matrix</a></div><div class="ttdef"><b>Definition</b> board.h:12</div></div>
+<div class="ttc" id="astruct_matrix_html_a2067cc7ed367cc427cd869b3e1074ad7"><div class="ttname"><a href="struct_matrix.html#a2067cc7ed367cc427cd869b3e1074ad7">Matrix::cols</a></div><div class="ttdeci">int cols</div><div class="ttdef"><b>Definition</b> board.h:18</div></div>
+<div class="ttc" id="astruct_matrix_html_a994b1578e9a64d5cc3c4d0b11d7532a9"><div class="ttname"><a href="struct_matrix.html#a994b1578e9a64d5cc3c4d0b11d7532a9">Matrix::rows</a></div><div class="ttdeci">int rows</div><div class="ttdef"><b>Definition</b> board.h:15</div></div>
+<div class="ttc" id="astruct_matrix_html_ac24fcd6c07408948f8a6a9b012d634be"><div class="ttname"><a href="struct_matrix.html#ac24fcd6c07408948f8a6a9b012d634be">Matrix::m</a></div><div class="ttdeci">char ** m</div><div class="ttdef"><b>Definition</b> board.h:24</div></div>
 <div class="ttc" id="astruct_tile_html"><div class="ttname"><a href="struct_tile.html">Tile</a></div><div class="ttdef"><b>Definition</b> player.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="board_8h.html">board.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+  </ul>
+</div>
 </body>
 </html>
