@@ -114,7 +114,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac6e1dab47d43a07fe471a9f9538881c4" id="r_ac6e1dab47d43a07fe471a9f9538881c4"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6e1dab47d43a07fe471a9f9538881c4">orientation</a></td></tr>
 <tr class="separator:ac6e1dab47d43a07fe471a9f9538881c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Ogni tessera è rappresentata come un oggetto di tipo struct <a class="el" href="struct_tile.html">Tile</a> contenente due char che andranno ad identificare i numeri sulla tessera (x ed y) ed un altro char orientation che da informazioni sulla disposizione della tessera sul tavolo di gioco. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac6e1dab47d43a07fe471a9f9538881c4" name="ac6e1dab47d43a07fe471a9f9538881c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6e1dab47d43a07fe471a9f9538881c4">&#9670;&#160;</a></span>orientation</h2>
 
@@ -126,6 +128,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Assume due possibili valori:</p><ul>
+<li>O: indica che la tessera verrà posizionata in Orizzontale</li>
+<li>V: indica che la tessera verrà posizionata in Verticale. </li>
+</ul>
 
 </div>
 </div>
@@ -140,6 +146,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>nel caso di tessera posizionata in orizzontale rappresenta il numero più a sinistra, nel caso di tessere in verticale rappresenta il numero sulla riga più in alto. </p>
 
 </div>
 </div>
@@ -154,6 +161,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>nel caso di tessera posizionata in orizzontale rappresenta il numero più a destra, nel caso di tessere in verticale rappresenta il numero sulla riga più in basso. </p>
 
 </div>
 </div>

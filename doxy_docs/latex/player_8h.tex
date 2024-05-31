@@ -33,7 +33,7 @@ bool \mbox{\hyperlink{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}{valid\+\_\+ti
 {\footnotesize\ttfamily \label{player_8h_a22a602c99313e5674a7dcfbe87747689} 
 typedef struct Tile Tile}
 
-
+Ogni tessera è rappresentata come un oggetto di tipo struct \doxylink{struct_tile}{Tile} contenente due char che andranno ad identificare i numeri sulla tessera (x ed y) ed un altro char orientation che da informazioni sulla disposizione della tessera sul tavolo di gioco. 
 
 \doxysubsection{Function Documentation}
 \Hypertarget{player_8h_a4014245a8af5fadf6316e5f918acac92}\index{player.h@{player.h}!assegna@{assegna}}
@@ -42,27 +42,73 @@ typedef struct Tile Tile}
 {\footnotesize\ttfamily \label{player_8h_a4014245a8af5fadf6316e5f918acac92} 
 \mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*} assegna (\begin{DoxyParamCaption}\item[{int}]{n}{}\end{DoxyParamCaption})}
 
-\Hypertarget{player_8h_a4ddb956bcace6ca017ffec9871585420}\index{player.h@{player.h}!choose\_valid\_n@{choose\_valid\_n}}
+Tipo\+: Tile\texorpdfstring{$\ast$}{*}
+
+Parametri\+: int n
+
+All\textquotesingle{}interno della funzione viene definito l\textquotesingle{}array contenente tutte e 24 le possibili tessere del domino viene allocato spazio per un array di n Tiles, dove n è il numero di tessere con il quale si è deciso di iniziare la partita tramite \doxylink{player_8h_a4ddb956bcace6ca017ffec9871585420}{choose\+\_\+valid\+\_\+n()}. Viene poi utilizzata la funzione srand(time(\+NULL)) per far si che la funzione rand() utilizzata successivamente crei ogni volta una sequenza di estrazione effettivamente casuale. L\textquotesingle{}array hand, che rappresenta la mano di tessere che avrà il giocatore, viene riempito con inserimento di tessere scelte casualmente, anche con ripetizioni, dall\textquotesingle{}array deck. Resituisce l\textquotesingle{}array hand riempito. \Hypertarget{player_8h_a4ddb956bcace6ca017ffec9871585420}\index{player.h@{player.h}!choose\_valid\_n@{choose\_valid\_n}}
 \index{choose\_valid\_n@{choose\_valid\_n}!player.h@{player.h}}
 \doxysubsubsection{\texorpdfstring{choose\_valid\_n()}{choose\_valid\_n()}}
 {\footnotesize\ttfamily \label{player_8h_a4ddb956bcace6ca017ffec9871585420} 
 int choose\+\_\+valid\+\_\+n (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
 
-\Hypertarget{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a}\index{player.h@{player.h}!print\_hand@{print\_hand}}
+Tipo\+: int
+
+Parametri\+: nessuno
+
+Viene richiesto al giocatore di selezionare tramite input da tastiera la durata della partita.
+\begin{DoxyItemize}
+\item Input == 1\+: viene selezionata partita "{}corta"{} e verrà creato con la funzione \doxylink{player_8h_a4014245a8af5fadf6316e5f918acac92}{assegna()} una mano di 5 tessere.
+\item Input == 2\+: viene selezionata partita "{}intermedia"{} e verrà creato con la funzione \doxylink{player_8h_a4014245a8af5fadf6316e5f918acac92}{assegna()} una mano di 10 tessere.
+\item Input == 3\+: viene selezionata partita "{}lunga"{} e verrà creato con la funzione \doxylink{player_8h_a4014245a8af5fadf6316e5f918acac92}{assegna()} una mano di 15 tessere.
+\end{DoxyItemize}
+
+Se l\textquotesingle{}input ricevuto è diverso da 1,2 o 3 viene richiesto il rinserimento fino alla ricezione di un\textquotesingle{}opzione valida. \Hypertarget{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a}\index{player.h@{player.h}!print\_hand@{print\_hand}}
 \index{print\_hand@{print\_hand}!player.h@{player.h}}
 \doxysubsubsection{\texorpdfstring{print\_hand()}{print\_hand()}}
 {\footnotesize\ttfamily \label{player_8h_a5f3859b7c5b6436e7e10d21bfa3f763a} 
 void print\+\_\+hand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{hand}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
 
-\Hypertarget{player_8h_a853d39672609f3467b658d4678bf11ca}\index{player.h@{player.h}!select\_tile@{select\_tile}}
+Tipo\+: void
+
+Parametri\+:
+\begin{DoxyItemize}
+\item \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}hand\+: mano di tessere del giocatore.
+\item int n\+: numero di elementi da stampare dell\textquotesingle{}array hand.
+\end{DoxyItemize}
+
+Stampa a schermo le n tessere rimanenti nella mano del giocatore \Hypertarget{player_8h_a853d39672609f3467b658d4678bf11ca}\index{player.h@{player.h}!select\_tile@{select\_tile}}
 \index{select\_tile@{select\_tile}!player.h@{player.h}}
 \doxysubsubsection{\texorpdfstring{select\_tile()}{select\_tile()}}
 {\footnotesize\ttfamily \label{player_8h_a853d39672609f3467b658d4678bf11ca} 
 \mbox{\hyperlink{struct_tile}{Tile}} select\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{size}{, }\item[{int}]{n}{, }\item[{int}]{mode}{}\end{DoxyParamCaption})}
 
-\Hypertarget{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}\index{player.h@{player.h}!valid\_tile@{valid\_tile}}
+Tipo\+: \doxylink{struct_tile}{Tile}
+
+Parametri\+:
+\begin{DoxyItemize}
+\item \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}deck\+: mano delle tessere del giocatore
+\item int size\+: dimensione rimanente dell\textquotesingle{}array deck.
+\item int n\+: dimensione iniziale dell\textquotesingle{}array deck, numero di tessere ricevute all\textquotesingle{}inizio della partita.
+\item int mode\+: definisce la modalità di gioco scelta per la partita (Lineare /2D)
+\end{DoxyItemize}
+
+Viene chiesto di inserire in input da tastiera i due char corrispondenti ai simboli presenti sulla tessera che il giocatore vuole selezionare. Se per esempio si volesse selezionare la tessera \mbox{[}4 6\mbox{]}, il giocatore dovrà immettere in input 46. La tessera può anche essere utilizzata con le cifre scambiate ovvero se il giocatore da in input 64, tramite la funzione \doxylink{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}{valid\+\_\+tile()} viene fatto il controllo sulle cifre scambiate e ne viene concesso l\textquotesingle{}utilizzo. Nel caso in cui la tessera non sia presente nella mano del giocatore, viene nuovamente richiesto l\textquotesingle{}inserimento di una tessera valida effettivamente presente nella mano del giocatore.
+
+Una volta selezionata una tessera valida, nel caso in cui si stia giocando una partita in modalità 2D (quindi mode==2), viene richiesto al giocatore di selezionare l\textquotesingle{}orientamento con il quale vuole posizionare la tessera sul campo da gioco. \Hypertarget{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc}\index{player.h@{player.h}!valid\_tile@{valid\_tile}}
 \index{valid\_tile@{valid\_tile}!player.h@{player.h}}
 \doxysubsubsection{\texorpdfstring{valid\_tile()}{valid\_tile()}}
 {\footnotesize\ttfamily \label{player_8h_a3aa9d3b4a2bdb73a906d8fc1711666cc} 
 bool valid\+\_\+tile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_tile}{Tile}} \texorpdfstring{$\ast$}{*}}]{deck}{, }\item[{int}]{size}{, }\item[{\mbox{\hyperlink{struct_tile}{Tile}}}]{tile}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
 
+Tipo\+: bool
+
+Parametri\+:
+\begin{DoxyItemize}
+\item \doxylink{struct_tile}{Tile} \texorpdfstring{$\ast$}{*}deck\+: mano di tessere del giocatore.
+\item int size\+: dimensione rimanente dell\textquotesingle{}array deck.
+\item \doxylink{struct_tile}{Tile} tile\+: tessera selezionata dal giocatore per essere inserita
+\item int n\+: dimensione iniziale dell\textquotesingle{}array deck, numero di tessere ricevute all\textquotesingle{}inizio della partita.
+\end{DoxyItemize}
+
+La funzione verifica se la tessera selezionata tramite \doxylink{player_8h_a853d39672609f3467b658d4678bf11ca}{select\+\_\+tile()} è valida, ovvero, se fa effettivamente parte della mano del giocatore. Se il deck è ancora pieno (size==n) quindi sta per essere posizionata la prima tessera, la funzione impedisce l\textquotesingle{}utilizzo delle tessere speciali \mbox{[}+1\mbox{]} e \mbox{[}MR\mbox{]}. Se invece è stata selezionata una tessere diversa dalle due appena citate controlla, scorrendo il deck una tessera alla volta se tile è uguale a una tessera del deck oppure se è una tessera del deck con le cifre scambiate (il giocatore può usare le tessera del deck \mbox{[}xy\mbox{]} anche in ordine inverso ovvero \mbox{[}yx\mbox{]}). Se la tessera selezionata fa match con una tessera del deck allora la funzione ritorna True altrimenti restituisce False e viene nuovamente richiesto di selezionare una tessere valida. 

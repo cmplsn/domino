@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['per_20a_20a_202022_202024_0',['Progetto di Introduzione alla Programmazione per A.A. 2022/2024',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]],
-  ['player_2ec_1',['player.c',['../player_8c.html',1,'']]],
-  ['player_2eh_2',['player.h',['../player_8h.html',1,'']]],
-  ['plus_5fone_3',['plus_one',['../board_8c.html#aa3157d1768611246cc12d70b133fdea9',1,'plus_one(Matrix *board):&#160;board.c'],['../board_8h.html#aa3157d1768611246cc12d70b133fdea9',1,'plus_one(Matrix *board):&#160;board.c']]],
-  ['print_5fboard_4',['print_board',['../board_8c.html#a3aa0239b7755a1de1360570d098e5a43',1,'print_board(Matrix *board):&#160;board.c'],['../board_8h.html#a3aa0239b7755a1de1360570d098e5a43',1,'print_board(Matrix *board):&#160;board.c']]],
-  ['print_5fhand_5',['print_hand',['../player_8c.html#a5f3859b7c5b6436e7e10d21bfa3f763a',1,'print_hand(Tile *hand, int n):&#160;player.c'],['../player_8h.html#a5f3859b7c5b6436e7e10d21bfa3f763a',1,'print_hand(Tile *hand, int n):&#160;player.c']]],
-  ['print_5fscreen_6',['print_screen',['../board_8c.html#aac654f4dce8de976d25e8844dd5d9bb0',1,'print_screen(Matrix *board, Tile *deck, int decksize):&#160;board.c'],['../board_8h.html#aac654f4dce8de976d25e8844dd5d9bb0',1,'print_screen(Matrix *board, Tile *deck, int decksize):&#160;board.c']]],
-  ['progetto_20di_20introduzione_20alla_20programmazione_20per_20a_20a_202022_202024_7',['Progetto di Introduzione alla Programmazione per A.A. 2022/2024',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]],
-  ['programmazione_20per_20a_20a_202022_202024_8',['Progetto di Introduzione alla Programmazione per A.A. 2022/2024',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]]
+  ['select_5fautoplay_0',['select_autoplay',['../board_8c.html#a90a1126377461cde912832c6735e42d6',1,'select_autoplay(void):&#160;board.c'],['../board_8h.html#a90a1126377461cde912832c6735e42d6',1,'select_autoplay(void):&#160;board.c']]],
+  ['select_5fmode_1',['select_mode',['../board_8c.html#a303a627e4ba296b5e8ea415c74b5a7b9',1,'select_mode(void):&#160;board.c'],['../board_8h.html#a303a627e4ba296b5e8ea415c74b5a7b9',1,'select_mode(void):&#160;board.c']]],
+  ['select_5fpos_2',['select_pos',['../board_8c.html#aa37f9cbe06f2e7203172e4f37b8c0a07',1,'select_pos(void):&#160;board.c'],['../board_8h.html#aa37f9cbe06f2e7203172e4f37b8c0a07',1,'select_pos(void):&#160;board.c']]],
+  ['select_5ftile_3',['select_tile',['../player_8c.html#a853d39672609f3467b658d4678bf11ca',1,'select_tile(Tile *deck, int size, int n, int mode):&#160;player.c'],['../player_8h.html#a853d39672609f3467b658d4678bf11ca',1,'select_tile(Tile *deck, int size, int n, int mode):&#160;player.c']]],
+  ['switch_5ftile_4',['switch_tile',['../board_8c.html#a91ab112764167d32e08f3c9d8a7fc42c',1,'switch_tile(Tile *x):&#160;board.c'],['../board_8h.html#a91ab112764167d32e08f3c9d8a7fc42c',1,'switch_tile(Tile *x):&#160;board.c']]]
 ];

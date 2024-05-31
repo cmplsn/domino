@@ -228,6 +228,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_matrix.html">Matrix</a> *board: tavolo di gioco.</li>
+<li><a class="el" href="struct_tile.html">Tile</a> *deck: tessere nella mano del giocatore</li>
+<li>int remain: dimensione effettiva del deck del giocatore</li>
+<li>int n: dimensione iniziale del deck del giocatore</li>
+<li>int mode: variabile che identifica la tipologia di partita (Lineare/2D)</li>
+</ul>
+<p>Funzione che implementa la modalità IA del gioco. Se la variabile mode==1 allora verrà giocata una partita in Domino Lineare, altrimenti la partita sarà in Domino 2D.</p>
+<ul>
+<li>Domino Lineare: dentro ad un ciclo while che nella condizione controlla che ci siano tessere rimanenti nella mano del giocatore, che la variabile di scorrimento delle tessere nel deck non superi la dimensione effettiva del deck e che siano ancora disponibili mosse in modalità lineare (tramite <a class="el" href="#ab7a8a953a4d501a57a0c16ad5d90a05f">available_moves_linear()</a>), la funzione prova l'inserimento di una tessera del deck alla volta. Data la tessera [xy] verrà effettuato un inserimento di [xy] sia a destra che a sinistra. nel caso nessuno dei due vada a buon fine verrà provato l'inserimento a destra e a sinistra della stessa tessera ma con i valori scambiati [yx]. Il caso nessuno dei tentativi su una data tessera vada a buon fine , verrà "estratta" la tessera successiva e così via. Se la tessera viene inserita con successo, il tentativo di inserimento successivo ricomincerà dalla prima tessera del deck. Nel caso in cui nessuna tessera venga inserita con successo. La funzione termina. L'esecuzione ritorna alla funzione main e viene dichiarato il "game over"</li>
+<li>Domino 2D: il procedimento è lo stesso di autoplay con modalità Lineare. Tuttavia per ogni tessera [xy] verrà eseguito tentativo di inserimento sia su [xy] che su [yx] in orizzontale a destra, in orizzontale a sinistra, in verticale a destra, in verticale a sinistra. </li>
+</ul>
 
 </div>
 </div>
@@ -259,6 +272,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: bool</p>
+<p>Parametri: <a class="el" href="struct_matrix.html">Matrix</a> *board, <a class="el" href="struct_tile.html">Tile</a> *deck, int remain, int n</p>
+<p>La funzione dapprima controlla se il deck è ancora composto da tutte le n tessere assegnate al giocatore ad inizio partita, se sì ritorna true, altrimenti verifica l'esistenza di mosse disponibili creando una <a class="el" href="struct_matrix.html">Matrix</a> copy con una copia del tavolo di gioco grazie a <a class="el" href="#ae5fefbd33f2f2ad26d18fc9d0b925931">copy_board()</a>. Su <a class="el" href="struct_matrix.html">Matrix</a> copy vengono poi "provate" le funzioni <a class="el" href="#a2b579a3bbf32552685e542de411758bd">insert_left_2D()</a> ed <a class="el" href="#a693bd885b4ddc8a19a1d3f49eac85cdb">insert_right_2D()</a> utilizzando una tessera alla volta tra quelle ancora nel deck del giocatore. se una delle funzioni di inserimento su una tessera ritorna true allora anche available_moves_2D ritorna true. Se per una data tessera nessuna delle chiamate alle fuzioni di inserimento ritorna true, viene ripetuto il tentativo sulla tessera successiva nel deck. Se vengono provate tutte le tessere del deck senza successo la funzione ritorna false e manda la partita in "game over". </p>
 
 </div>
 </div>
@@ -333,6 +349,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: bool</p>
+<p>Parametri: <a class="el" href="struct_matrix.html">Matrix</a> *board</p><ul>
+<li>int i: indice di riga</li>
+<li>int j: indice di colonna</li>
+<li>char orientation: char che indica l'orientamento della tessera che va inserita (Orizzontale/Verticale)</li>
+</ul>
+<p>Funzione che controlla per le funzioni di <a class="el" href="#aa2c0686199549915ef2d6663a8f4d8dc">insert_right()</a> ed insert_right_2D, se ci sono abbastanza celle libere a partire dalla posizione board-&gt;m[i][j] per posizionare la nuova tessera.</p>
+<ul>
+<li>Se la tessera va inserita in orizzontale (orientation=='O') viene controllato che da board-&gt; m[i][j] in poi ci siano 4 char == ' '</li>
+<li>Se la tessera va inserita in verticale controlla che a partire da m[i][j] ci siano 2 char ==' ' ed esegue lo stesso controllo anche in riga i+1</li>
+</ul>
+<p>Ritorna True se lo spazio su board-&gt;m è sufficiente, False altrimenti. </p>
 
 </div>
 </div>
@@ -364,6 +392,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: bool</p>
+<p>Parametri: <a class="el" href="struct_matrix.html">Matrix</a> *board</p><ul>
+<li>int i: indice di riga</li>
+<li>int j: indice di colonna</li>
+<li>char orientation: char che indica l'orientamento della tessera che va inserita (Orizzontale/Verticale)</li>
+</ul>
+<p>Funzione che controlla per le funzioni di <a class="el" href="#a2548a0007bdba02dce7a97debf511994">insert_left()</a> ed inser_left_2D, se ci sono abbastanza celle libere a partire prima della posizione board-&gt;m[i][j] per posizionare la nuova tessera.</p>
+<ul>
+<li>Se la tessera va inserita in orizzontale (orientation == 'O') viene controllato che le 4 celle prima di board-&gt;m[i][j] siano tutte uguali a ' '.</li>
+<li>Se la tessera va inserita in verticale controlla che le 2 celle prima della cella board-&gt;m[i][j] e le due celle prima della cella board-&gt;m[i+1][j] siano tutte uguali a ' '.</li>
+</ul>
+<p>Ritorna True se lo spazio su board-&gt;m è sufficiente, False altrimenti. </p>
 
 </div>
 </div>
@@ -385,6 +425,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_matrix.html">Matrix</a> *source: oggetto che verrà copiato</li>
+<li><a class="el" href="struct_matrix.html">Matrix</a> *destination: oggetto in cui verrà copiato source.</li>
+</ul>
+<p>La funzione esegue due cicli for innestati per copiare source-&gt;m dentro a destination-&gt;m. </p>
 
 </div>
 </div>
@@ -411,6 +457,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: int</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_matrix.html">Matrix</a> *board</li>
+<li>int i: indice della riga su cui sta per essere eseguita l'ispezione</li>
+<li>int j: indice della riga su cui sta per essere eseguita l'ispezione</li>
+</ul>
+<p>La funzione conta dalla cella j, decrementando j di un 1 ogni volta, quante sono le celle libere (' ') sulla riga i, prima della cella board-&gt;m[i][j]. Utilizzata in <a class="el" href="#a2b579a3bbf32552685e542de411758bd">insert_left_2D()</a> nel caso la board debba essere shiftata per permettere l' inserimento di una tessera ad inizio riga e le celle ' ' già presenti non siano sufficienti ad ospitare tutta la tessera </p>
 
 </div>
 </div>
@@ -461,8 +514,13 @@ Functions</h2></td></tr>
 <p>Parametri:</p><ul>
 <li><a class="el" href="struct_matrix.html">Matrix</a> *board: tavolo di gioco in uso</li>
 <li>int *row: variabile su cui verrà salvato l'indice della riga in cui è stato trovato un possibile spazio vuoto per l'inserimento di una tessera</li>
-<li>int *col:variabile su cui verrà salvato l'indice della colonna in cui è stato trovato un possibile spazio vuoto per l'inserimento di una tessera </li>
+<li>int *col:variabile su cui verrà salvato l'indice della colonna in cui è stato trovato un possibile spazio vuoto per l'inserimento di una tessera</li>
 </ul>
+<p>La funzione scorre con due cicli while innestati il tavolo di gioco board-&gt;m e cerca una cella ' ' valida per possibile inserimento di tessera per le funzioni <a class="el" href="#aa2c0686199549915ef2d6663a8f4d8dc">insert_right()</a> e <a class="el" href="#a693bd885b4ddc8a19a1d3f49eac85cdb">insert_right_2D()</a>. Quando la funzione viene chiamata la prima volta ricere row e col impostati a 0:</p>
+<ul>
+<li>Se row e col sono impostati a zero e la funzione <a class="el" href="#ae48dcab6c9ecf039e85af529f2d686e7">first_empty()</a> ritorna true allora la funzione lascia row e col invariati e indica che la board è vuota.</li>
+</ul>
+<p>-Altrimenti appena trova una cella contenente ' ' a destra di una cella != ' ' ritorna row e col della cella contenente ' '. </p>
 
 </div>
 </div>
@@ -489,6 +547,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_matrix.html">Matrix</a> *board: tavolo di gioco in uso</li>
+<li>int *row: variabile su cui verrà salvato l'indice della riga in cui è stato trovato un possibile spazio vuoto per l'inserimento di una tessera</li>
+<li>int *col:variabile su cui verrà salvato l'indice della colonna in cui è stato trovato un possibile spazio vuoto per</li>
+</ul>
+<p>Esegue gli stessi controlli di <a class="el" href="#a368a485bcb02f8ec0d6d1ba44b7b7017">find_blank()</a>. se *row e *col sono entrambi 0 e la prima riga è tutta vuota (<a class="el" href="#ae48dcab6c9ecf039e85af529f2d686e7">first_empty()</a>) restitisce *row e *col altrimenti ricerca uno spazio vuoto esattamente prima di una cella diversa da ' '. </p>
 
 </div>
 </div>
@@ -706,6 +771,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri: <a class="el" href="struct_matrix.html">Matrix</a> *board</p><ul>
+<li>int mode: variabile che identifica il numero di celle di cui è necessario "spostare" il campo di gioco</li>
+</ul>
+<p>Se mode==1: l'intero campo di gioco verrà ricopiato spostato di 4 char verso destra. Utilizzato quando va inserita una tessera in orizzontale ad inizio di una riga</p>
+<p>Se mode==2 (ramo else): l'intero campo di gioco verrà ricopiato spostato di 2 char verso destra. Utilizzato quando va inserita una tessera in verticale a sinistra del campo di gioco oppure quando va inserita una tessera in orizzontale ma le celle ' ' sono solamente 2 quindi sono necessarie altre 2 celle vuote per inserire la tessera. </p>
 
 </div>
 </div>
@@ -747,6 +818,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri: <a class="el" href="struct_matrix.html">Matrix</a> *board</p>
+<p>La funzione scorre tutta board-&gt;m con due cicli for innestati e incrementa di uno i valori di tutte le tessere sul campo da gioco tranne le tessere [00]. Per i numeri da 1 a 5 il numero viene incrementato di 1. Il numero 6 viene invece portato ad 1. </p>
 
 </div>
 </div>
@@ -814,6 +888,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: bool</p>
+<p>Parametri: nessuno</p>
+<p>La funzione serve a far selezionare al giocatore se iniziare una partita Interattiva oppure giocata in autonomia "dal computer". Se il giocatore manda in input da tastiera 1 allora verrà restituito false alla funzione <a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main()</a> che inizierà una partita interattiva. Se il giocatore manda in input da tastiera 2 allora il valore true verrà restituito alla funzione main che farà cominciare una partita giocata da IA. Qualiasi altro valore in input verrà interpretato come un errore e richiederà il rinserimento dell'input da parte del giocatore </p>
 
 </div>
 </div>

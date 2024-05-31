@@ -135,6 +135,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: Tile*</p>
+<p>Parametri: int n</p>
+<p>All'interno della funzione viene definito l'array contenente tutte e 24 le possibili tessere del domino viene allocato spazio per un array di n Tiles, dove n è il numero di tessere con il quale si è deciso di iniziare la partita tramite <a class="el" href="player_8h.html#a4ddb956bcace6ca017ffec9871585420">choose_valid_n()</a>. Viene poi utilizzata la funzione srand(time(NULL)) per far si che la funzione rand() utilizzata successivamente crei ogni volta una sequenza di estrazione effettivamente casuale. L'array hand, che rappresenta la mano di tessere che avrà il giocatore, viene riempito con inserimento di tessere scelte casualmente, anche con ripetizioni, dall'array deck. Resituisce l'array hand riempito. </p>
 
 </div>
 </div>
@@ -152,6 +155,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: int</p>
+<p>Parametri: nessuno</p>
+<p>Viene richiesto al giocatore di selezionare tramite input da tastiera la durata della partita.</p><ul>
+<li>Input == 1: viene selezionata partita "corta" e verrà creato con la funzione <a class="el" href="player_8h.html#a4014245a8af5fadf6316e5f918acac92">assegna()</a> una mano di 5 tessere.</li>
+<li>Input == 2: viene selezionata partita "intermedia" e verrà creato con la funzione <a class="el" href="player_8h.html#a4014245a8af5fadf6316e5f918acac92">assegna()</a> una mano di 10 tessere.</li>
+<li>Input == 3: viene selezionata partita "lunga" e verrà creato con la funzione <a class="el" href="player_8h.html#a4014245a8af5fadf6316e5f918acac92">assegna()</a> una mano di 15 tessere.</li>
+</ul>
+<p>Se l'input ricevuto è diverso da 1,2 o 3 viene richiesto il rinserimento fino alla ricezione di un'opzione valida. </p>
 
 </div>
 </div>
@@ -173,6 +184,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: void</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_tile.html">Tile</a> *hand: mano di tessere del giocatore.</li>
+<li>int n: numero di elementi da stampare dell'array hand.</li>
+</ul>
+<p>Stampa a schermo le n tessere rimanenti nella mano del giocatore </p>
 
 </div>
 </div>
@@ -204,6 +221,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: <a class="el" href="struct_tile.html">Tile</a></p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_tile.html">Tile</a> *deck: mano delle tessere del giocatore</li>
+<li>int size: dimensione rimanente dell'array deck.</li>
+<li>int n: dimensione iniziale dell'array deck, numero di tessere ricevute all'inizio della partita.</li>
+<li>int mode: definisce la modalità di gioco scelta per la partita (Lineare /2D)</li>
+</ul>
+<p>Viene chiesto di inserire in input da tastiera i due char corrispondenti ai simboli presenti sulla tessera che il giocatore vuole selezionare. Se per esempio si volesse selezionare la tessera [4 6], il giocatore dovrà immettere in input 46. La tessera può anche essere utilizzata con le cifre scambiate ovvero se il giocatore da in input 64, tramite la funzione <a class="el" href="player_8h.html#a3aa9d3b4a2bdb73a906d8fc1711666cc">valid_tile()</a> viene fatto il controllo sulle cifre scambiate e ne viene concesso l'utilizzo. Nel caso in cui la tessera non sia presente nella mano del giocatore, viene nuovamente richiesto l'inserimento di una tessera valida effettivamente presente nella mano del giocatore.</p>
+<p>Una volta selezionata una tessera valida, nel caso in cui si stia giocando una partita in modalità 2D (quindi mode==2), viene richiesto al giocatore di selezionare l'orientamento con il quale vuole posizionare la tessera sul campo da gioco. </p>
 
 </div>
 </div>
@@ -235,6 +261,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Tipo: bool</p>
+<p>Parametri:</p><ul>
+<li><a class="el" href="struct_tile.html">Tile</a> *deck: mano di tessere del giocatore.</li>
+<li>int size: dimensione rimanente dell'array deck.</li>
+<li><a class="el" href="struct_tile.html">Tile</a> tile: tessera selezionata dal giocatore per essere inserita</li>
+<li>int n: dimensione iniziale dell'array deck, numero di tessere ricevute all'inizio della partita.</li>
+</ul>
+<p>La funzione verifica se la tessera selezionata tramite <a class="el" href="player_8h.html#a853d39672609f3467b658d4678bf11ca">select_tile()</a> è valida, ovvero, se fa effettivamente parte della mano del giocatore. Se il deck è ancora pieno (size==n) quindi sta per essere posizionata la prima tessera, la funzione impedisce l'utilizzo delle tessere speciali [+1] e [MR]. Se invece è stata selezionata una tessere diversa dalle due appena citate controlla, scorrendo il deck una tessera alla volta se tile è uguale a una tessera del deck oppure se è una tessera del deck con le cifre scambiate (il giocatore può usare le tessera del deck [xy] anche in ordine inverso ovvero [yx]). Se la tessera selezionata fa match con una tessera del deck allora la funzione ritorna True altrimenti restituisce False e viene nuovamente richiesto di selezionare una tessere valida. </p>
 
 </div>
 </div>

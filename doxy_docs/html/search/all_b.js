@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orientation_0',['orientation',['../struct_tile.html#ac6e1dab47d43a07fe471a9f9538881c4',1,'Tile']]]
+  ['rows_0',['rows',['../struct_matrix.html#a994b1578e9a64d5cc3c4d0b11d7532a9',1,'Matrix']]]
 ];

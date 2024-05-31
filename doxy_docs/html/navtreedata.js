@@ -25,13 +25,6 @@
 var NAVTREE =
 [
   [ "My Project", "index.html", [
-    [ "Domino", "md__r_e_a_d_m_e.html", [
-      [ "Progetto di Introduzione alla Programmazione per A.A. 2022/2024", "md__r_e_a_d_m_e.html#autotoc_md1", [
-        [ "Tessere", "md__r_e_a_d_m_e.html#autotoc_md2", [
-          [ "Tessere Speciali", "md__r_e_a_d_m_e.html#autotoc_md3", null ]
-        ] ]
-      ] ]
-    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
