@@ -319,7 +319,7 @@ void find_blank_left(Matrix *board, int *row, int *col);
  * - int i: indice della riga su cui sta per essere eseguita l'ispezione
  * - int j: indice della riga su cui sta per essere eseguita l'ispezione
  *
- * La funzione conta dalla cella j, decrementando j di un 1 ogni volta, quante sono le celle libere (' ') sulla riga prima
+ * La funzione conta dalla cella j, decrementando j di un 1 ogni volta, quante sono le celle libere (' ') sulla riga i, prima
  * della cella board->m[i][j]. Utilizzata in insert_left_2D() nel caso la board debba essere shiftata per permettere l'
  * inserimento di una tessera ad inizio riga e le celle ' ' già presenti non siano sufficienti ad ospitare tutta la tessera
  * */
@@ -377,11 +377,64 @@ bool check_blank_left(Matrix *board, int i, int j, char orientation);
  * */
 void copy_board(Matrix* destination, Matrix* source);
 
-
+/*!
+ * Tipo: bool
+ *
+ * Parametri: Matrix *board, Tile *deck, int remain, int n
+ *
+ * La funzione dapprima controlla se il deck è ancora composto da tutte le n tessere assegnate al giocatore ad inizio
+ * partita, se sì ritorna true, altrimenti verifica l'esistenza di mosse disponibili creando una Matrix copy con una copia
+ * del tavolo di gioco grazie a copy_board(). Su Matrix copy vengono poi "provate" le funzioni insert_left_2D() ed insert_right_2D()
+ * utilizzando una tessera alla volta tra quelle ancora nel deck del giocatore. se una delle funzioni di inserimento su
+ * una tessera ritorna true allora anche available_moves_2D ritorna true.
+ * Se per una data tessera nessuna delle chiamate alle fuzioni di inserimento ritorna true, viene ripetuto il tentativo
+ * sulla tessera successiva nel deck.
+ * Se vengono provate tutte le tessere del deck senza successo la funzione ritorna false e manda la partita in "game over".
+ * */
 bool available_moves_2D(Matrix* board, Tile* deck, int remain, int n);
 
+/*!
+ * Tipo: bool
+ *
+ * Parametri: nessuno
+ *
+ * La funzione serve a far selezionare al giocatore se iniziare una partita Interattiva oppure giocata in autonomia
+ * "dal computer". Se il giocatore manda in input da tastiera 1 allora verrà restituito false alla funzione main() che
+ * inizierà una partita interattiva. Se il giocatore manda in input da tastiera 2 allora il valore true verrà restituito alla
+ * funzione main che farà cominciare una partita giocata da IA.
+ * Qualiasi altro valore in input verrà interpretato come un errore e richiederà il rinserimento dell'input da parte del
+ * giocatore
+ * */
 bool select_autoplay(void);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri:
+ * - Matrix *board: tavolo di gioco.
+ * - Tile *deck: tessere nella mano del giocatore
+ * - int remain: dimensione effettiva del deck del giocatore
+ * - int n: dimensione iniziale del deck del giocatore
+ * - int mode: variabile che identifica la tipologia di partita (Lineare/2D)
+ *
+ * Funzione che implementa la modalità IA del gioco. Se la variabile mode==1 allora verrà giocata una partita in Domino
+ * Lineare, altrimenti la partita sarà in Domino 2D.
+ *
+ * - Domino Lineare: dentro ad un ciclo while che nella condizione controlla che ci siano tessere rimanenti nella mano
+ * del giocatore, che la variabile di scorrimento delle tessere nel deck non superi la dimensione effettiva del deck e
+ * che siano ancora disponibili mosse in modalità lineare (tramite available_moves_linear()), la funzione prova l'inserimento
+ * di una tessera del deck alla volta.
+ * Data la tessera [xy] verrà effettuato un inserimento di [xy] sia a destra che a sinistra. nel caso nessuno dei due
+ * vada a buon fine verrà provato l'inserimento a destra e a sinistra della stessa tessera ma con i valori scambiati [yx].
+ * Il caso nessuno dei tentativi su una data tessera vada a buon fine , verrà "estratta" la tessera successiva e così via.
+ * Se la tessera viene inserita con successo, il tentativo di inserimento successivo ricomincerà dalla prima tessera del deck.
+ * Nel caso in cui nessuna tessera venga inserita con successo. La funzione termina. L'esecuzione ritorna alla funzione
+ * main e viene dichiarato il "game over"
+ *
+ * - Domino 2D: il procedimento è lo stesso di autoplay con modalità Lineare. Tuttavia per ogni tessera [xy] verrà eseguito
+ * tentativo di inserimento sia su [xy] che su [yx] in orizzontale a destra, in orizzontale a sinistra, in verticale a
+ * destra, in verticale a sinistra.
+ * */
 void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode);
 
 /*!
@@ -395,6 +448,19 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode);
  * */
 void plus_one(Matrix *board);
 
+/*!
+ * Tipo: void
+ *
+ * Parametri: Matrix *board
+ * - int mode: variabile che identifica il numero di celle di cui è necessario "spostare" il campo di gioco
+ *
+ * Se mode==1: l'intero campo di gioco verrà ricopiato spostato di 4 char verso destra. Utilizzato quando va inserita
+ * una tessera in orizzontale ad inizio di una riga
+ *
+ * Se mode==2 (ramo else): l'intero campo di gioco verrà ricopiato spostato di 2 char verso destra. Utilizzato quando va
+ * inserita una tessera in verticale a sinistra del campo di gioco oppure quando va inserita una tessera in orizzontale
+ * ma le celle ' ' sono solamente 2 quindi sono necessarie altre 2 celle vuote per inserire la tessera.
+ * */
 void move_board(Matrix *board, int mode);
 
 

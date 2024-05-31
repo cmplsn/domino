@@ -22,10 +22,4 @@ bool valid_tile(Tile* deck, int size, Tile tile, int n);
 
 Tile select_tile(Tile* deck, int size, int n,int mode);
 
-//char select_orientation(void);
-
-//Tile select_tile_2D(Tile* deck, int deck_size, int n);
-
-//void switch_tile(Tile* tile);
-
 #endif //PROJECT_IAP_PLAYER_H

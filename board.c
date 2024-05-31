@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "board.h"
 #include <unistd.h>
+
 int select_mode(void){
     printf("seleziona modalità di gioco\n1: Domino Lineare\n2: Domino 2D\n");
     int x=-1;
@@ -86,6 +87,7 @@ char select_pos(void){
     }
     return x;
 }
+
 //todo: funzione che viene richiamata quando viene inserita sulla board una tessera [+1]
 void plus_one(Matrix *board){
     for (int i = 0; i < board->rows; ++i) {
@@ -105,7 +107,7 @@ void plus_one(Matrix *board){
 }
 
 void move_board(Matrix *board, int mode){
-    //todo: in mode==1 ricopio tutto spostato di 4 chae se necessario per creare spazio per una nuova tessera orizzontale
+    //todo: in mode==1 ricopio tutto spostato di 4 char se necessario per creare spazio per una nuova tessera orizzontale
     if(mode==1){
         for (int i = 0; i <board->rows; ++i) {
             for (int j = board->cols-1; j >=4; --j) {
@@ -840,7 +842,7 @@ void autoplay(Matrix *board, Tile* deck, int remain, int n, int mode){
                 print_screen(board,deck,remain);
                 inserted=false;
             }
-            sleep(3);
+            sleep(2);
             if(deck[i].x=='M' || deck[i].x=='+'){
                 if(remain<n){
                     Tile chosen=deck[i];
